@@ -6,41 +6,41 @@ import { useRef } from "react";
 const timeline = [
   {
     year: "2013",
-    title: "The Beginning",
-    desc: "Founded as India's first dedicated Bitcoin platform. When no one believed, we built.",
+    title: "India's First Bitcoin Platform",
+    desc: "Founded by Sathvik Vishwanath, Sunny Ray, Harish BV, and Abhinand Kaseti. When no one in India believed in Bitcoin, we built.",
   },
   {
     year: "2014",
-    title: "Draper & Silbert Invest",
-    desc: "Tim Draper and Barry Silbert back Unocoin — legendary Bitcoin investors who saw the vision early.",
+    title: "Silbert Leads $250K Seed",
+    desc: "Barry Silbert and Digital Currency Group lead our seed round. Draper Associates, Blume Ventures, and Boost VC follow.",
   },
   {
     year: "2018",
-    title: "RBI Banking Ban",
-    desc: "The Reserve Bank banned crypto banking. Many folded. We fought back.",
+    title: "RBI Ban & Arrest",
+    desc: "RBI bans crypto banking. Our co-founders are arrested for installing India's first Bitcoin ATM. Many exchanges fold. We fight back.",
   },
   {
     year: "2020",
     title: "Supreme Court Victory",
-    desc: "Led the initiative that overturned the RBI ban in India's Supreme Court. A landmark win for crypto freedom.",
+    desc: "After 20 weeks of hearings, the Supreme Court strikes down the RBI ban as unconstitutional. Customers surge 10X. India's crypto future is saved.",
   },
   {
-    year: "2024",
-    title: "FIU Registration",
-    desc: "Fully compliant and registered with India's Financial Intelligence Unit. Building trust through regulation.",
+    year: "2025",
+    title: "Lightning Network Goes Live",
+    desc: "Partnered with Voltage to bring instant Bitcoin settlements to India. USDT on Lightning on the horizon.",
   },
   {
     year: "2026",
     title: "Remittance Revolution",
-    desc: "Pioneering stablecoin-powered cross-border payments. The next chapter begins.",
+    desc: "Pioneering Lightning-powered cross-border payments for India's $125B+ remittance market. The next chapter begins.",
   },
 ];
 
 const stats = [
-  { value: "13+", label: "Years of Trust", icon: "🕐" },
-  { value: "2M+", label: "Users Served", icon: "👥" },
-  { value: "₹10K Cr+", label: "Volume Processed", icon: "📊" },
-  { value: "100%", label: "Cold Storage Security", icon: "🔒" },
+  { value: "2013", label: "India's First Crypto Exchange", icon: "🕐" },
+  { value: "2.26M+", label: "Users Trust Unocoin", icon: "👥" },
+  { value: "₹3K Cr+", label: "Transactions Processed", icon: "📊" },
+  { value: "120+", label: "Cryptocurrencies Listed", icon: "🔒" },
 ];
 
 function TimelineItem({
@@ -196,8 +196,8 @@ export default function TrustSection() {
                 </div>
                 <p className="text-text-secondary text-sm leading-relaxed">
                   Early Skype, Tesla, and Coinbase investor. Bought 30,000 BTC
-                  at the US Marshals auction. Predicted Bitcoin at $250K. Believed
-                  in Unocoin&apos;s mission to bring Bitcoin to India.
+                  at the US Marshals auction. Led Unocoin&apos;s Series A in 2020
+                  and doubled down in 2024. Predicted Bitcoin at $250K.
                 </p>
               </motion.div>
 
@@ -220,9 +220,10 @@ export default function TrustSection() {
                   </div>
                 </div>
                 <p className="text-text-secondary text-sm leading-relaxed">
-                  Founder of DCG, the most prolific investor in the Bitcoin and
-                  blockchain industry. Grayscale, CoinDesk, Genesis — his
-                  portfolio defines the ecosystem. Unocoin is part of that vision.
+                  Founder of Digital Currency Group — the most prolific investor
+                  in crypto. Led Unocoin&apos;s $250K seed round in 2014 when
+                  Bitcoin in India was just an idea. Grayscale, CoinDesk, Genesis
+                  — his portfolio defines the ecosystem.
                 </p>
               </motion.div>
             </div>
@@ -243,11 +244,12 @@ export default function TrustSection() {
                     Supreme Court of India — 2020
                   </h4>
                   <p className="text-text-secondary text-sm leading-relaxed">
-                    When the RBI banned cryptocurrency banking in 2018, the
-                    industry was devastated. Unocoin helped lead the fight that
-                    resulted in the Supreme Court striking down the ban — a
-                    historic ruling that saved India&apos;s crypto future and set
-                    precedent for digital asset rights worldwide.
+                    When the RBI banned crypto banking in 2018, most exchanges
+                    folded. Our co-founders were arrested for installing India&apos;s
+                    first Bitcoin ATM. We didn&apos;t back down — we fought for 20
+                    weeks in the Supreme Court. On March 4, 2020, the Court
+                    struck down the RBI ban as unconstitutional. Karnataka HC
+                    later quashed the FIR. India&apos;s crypto future was saved.
                   </p>
                 </div>
               </div>

@@ -20,10 +20,10 @@ const features = [
         />
       </svg>
     ),
-    title: "Bitcoin SIP",
-    subtitle: "Systematic Investment Plan",
+    title: "Bitcoin SBP",
+    subtitle: "Systematic Buying Plan",
     description:
-      "Automate your Bitcoin accumulation. Set it, forget it, and watch your stack grow. Start with as little as ₹100.",
+      "India's first Crypto SIP. Automate your Bitcoin accumulation starting at just ₹10. Set it, forget it, stack sats on autopilot.",
     accent: "from-bitcoin to-bitcoin-light",
   },
   {
@@ -115,10 +115,10 @@ const features = [
         />
       </svg>
     ),
-    title: "OTC Desk",
-    subtitle: "Large Volume Trading",
+    title: "Lightning Network",
+    subtitle: "Instant BTC Settlements",
     description:
-      "Dedicated desk for high-value Bitcoin trades. Competitive pricing, deep liquidity, and white-glove service.",
+      "Powered by Voltage. Send and receive Bitcoin in seconds with near-zero fees. USDT on Lightning coming soon.",
     accent: "from-bitcoin to-accent-purple",
   },
   {
@@ -145,10 +145,10 @@ const features = [
         />
       </svg>
     ),
-    title: "Instant Buy/Sell",
-    subtitle: "One-Tap Trading",
+    title: "USDT Earnings",
+    subtitle: "7% APY on Stablecoins",
     description:
-      "Buy Bitcoin in seconds. Our streamlined interface makes it effortless — whether it's your first ₹100 or your first ₹1 crore.",
+      "Put your USDT to work. Earn 7% interest on your stablecoin holdings. Plus crypto lending with BTC collateral.",
     accent: "from-accent-green to-bitcoin",
   },
 ];

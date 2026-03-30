@@ -4,9 +4,9 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const partners = [
+  "Voltage (Lightning)",
+  "Tether (USDT)",
   "Banking Partners",
-  "Payment Networks",
-  "NBFC Partners",
   "Global Corridors",
 ];
 
@@ -194,10 +194,10 @@ export default function RemittanceSection() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-lg text-text-secondary leading-relaxed mb-8"
             >
-              Stablecoins are transforming how money moves across borders. We&apos;re
-              building the rails — partnering with banks, NBFCs, and payment
-              networks to make remittances instant, transparent, and dramatically
-              cheaper.
+              Powered by the Lightning Network and our partnership with Voltage,
+              we&apos;re building the rails for instant cross-border payments.
+              USDT on Lightning is coming — making remittances to India near-free
+              and settling in seconds, not days.
             </motion.p>
 
             <motion.div
@@ -208,13 +208,13 @@ export default function RemittanceSection() {
             >
               {[
                 {
-                  stat: "90%",
-                  desc: "Lower fees than traditional wire transfers",
+                  stat: "<1¢",
+                  desc: "Per transaction on Lightning vs ₹700+ via banks",
                 },
-                { stat: "Minutes", desc: "Not days — settlement in real-time" },
+                { stat: "Seconds", desc: "Not days — instant settlement via Lightning Network" },
                 {
-                  stat: "24/7",
-                  desc: "No banking hours, no holidays, always on",
+                  stat: "$125B+",
+                  desc: "India's annual remittance market — the world's largest",
                 },
               ].map((item) => (
                 <div

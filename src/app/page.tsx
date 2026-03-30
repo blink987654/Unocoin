@@ -2,6 +2,7 @@
 
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
+import HowItWorksSection from "@/components/HowItWorksSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import RemittanceSection from "@/components/RemittanceSection";
 import TrustSection from "@/components/TrustSection";
@@ -16,6 +17,11 @@ export default function Home() {
 
       {/* Hero - The user is the hero. "Your future runs on Bitcoin." */}
       <HeroSection />
+
+      <div className="section-divider" />
+
+      {/* 3-Step Plan - StoryBrand: reduce friction, show the path */}
+      <HowItWorksSection />
 
       <div className="section-divider" />
 

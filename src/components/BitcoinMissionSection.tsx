@@ -101,19 +101,20 @@ export default function BitcoinMissionSection() {
         >
           <div className="bg-surface-card border border-border-subtle rounded-3xl p-8 md:p-12 max-w-3xl mx-auto">
             <blockquote className="text-xl md:text-2xl font-medium leading-relaxed text-text-primary mb-6">
-              &ldquo;We didn&apos;t start Unocoin to ride a trend. We started it
-              because we believe every person on this planet deserves access to
-              sound money. Bitcoin is that money. India is our home. The world
-              is our mission.&rdquo;
+              &ldquo;We started this company with the mission to bring Bitcoin to
+              billions. Bitcoin opens up a world that simply wasn&apos;t possible
+              before — it has the potential to take market share from gold,
+              substantially reduce the cost of remittance, and bank the
+              unbanked.&rdquo;
             </blockquote>
             <div className="flex items-center justify-center gap-3">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-bitcoin to-bitcoin-light flex items-center justify-center font-bold text-sm text-white">
-                SV
+                SR
               </div>
               <div className="text-left">
-                <p className="font-semibold text-sm">Sathvik Vishwanath</p>
+                <p className="font-semibold text-sm">Sunny Ray</p>
                 <p className="text-xs text-text-tertiary">
-                  Co-founder & CEO, Unocoin
+                  Co-founder, Unocoin
                 </p>
               </div>
             </div>

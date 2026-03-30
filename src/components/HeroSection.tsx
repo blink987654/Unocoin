@@ -188,9 +188,9 @@ export default function HeroSection() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="text-lg md:text-xl text-text-secondary max-w-lg leading-relaxed mb-10"
             >
-              India&apos;s pioneer since 2013. We didn&apos;t just join the
-              Bitcoin revolution — we started it. Trusted by millions, backed
-              by legends, built for billions.
+              India&apos;s first Bitcoin platform. Since 2013, we&apos;ve survived
+              bans, fought the RBI in the Supreme Court — and won. Backed by
+              Tim Draper and Barry Silbert. Trusted by 2.26 million Indians.
             </motion.p>
 
             <motion.div
@@ -226,7 +226,7 @@ export default function HeroSection() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="text-sm">13 Years of Trust</span>
+                <span className="text-sm">Since 2013</span>
               </div>
               <div className="flex items-center gap-2">
                 <svg
@@ -240,7 +240,7 @@ export default function HeroSection() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="text-sm">Bank-Grade Security</span>
+                <span className="text-sm">Lightning Network</span>
               </div>
               <div className="flex items-center gap-2">
                 <svg
