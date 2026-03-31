@@ -521,7 +521,7 @@ export default function BitcoinGlobe() {
   return (
     <div className="w-[260px] h-[260px] md:w-[400px] md:h-[400px] lg:w-[480px] lg:h-[480px] cursor-grab active:cursor-grabbing">
       <Canvas
-        camera={{ position: [0, 0, 4.5], fov: 45 }}
+        camera={{ position: [0.88, 1.54, -4.14], fov: 45 }}
         gl={{ antialias: true, alpha: true }}
         style={{ background: "transparent" }}
       >
