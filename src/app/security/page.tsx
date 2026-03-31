@@ -65,7 +65,7 @@ const complianceItems = [
   },
   {
     title: "Tax Compliant",
-    desc: "Automated 1% TDS deduction. Annual tax statements. 30% crypto tax handling.",
+    desc: "Automated 1% TDS deduction. Annual tax statements. 30% digital asset tax handling.",
   },
   {
     title: "PMLA Adherent",

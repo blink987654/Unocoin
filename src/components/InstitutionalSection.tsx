@@ -195,7 +195,7 @@ export default function InstitutionalSection() {
             className="text-lg text-text-secondary leading-relaxed max-w-2xl mx-auto"
           >
             Unocoin&apos;s institutional suite serves family offices, corporate
-            treasuries, and sovereign entities with white-glove crypto services.
+            treasuries, and sovereign entities with white-glove digital asset services.
             Dedicated relationship managers. Institutional-grade custody.
             Volume-based pricing.
           </motion.p>

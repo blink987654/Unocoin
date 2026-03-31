@@ -29,7 +29,7 @@ function usePersonalization() {
   const [context, setContext] = useState({
     greeting: "The future of money",
     subtext: "starts here",
-    description: "India\u2019s first crypto platform fought the RBI in the Supreme Court \u2014 and won. Since 2013, we\u2019ve been the guide for 2.26 million Indians building wealth with Bitcoin and 120+ cryptocurrencies.",
+    description: "India\u2019s first Bitcoin platform fought the RBI in the Supreme Court \u2014 and won. Since 2013, we\u2019ve been the guide for 2.26 million Indians building wealth with Bitcoin, stablecoins, and 120+ digital assets.",
     timeOfDay: "day" as "morning" | "day" | "evening" | "night",
     isReturning: false,
   });
@@ -48,22 +48,22 @@ function usePersonalization() {
 
     // Headline + subtext pairs for first-time visitors (rotated randomly)
     const firstTimeHeadlines = [
-      { greeting: "Trusted at the highest", subtext: "levels of India", description: "From sovereign institutions to 2.26 million individuals \u2014 India\u2019s most trusted crypto platform. 13 years of operation. Supreme Court validated. Backed by Tim Draper and Barry Silbert." },
-      { greeting: "Where serious capital", subtext: "meets crypto", description: "OTC desk for large volumes. Institutional-grade custody. 95% cold storage. Multi-signature security. Whether you\u2019re investing \u20B910 or \u20B910 crore, this is your platform." },
-      { greeting: "India\u2019s crypto pioneer", subtext: "since 2013", description: "We fought the RBI in the Supreme Court \u2014 and won. We survived when every other exchange folded. Now institutions, family offices, and 2.26 million Indians trust us with their wealth." },
-      { greeting: "The platform India", subtext: "chose to trust", description: "FIU-IND registered. PMLA compliant. Chosen by entities that can\u2019t afford to be wrong. 120+ cryptocurrencies. Industry-lowest fees. $3,000 Cr+ processed." },
-      { greeting: "Build generational", subtext: "wealth with crypto", description: "Bitcoin, Ethereum, stablecoins, and 120+ assets. Systematic Buying Plans with zero fees. Earn 7% APY on USDT. From daily micro-investments to institutional OTC trades \u2014 every wealth tier, one platform." },
+      { greeting: "0% fees on Bitcoin SBP", subtext: "India\u2019s first Bitcoin SIP", description: "Auto-invest in Bitcoin daily, weekly, or monthly \u2014 with zero transaction fees. Like a SIP, but for Bitcoin. Start from just \u20B910. No lock-in. Cancel anytime." },
+      { greeting: "Earn 7% APY", subtext: "on your stablecoins", description: "Put your USDT to work. Earn up to 7% annual yield while you sleep. No lock-in period. Withdraw anytime. Your idle money, always working." },
+      { greeting: "The platform India", subtext: "chose to trust", description: "FIU-IND registered. PMLA compliant. Trusted by sovereign entities and 2.26 million Indians. \u20B93,000 Cr+ processed. 13 years. Zero security breaches." },
+      { greeting: "Bitcoin at lightning speed", subtext: "for a fraction of a rupee", description: "Send and receive Bitcoin in milliseconds via Lightning Network. Cross-border remittances that settle in seconds, not days. Powered by Voltage." },
+      { greeting: "India\u2019s most trusted", subtext: "Bitcoin platform", description: "We fought the RBI in the Supreme Court \u2014 and won. We survived when every other exchange folded. Now institutions, family offices, and 2.26 million Indians trust us with their wealth." },
     ];
 
     // Headline + subtext pairs for returning visitors (time-aware)
     const returningHeadlines: Record<string, { greeting: string; subtext: string; description: string }[]> = {
       morning: [
-        { greeting: "Good morning", subtext: "let\u2019s build wealth", description: "Your portfolio is waiting. Check your holdings, top up your SBP, or explore new opportunities across 120+ cryptocurrencies." },
+        { greeting: "Good morning", subtext: "let\u2019s build wealth", description: "Your portfolio is waiting. Check your holdings, top up your SBP, or explore new opportunities across 120+ assets." },
         { greeting: "Rise and stack", subtext: "sats before chai", description: "Markets never sleep, and neither does your SBP. Your automated buys have been running while you rested." },
       ],
       day: [
         { greeting: "Welcome back", subtext: "to your future", description: "2.26 million Indians are building wealth with Unocoin right now. Check the markets, review your portfolio, or start a new SBP." },
-        { greeting: "The markets are", subtext: "open and moving", description: "Live prices on 120+ cryptocurrencies. Your SBP is running, your portfolio is growing. What\u2019s your next move?" },
+        { greeting: "The markets are", subtext: "open and moving", description: "Live prices on Bitcoin, ETH, stablecoins, and 120+ more. Your SBP is running, your portfolio is growing. What\u2019s your next move?" },
       ],
       evening: [
         { greeting: "Good evening", subtext: "Bitcoin never rests", description: "Wind down while your investments work. Review today\u2019s performance, or set up an Auto Sell to catch overnight moves." },
@@ -71,7 +71,7 @@ function usePersonalization() {
       ],
       night: [
         { greeting: "The night owls", subtext: "catch the best dips", description: "Smart money moves while the world sleeps. Check live prices, adjust your SBP, or explore new opportunities." },
-        { greeting: "Still stacking", subtext: "sats at midnight", description: "The best investors are always learning, always building. Your portfolio is live across 120+ cryptocurrencies, 24/7." },
+        { greeting: "Still stacking", subtext: "sats at midnight", description: "The best investors are always learning, always building. Your portfolio is live across 120+ assets, 24/7." },
       ],
     };
 
@@ -176,37 +176,126 @@ function PriceTicker({ prices }: { prices: PriceData[] }) {
   );
 }
 
-// ─── Investment Calculator Counter (#4) ─────────────────────
-function InvestmentCounter() {
-  const [displayValue, setDisplayValue] = useState(0);
-  // ₹1,000/month since Jan 2013 in BTC
-  // Approximate: ~₹1.56 Crore based on historical BTC/INR
-  const targetValue = 15600000;
+
+// ─── Feature Highlight Cards ────────────────────────────────
+function FeatureHighlights() {
+  const highlights = [
+    { stat: "₹0", label: "SBP Fees", desc: "Auto-invest in BTC & ETH with zero fees", icon: "₿" },
+    { stat: "7%", label: "APY", desc: "Earn yield on USDT. No lock-in", icon: "💰" },
+    { stat: "⚡", label: "Lightning", desc: "BTC transfers in milliseconds", icon: "⚡" },
+    { stat: "₹10", label: "Minimum", desc: "Start investing from ten rupees", icon: "📈" },
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 1.0, duration: 0.6 }}
+      className="flex gap-2 overflow-x-auto scrollbar-hide -mx-1 px-1 pb-1"
+    >
+      {highlights.map((h, i) => (
+        <motion.div
+          key={h.label}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.0 + i * 0.08, duration: 0.5 }}
+          className="flex-shrink-0 bg-surface-elevated/40 backdrop-blur-xl border border-border-subtle rounded-xl px-3.5 py-2.5 hover:border-bitcoin/25 transition-colors duration-300 group cursor-default"
+        >
+          <div className="flex items-center gap-2">
+            <span className="text-lg font-bold gradient-text-bitcoin">{h.stat}</span>
+            <span className="text-xs font-semibold text-text-primary uppercase tracking-wide">{h.label}</span>
+          </div>
+          <p className="text-[11px] text-text-tertiary mt-0.5 whitespace-nowrap">{h.desc}</p>
+        </motion.div>
+      ))}
+    </motion.div>
+  );
+}
+
+// ─── Investor Spotlight (Rotating Quotes) ───────────────────
+const investorQuotes = [
+  {
+    quote: "Unocoin has solidified its position as the leading Bitcoin company in India.",
+    name: "Barry Silbert",
+    title: "Founder, Digital Currency Group",
+    initials: "BS",
+    gradient: "from-accent-blue to-accent-purple",
+  },
+  {
+    quote: "India is going to be one of the biggest Bitcoin markets in the world. Unocoin is leading that charge.",
+    name: "Tim Draper",
+    title: "Legendary VC & Bitcoin Pioneer",
+    initials: "TD",
+    gradient: "from-bitcoin to-bitcoin-light",
+  },
+];
+
+function InvestorSpotlight() {
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const duration = 2500;
-    const start = Date.now();
-
-    function animate() {
-      const elapsed = Date.now() - start;
-      const progress = Math.min(elapsed / duration, 1);
-      // Ease out cubic
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setDisplayValue(Math.floor(targetValue * eased));
-
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      }
-    }
-
-    const timeout = setTimeout(() => {
-      requestAnimationFrame(animate);
-    }, 1500);
-
-    return () => clearTimeout(timeout);
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % investorQuotes.length);
+    }, 6000);
+    return () => clearInterval(interval);
   }, []);
 
-  const formatted = `₹${(displayValue / 10000000).toFixed(2)} Cr`;
+  const quote = investorQuotes[index];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1.4, duration: 0.8 }}
+      className="mt-6"
+    >
+      <div className="bg-surface-elevated/30 backdrop-blur-xl border border-border-subtle rounded-xl px-5 py-4 max-w-md">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.4 }}
+          >
+            <p className="text-sm text-text-secondary italic leading-relaxed mb-3">
+              &ldquo;{quote.quote}&rdquo;
+            </p>
+            <div className="flex items-center gap-2.5">
+              <div className={`w-8 h-8 rounded-full bg-gradient-to-br ${quote.gradient} flex items-center justify-center text-[10px] font-bold text-white`}>
+                {quote.initials}
+              </div>
+              <div>
+                <p className="text-xs font-semibold text-text-primary">{quote.name}</p>
+                <p className="text-[11px] text-text-tertiary">{quote.title}</p>
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </motion.div>
+  );
+}
+
+// ─── Live Trading Metrics ───────────────────────────────────
+function LiveMetrics() {
+  const [metrics, setMetrics] = useState({
+    tradedToday: 234,
+    activeUsers: 12450,
+    aum: 890,
+  });
+
+  useEffect(() => {
+    // Subtle increments to feel alive
+    const interval = setInterval(() => {
+      setMetrics((prev) => ({
+        tradedToday: prev.tradedToday + Math.random() * 0.3,
+        activeUsers: prev.activeUsers + Math.floor(Math.random() * 5),
+        aum: prev.aum + Math.random() * 0.01,
+      }));
+    }, 8000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <motion.div
@@ -215,69 +304,30 @@ function InvestmentCounter() {
       transition={{ delay: 1.8, duration: 0.6 }}
       className="bg-surface-card/50 backdrop-blur-xl border border-border-subtle rounded-2xl p-5 max-w-sm"
     >
-      <p className="text-xs text-text-tertiary uppercase tracking-wider mb-2">
-        If you invested ₹1,000/month since 2013
-      </p>
-      <div className="flex items-baseline gap-2">
-        <span className="text-3xl md:text-4xl font-bold gradient-text-bitcoin font-mono">
-          {formatted}
-        </span>
+      <div className="flex items-center gap-2 mb-3">
+        <div className="w-2 h-2 bg-accent-green rounded-full animate-pulse" />
+        <span className="text-xs text-text-tertiary uppercase tracking-wider font-medium">Live Platform Activity</span>
       </div>
-      <p className="text-xs text-text-tertiary mt-1.5">
-        Total invested: ₹1.56L · That&apos;s a <span className="text-bitcoin font-semibold">100x return</span>
-      </p>
-    </motion.div>
-  );
-}
-
-// ─── Social Proof Activity Feed (#6) ────────────────────────
-const activityMessages = [
-  { city: "Mumbai", action: "bought ₹25,000 BTC", icon: "₿" },
-  { city: "Bangalore", action: "activated Bitcoin SBP", icon: "⚡" },
-  { city: "Delhi", action: "received Lightning payment", icon: "⚡" },
-  { city: "Pune", action: "bought ₹5,000 ETH", icon: "Ξ" },
-  { city: "Chennai", action: "withdrew BTC to cold storage", icon: "🔒" },
-  { city: "Hyderabad", action: "set up ₹500/week SBP", icon: "📈" },
-  { city: "Kolkata", action: "bought ₹10,000 BTC", icon: "₿" },
-  { city: "Ahmedabad", action: "earned 7% on USDT", icon: "💰" },
-  { city: "Jaipur", action: "sent remittance via Lightning", icon: "⚡" },
-  { city: "Kochi", action: "bought ₹1,000 BTC", icon: "₿" },
-];
-
-function SocialProofTicker() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % activityMessages.length);
-    }, 3500);
-    return () => clearInterval(interval);
-  }, []);
-
-  const msg = activityMessages[currentIndex];
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 2.5 }}
-      className="flex items-center gap-3 bg-surface-elevated/30 backdrop-blur-xl border border-border-subtle rounded-full px-4 py-2"
-    >
-      <div className="w-2 h-2 bg-accent-green rounded-full animate-pulse" />
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={currentIndex}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
-          transition={{ duration: 0.3 }}
-          className="text-xs text-text-secondary"
-        >
-          <span className="text-text-tertiary">{msg.icon}</span>{" "}
-          Someone in <span className="text-text-primary font-medium">{msg.city}</span>{" "}
-          {msg.action}
-        </motion.span>
-      </AnimatePresence>
+      <div className="grid grid-cols-3 gap-4">
+        <div>
+          <span className="text-xl font-bold gradient-text-bitcoin font-mono block">
+            ₹{metrics.tradedToday.toFixed(0)} Cr
+          </span>
+          <span className="text-[10px] text-text-tertiary">Traded today</span>
+        </div>
+        <div>
+          <span className="text-xl font-bold gradient-text-bitcoin font-mono block">
+            {metrics.activeUsers.toLocaleString("en-IN")}
+          </span>
+          <span className="text-[10px] text-text-tertiary">Active users</span>
+        </div>
+        <div>
+          <span className="text-xl font-bold gradient-text-bitcoin font-mono block">
+            ₹{metrics.aum.toFixed(0)} Cr
+          </span>
+          <span className="text-[10px] text-text-tertiary">AUM</span>
+        </div>
+      </div>
     </motion.div>
   );
 }
@@ -322,37 +372,6 @@ function InlineSignup() {
   );
 }
 
-// ─── Investor Trust Anchors (#9) ────────────────────────────
-function InvestorBadges() {
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 1.4, duration: 0.8 }}
-      className="flex flex-wrap items-center gap-3 mt-8"
-    >
-      <span className="text-xs text-text-tertiary uppercase tracking-wider mr-1">Backed by</span>
-      <div className="flex items-center gap-1.5 bg-surface-elevated/40 border border-border-subtle rounded-lg px-3 py-1.5">
-        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-bitcoin to-bitcoin-light flex items-center justify-center text-[8px] font-bold text-white">
-          TD
-        </div>
-        <span className="text-xs text-text-secondary font-medium">Tim Draper</span>
-      </div>
-      <div className="flex items-center gap-1.5 bg-surface-elevated/40 border border-border-subtle rounded-lg px-3 py-1.5">
-        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center text-[8px] font-bold text-white">
-          BS
-        </div>
-        <span className="text-xs text-text-secondary font-medium">Barry Silbert</span>
-      </div>
-      <div className="flex items-center gap-1.5 bg-surface-elevated/40 border border-border-subtle rounded-lg px-3 py-1.5">
-        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-accent-green to-accent-blue flex items-center justify-center text-[8px] font-bold text-white">
-          BV
-        </div>
-        <span className="text-xs text-text-secondary font-medium">Blume Ventures</span>
-      </div>
-    </motion.div>
-  );
-}
 
 // ─── Bitcoin Lifeline — Background Price Chart (#11) ────────
 function BitcoinLifeline() {
@@ -664,27 +683,47 @@ export default function HeroSection() {
               {personalization.description}
             </motion.p>
 
+            {/* Feature Highlight Cards */}
+            <FeatureHighlights />
+
             {/* Inline Signup (#8) */}
             <InlineSignup />
 
-            {/* Investor Badges (#9) */}
-            <InvestorBadges />
+            {/* Secondary CTA for skeptics */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.1, duration: 0.6 }}
+              className="flex items-center gap-4 text-xs"
+            >
+              <a href="#products" className="text-text-tertiary hover:text-bitcoin transition-colors">
+                Explore SBP plans →
+              </a>
+              <span className="text-border-subtle">|</span>
+              <a href="#comparison" className="text-text-tertiary hover:text-bitcoin transition-colors">
+                See how we compare →
+              </a>
+            </motion.div>
 
-            {/* Trust bar */}
+            {/* Investor Spotlight (rotating quotes) */}
+            <InvestorSpotlight />
+
+            {/* Trust bar — differentiators */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.6, duration: 0.8 }}
-              className="flex flex-wrap items-center gap-6 text-text-tertiary pt-2"
+              className="flex flex-wrap items-center gap-5 text-text-tertiary pt-2"
             >
               {[
-                { label: "Since 2013", icon: "🕐" },
-                { label: "120+ Cryptos", icon: "🪙" },
-                { label: "Lightning Network", icon: "⚡" },
-                { label: "FIU Registered", icon: "✓" },
+                { label: "0% SBP Fees", icon: "✓" },
+                { label: "7% USDT APY", icon: "✓" },
+                { label: "95% Cold Storage", icon: "🔒" },
+                { label: "Supreme Court Validated", icon: "⚖️" },
+                { label: "FIU-IND Registered", icon: "🛡️" },
               ].map((item) => (
                 <div key={item.label} className="flex items-center gap-1.5">
-                  <span className="text-xs">{item.icon}</span>
+                  <span className="text-xs text-accent-green">{item.icon}</span>
                   <span className="text-xs font-medium">{item.label}</span>
                 </div>
               ))}
@@ -706,8 +745,8 @@ export default function HeroSection() {
               <BitcoinGlobe />
             </Suspense>
 
-            {/* Investment Calculator (#4) */}
-            <InvestmentCounter />
+            {/* Live Trading Metrics */}
+            <LiveMetrics />
           </motion.div>
         </div>
 

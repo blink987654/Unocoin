@@ -72,7 +72,7 @@ const STEPS = [
       "Saving for a home",
       "Financial freedom",
       "Beat inflation",
-      "Just exploring crypto",
+      "Just exploring Bitcoin",
     ],
   },
   {

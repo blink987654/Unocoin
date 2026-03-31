@@ -37,7 +37,7 @@ export default function CTASection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          From individuals investing ₹10 to institutions moving crores — 2.26 million Indians trust Unocoin to build their crypto future.
+          From individuals investing ₹10 to institutions moving crores — 2.26 million Indians trust Unocoin to build their financial future.
         </motion.p>
 
         {/* Dual CTAs — Retail + Institutional */}

@@ -212,7 +212,7 @@ export default function PartnersPage() {
               bank delays with hidden 5-8% fees.
             </p>
             <p className="text-text-tertiary max-w-2xl mx-auto mb-10 leading-relaxed">
-              Unocoin has been India&apos;s most trusted crypto infrastructure since 2013.
+              Unocoin has been India&apos;s most trusted digital asset infrastructure since 2013.
               FIU-IND registered. PMLA compliant. Trusted by sovereign entities.
               Our Voltage-powered Lightning Network settles in seconds, not days.
               Partner with the platform that institutions choose when they can&apos;t afford to be wrong.

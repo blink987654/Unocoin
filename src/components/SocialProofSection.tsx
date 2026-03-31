@@ -7,14 +7,14 @@ const stats = [
   { value: 3000, prefix: "₹", suffix: " Cr+", label: "Transactions processed" },
   { value: 2.26, suffix: "M+", label: "Verified users" },
   { value: 13, suffix: " Years", label: "Continuous operation" },
-  { value: 120, suffix: "+", label: "Cryptocurrencies" },
+  { value: 120, suffix: "+", label: "Digital assets" },
   { value: 99.9, suffix: "%", label: "Platform uptime" },
 ];
 
 const testimonials = [
   {
     quote:
-      "We evaluated every crypto platform in India. Unocoin\u2019s institutional infrastructure, regulatory compliance, and 13-year track record made it the only choice for our clients\u2019 portfolios.",
+      "We evaluated every platform in India. Unocoin\u2019s institutional infrastructure, regulatory compliance, and 13-year track record made it the only choice for our clients\u2019 portfolios.",
     role: "Senior Portfolio Manager",
     org: "Mumbai-based Family Office",
     initials: "SP",

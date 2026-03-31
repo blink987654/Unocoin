@@ -151,9 +151,20 @@ const categories: Category[] = [
     name: "Withdrawals & Deposits",
     icon: "🏦",
     endpoints: [
-      { method: "POST", path: "/api/v2/withdraw/crypto", desc: "Withdraw crypto to an external wallet", params: ["asset — Crypto asset (BTC, ETH, etc.)", "amount — Amount to withdraw", "address — Destination wallet address", "network — Network (optional, e.g., lightning, erc20)"], response: '{\n  "id": "wd_p1q2r3",\n  "asset": "BTC",\n  "amount": 0.01,\n  "status": "processing",\n  "fee": 0.0005\n}' },
+      { method: "POST", path: "/api/v2/withdraw/asset", desc: "Withdraw digital assets to an external wallet", params: ["asset — Asset symbol (BTC, ETH, USDT, etc.)", "amount — Amount to withdraw", "address — Destination wallet address", "network — Network (optional, e.g., lightning, erc20)"], response: '{\n  "id": "wd_p1q2r3",\n  "asset": "BTC",\n  "amount": 0.01,\n  "status": "processing",\n  "fee": 0.0005\n}' },
       { method: "POST", path: "/api/v2/withdraw/inr", desc: "Withdraw INR to your bank account", params: ["amount — Amount in INR", "method — neft, imps, or upi"], response: '{\n  "id": "wd_s1t2u3",\n  "amount": 25000,\n  "method": "imps",\n  "status": "processing",\n  "fee": 0\n}' },
       { method: "GET", path: "/api/v2/deposits", desc: "List all deposits", params: ["asset — Filter by asset (optional)", "from — Start date"], response: '[\n  {\n    "id": "dep_v1w2x3",\n    "asset": "INR",\n    "amount": 50000,\n    "method": "upi",\n    "status": "completed"\n  }\n]' },
+    ],
+  },
+  {
+    name: "Remittance & Settlement",
+    icon: "🌍",
+    endpoints: [
+      { method: "POST", path: "/api/v2/remittance/quote", desc: "Get a real-time quote for a cross-border remittance", params: ["source_currency — Sender currency (USD, GBP, EUR, AED, etc.)", "amount — Amount in source currency", "destination — INR (default)", "method — lightning or standard"], response: '{\n  "quote_id": "qt_r1s2t3",\n  "source_amount": 1000,\n  "source_currency": "USD",\n  "destination_amount": 83450,\n  "destination_currency": "INR",\n  "exchange_rate": 83.45,\n  "fee": 5.00,\n  "fee_percentage": "0.5%",\n  "settlement_time": "< 60 seconds",\n  "expires_at": "2026-03-31T02:05:00Z"\n}' },
+      { method: "POST", path: "/api/v2/remittance/send", desc: "Execute a remittance transfer using a quote", params: ["quote_id — Quote ID from /remittance/quote", "recipient_name — Full name of recipient", "recipient_bank_account — Indian bank account number", "recipient_ifsc — IFSC code", "recipient_upi — UPI ID (alternative to bank)"], response: '{\n  "id": "rem_u1v2w3",\n  "status": "processing",\n  "source_amount": 1000,\n  "destination_amount": 83450,\n  "settlement_method": "lightning",\n  "estimated_arrival": "< 60 seconds"\n}' },
+      { method: "GET", path: "/api/v2/remittance/{id}", desc: "Track remittance status in real-time", params: ["id — Remittance transaction ID"], response: '{\n  "id": "rem_u1v2w3",\n  "status": "completed",\n  "source_amount": 1000,\n  "destination_amount": 83450,\n  "completed_at": "2026-03-31T02:01:23Z",\n  "settlement_time_ms": 1230\n}' },
+      { method: "GET", path: "/api/v2/remittance/corridors", desc: "List supported remittance corridors with live rates", response: '[\n  {\n    "source": "USD",\n    "destination": "INR",\n    "rate": 83.45,\n    "fee_percentage": "0.5%",\n    "min_amount": 10,\n    "max_amount": 50000,\n    "settlement": "< 60 seconds"\n  }\n]' },
+      { method: "POST", path: "/api/v2/remittance/webhook", desc: "Register a webhook for remittance status updates", params: ["url — Your webhook endpoint URL", "events — Array of events: payment.completed, payment.failed, payment.refunded"], response: '{\n  "id": "wh_x1y2z3",\n  "url": "https://your-app.com/webhooks/unocoin",\n  "events": ["payment.completed", "payment.failed"],\n  "status": "active"\n}' },
     ],
   },
 ];
@@ -169,7 +180,7 @@ const methodColors: Record<string, string> = {
 const useCases = [
   { icon: "🌍", title: "Remittance Companies", desc: "Integrate Lightning-powered cross-border payments. Send money to India in seconds at near-zero cost. Auto-convert to INR via our settlement API." },
   { icon: "🤖", title: "Trading Bots", desc: "Build algorithmic trading strategies with real-time WebSocket feeds, instant order execution, and 120+ trading pairs across INR, BTC, and USDT markets." },
-  { icon: "💳", title: "Payment Gateways", desc: "Accept Bitcoin and crypto payments in your app or website. Auto Sell API converts received BTC to INR instantly at 0% fee." },
+  { icon: "💳", title: "Payment Gateways", desc: "Accept Bitcoin and stablecoin payments in your app or website. Auto Sell API converts received BTC to INR instantly at 0% fee." },
   { icon: "📱", title: "Portfolio Trackers", desc: "Access real-time balances, transaction history, SBP performance data, and Lightning wallet stats for your users." },
 ];
 
@@ -220,7 +231,7 @@ export default function ApiDocsPage() {
               Unocoin <span className="gradient-text-bitcoin">API</span>
             </h1>
             <p className="text-xl text-text-secondary max-w-3xl mx-auto mb-4">
-              India&apos;s most trusted crypto infrastructure for institutions and developers
+              India&apos;s most trusted digital asset infrastructure for institutions and developers
             </p>
             <p className="text-text-tertiary max-w-2xl mx-auto mb-10 leading-relaxed">
               Powering remittance companies, trading algorithms, fintech platforms, and enterprise applications.

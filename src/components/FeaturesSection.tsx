@@ -12,9 +12,9 @@ const features = [
       </svg>
     ),
     title: "Bitcoin SBP",
-    subtitle: "0% Fee Crypto SIP",
+    subtitle: "0% Fee Bitcoin SIP",
     description:
-      "India's first Crypto SIP since 2015. Auto-buy BTC or ETH daily, weekly, or monthly from just ₹10. Zero transaction fees on all SBP trades.",
+      "India's first Bitcoin SIP since 2015. Auto-buy BTC or ETH daily, weekly, or monthly from just ₹10. Zero transaction fees on all SBP trades.",
     accent: "from-bitcoin to-bitcoin-light",
   },
   {
@@ -27,7 +27,7 @@ const features = [
     title: "Instant Buy & Sell",
     subtitle: "UPI, IMPS, NEFT",
     description:
-      "Buy and sell 120+ cryptos instantly. Direct bank integration with UPI, IMPS, and NEFT. Maker fees from just 0.2%.",
+      "Buy and sell Bitcoin, ETH, stablecoins and 120+ assets instantly. Direct bank integration with UPI, IMPS, and NEFT. Maker fees from just 0.2%.",
     accent: "from-accent-blue to-accent-purple",
   },
   {
@@ -65,7 +65,7 @@ const features = [
         <path d="M8 12L11 15L16 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    title: "Crypto Lending",
+    title: "BTC Lending",
     subtitle: "Instant Loans Against BTC",
     description:
       "Borrow 200–70,000 USDT against your Bitcoin at 15% interest. EMI or Flexi repayment plans. Zero processing fee on EMI.",
@@ -93,7 +93,7 @@ const features = [
         <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
       </svg>
     ),
-    title: "Crypto Basket",
+    title: "Asset Basket",
     subtitle: "One-Click Diversification",
     description:
       "6-coin baskets allocated by market cap or volume. Choose from 40+ coins or build custom baskets. Auto-rebalanced like an index fund.",
@@ -120,10 +120,10 @@ const features = [
         <path d="M16 19C16 17.3431 17.3431 16 19 16C20.6569 16 22 17.3431 22 19C22 20.6569 20.6569 22 19 22C17.3431 22 16 20.6569 16 19Z" stroke="currentColor" strokeWidth="1.5" />
       </svg>
     ),
-    title: "Crypto Controls",
+    title: "Asset Controls",
     subtitle: "Full Withdrawal Freedom",
     description:
-      "Move crypto to your own wallet anytime. Send to other Unocoin users by mobile number — zero fees. Plus zero-fee BTC batch withdrawals twice weekly.",
+      "Move assets to your own wallet anytime. Send to other Unocoin users by mobile number — zero fees. Plus zero-fee BTC batch withdrawals twice weekly.",
     accent: "from-accent-green to-accent-blue",
   },
   {
@@ -150,9 +150,9 @@ const features = [
       </svg>
     ),
     title: "BTC Shop",
-    subtitle: "Spend Crypto on 90+ Brands",
+    subtitle: "Spend Bitcoin on 90+ Brands",
     description:
-      "Buy gift vouchers from Dominos, Amazon, Flipkart, Swiggy, and 90+ brands using your Bitcoin. Spend crypto in the real world.",
+      "Buy gift vouchers from Dominos, Amazon, Flipkart, Swiggy, and 90+ brands using your Bitcoin. Spend your BTC in the real world.",
     accent: "from-bitcoin to-accent-green",
   },
   {

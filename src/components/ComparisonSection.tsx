@@ -7,10 +7,10 @@ const competitors = ["Unocoin", "WazirX", "CoinDCX", "Binance", "Coinbase"] as c
 
 const rows: { feature: string; values: string[]; highlight?: boolean }[] = [
   { feature: "Founded", values: ["2013", "2018", "2018", "2017", "2012"] },
-  { feature: "SBP (Crypto SIP)", values: ["✓ 0% fee", "✗", "✗", "✗", "✓ (fees apply)"] },
+  { feature: "SBP (Bitcoin SIP)", values: ["✓ 0% fee", "✗", "✗", "✗", "✓ (fees apply)"] },
   { feature: "OTC Desk", values: ["✓", "✗", "✓", "✓", "✓"] },
   { feature: "Lightning Network", values: ["✓", "✗", "✗", "✗", "✗"] },
-  { feature: "Crypto Lending", values: ["✓", "✗", "✗", "✓", "✗"] },
+  { feature: "BTC Lending", values: ["✓", "✗", "✗", "✓", "✗"] },
   { feature: "FIU-IND Registered", values: ["✓", "✗", "✓", "✗", "✗"] },
   { feature: "Supreme Court Validated", values: ["✓", "✗", "✗", "✗", "✗"], highlight: true },
   { feature: "Cold Storage", values: ["95%", "Unknown", "Unknown", "~90%", "98%"] },
@@ -50,7 +50,7 @@ export default function ComparisonSection() {
             <span className="gradient-text-bitcoin">compare.</span>
           </h2>
           <p className="text-text-secondary text-lg max-w-3xl mx-auto leading-relaxed">
-            The only Indian crypto platform that survived the RBI ban, won the Supreme Court,
+            The only Indian Bitcoin platform that survived the RBI ban, won the Supreme Court,
             and earned Tim Draper&apos;s backing. Here&apos;s how we stack up.
           </p>
         </motion.div>
@@ -125,7 +125,7 @@ export default function ComparisonSection() {
           className="mt-8 rounded-xl bg-surface-elevated border border-border-subtle px-6 py-5 text-center max-w-3xl mx-auto"
         >
           <p className="text-text-secondary text-sm leading-relaxed">
-            <span className="text-bitcoin font-semibold">Unocoin</span> is the only crypto
+            <span className="text-bitcoin font-semibold">Unocoin</span> is the only
             platform in India to be validated by the{" "}
             <span className="text-text-primary font-medium">Supreme Court of India</span> and
             trusted by sovereign institutions.

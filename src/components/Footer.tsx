@@ -6,15 +6,14 @@ const footerLinks = {
   Products: [
     { label: "Buy Bitcoin", href: "#products" },
     { label: "Systematic Buying Plan (SBP)", href: "#products" },
-    { label: "Crypto Basket", href: "#products" },
-    { label: "Crypto Lending", href: "#products" },
+    { label: "Asset Basket", href: "#products" },
+    { label: "BTC Lending", href: "#products" },
     { label: "USDT Earnings", href: "#products" },
     { label: "Auto Sell", href: "#products" },
     { label: "OTC Desk", href: "#products" },
     { label: "BTC Shop", href: "#products" },
     { label: "Lightning Network", href: "#products" },
-    { label: "Remittance", href: "#remittance" },
-    { label: "Autopilot AI", href: "/autopilot" },
+    { label: "Remittance", href: "/remittance" },
   ],
   Company: [
     { label: "About Us", href: "#about" },
@@ -53,7 +52,7 @@ export default function Footer() {
               <UnocoinBrand logoSize={32} wordmarkSize="text-lg" animated={false} />
             </div>
             <p className="text-sm text-text-tertiary leading-relaxed max-w-xs mb-4">
-              India&apos;s pioneer crypto platform. Bringing Bitcoin to billions
+              India&apos;s pioneer Bitcoin platform. Bringing Bitcoin to billions
               since 2013.
             </p>
 
@@ -153,10 +152,10 @@ export default function Footer() {
             <span className="text-text-secondary font-medium">FIU-IND Registered</span> — Unocoin is registered with the Financial Intelligence Unit of India under the Prevention of Money Laundering Act (PMLA). We follow banking-level KYC/AML compliance including PAN verification, Aadhaar authentication, and ongoing transaction monitoring.
           </p>
           <p className="text-xs text-text-tertiary leading-relaxed mb-2">
-            <span className="text-text-secondary font-medium">Tax Notice:</span> Crypto transactions in India are subject to 30% tax on profits and 1% TDS on trades, as per the Finance Act 2022.
+            <span className="text-text-secondary font-medium">Tax Notice:</span> Digital asset transactions in India are subject to 30% tax on profits and 1% TDS on trades, as per the Finance Act 2022.
           </p>
           <p className="text-xs text-text-tertiary leading-relaxed">
-            <span className="text-text-secondary font-medium">Disclaimer:</span> Crypto products and NFTs are unregulated and can be highly volatile. There may be no regulatory recourse for any loss from such transactions. Please do your own research (DYOR) before investing.
+            <span className="text-text-secondary font-medium">Disclaimer:</span> Digital assets and NFTs are unregulated and can be highly volatile. There may be no regulatory recourse for any loss from such transactions. Please do your own research (DYOR) before investing.
           </p>
         </div>
 
@@ -168,7 +167,7 @@ export default function Footer() {
             { label: "Maker Fee", value: "0.2%" },
             { label: "Taker Fee", value: "0.3%" },
             { label: "INR Deposit", value: "Free" },
-            { label: "Crypto Deposit", value: "Free" },
+            { label: "Asset Deposit", value: "Free" },
             { label: "Batch BTC Withdrawal", value: "Free" },
           ].map((fee) => (
             <div key={fee.label} className="flex items-center gap-2 bg-surface-elevated/40 rounded-lg px-3 py-1.5 border border-border-subtle">

@@ -17,10 +17,10 @@ export default function Navigation() {
   const navLinks = [
     { label: "Products", href: "#products" },
     { label: "Institutional", href: "#institutional" },
+    { label: "Remittance", href: "/remittance", isNew: true },
     { label: "Partners", href: "/partners" },
     { label: "API", href: "/api-docs" },
     { label: "Security", href: "/security" },
-    { label: "Autopilot", href: "/autopilot", isNew: true },
   ];
 
   return (

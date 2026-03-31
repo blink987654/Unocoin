@@ -17,12 +17,12 @@ const timeline = [
   {
     year: "2016",
     title: "$1.5M Funding Round",
-    desc: "Blume Ventures, Mumbai Angels, and Boost VC invest $1.5M. Unocoin launches India's first Bitcoin SBP (Systematic Buying Plan) — crypto's answer to SIP.",
+    desc: "Blume Ventures, Mumbai Angels, and Boost VC invest $1.5M. Unocoin launches India's first Bitcoin SBP (Systematic Buying Plan) — Bitcoin's answer to SIP.",
   },
   {
     year: "2018",
     title: "RBI Ban & Arrest",
-    desc: "RBI bans crypto banking. Our co-founders Harish BV and Sathvik Vishwanath are arrested for installing India's first Bitcoin ATM. Many exchanges fold or flee. We fight back.",
+    desc: "RBI issues a banking ban. Our co-founders Harish BV and Sathvik Vishwanath are arrested for installing India's first Bitcoin ATM. Many exchanges fold or flee. We fight back.",
   },
   {
     year: "2020",
@@ -32,7 +32,7 @@ const timeline = [
   {
     year: "2024",
     title: "Draper Doubles Down",
-    desc: "Tim Draper reinvests in Unocoin. Total funding reaches $6.75M. Platform crosses 2 million users and 120+ listed cryptocurrencies.",
+    desc: "Tim Draper reinvests in Unocoin. Total funding reaches $6.75M. Platform crosses 2 million users and 120+ listed digital assets.",
   },
   {
     year: "2025",
@@ -47,10 +47,10 @@ const timeline = [
 ];
 
 const stats = [
-  { value: "2013", label: "India\u2019s First Crypto Exchange", icon: "\uD83D\uDD50" },
+  { value: "2013", label: "India\u2019s First Bitcoin Exchange", icon: "\uD83D\uDD50" },
   { value: "2.26M+", label: "Verified Users", icon: "\uD83D\uDC65" },
   { value: "\u20B93K Cr+", label: "Transactions Processed", icon: "\uD83D\uDCCA" },
-  { value: "120+", label: "Cryptocurrencies Listed", icon: "\uD83E\uDE99" },
+  { value: "120+", label: "Digital Assets Listed", icon: "\uD83E\uDE99" },
   { value: "95%", label: "Assets in Cold Storage", icon: "\uD83D\uDD12" },
   { value: "$6.75M", label: "Backed by Draper & Silbert", icon: "\uD83D\uDCB0" },
   { value: "99.9%", label: "Platform Uptime", icon: "\u2705" },
@@ -236,7 +236,7 @@ export default function TrustSection() {
                 </div>
                 <p className="text-text-secondary text-sm leading-relaxed">
                   Founder of Digital Currency Group — the most prolific investor
-                  in crypto. Led Unocoin&apos;s $250K seed round in 2014 when
+                  in the digital asset space. Led Unocoin&apos;s $250K seed round in 2014 when
                   Bitcoin in India was just an idea. &ldquo;Unocoin has solidified its
                   position as the leading Bitcoin company in India.&rdquo;
                 </p>
@@ -292,12 +292,12 @@ export default function TrustSection() {
                     Supreme Court of India — 2020
                   </h4>
                   <p className="text-text-secondary text-sm leading-relaxed">
-                    When the RBI banned crypto banking in 2018, most exchanges
+                    When the RBI issued a banking ban in 2018, most exchanges
                     folded. Our co-founders were arrested for installing India&apos;s
                     first Bitcoin ATM. We didn&apos;t back down — we fought for 20
                     weeks in the Supreme Court. On March 4, 2020, the Court
                     struck down the RBI ban as unconstitutional. Karnataka HC
-                    later quashed the FIR. India&apos;s crypto future was saved.
+                    later quashed the FIR. India&apos;s Bitcoin future was saved.
                   </p>
                 </div>
               </div>
