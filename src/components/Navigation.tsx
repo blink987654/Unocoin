@@ -17,8 +17,7 @@ export default function Navigation() {
   const navLinks = [
     { label: "Products", href: "#products" },
     { label: "Institutional", href: "#institutional" },
-    { label: "Remittance", href: "/remittance", isNew: true },
-    { label: "Partners", href: "/partners" },
+    { label: "Partners", href: "/remittance", isNew: true },
     { label: "API", href: "/api-docs" },
     { label: "Security", href: "/security" },
   ];
@@ -64,6 +63,12 @@ export default function Navigation() {
 
             {/* CTA */}
             <div className="hidden md:flex items-center gap-3">
+              <a
+                href="/autopilot"
+                className="text-sm text-bitcoin hover:text-bitcoin-light transition-colors px-4 py-2 font-medium"
+              >
+                Try Autopilot
+              </a>
               <a
                 href="#"
                 className="text-sm text-text-secondary hover:text-text-primary transition-colors px-4 py-2"
@@ -121,10 +126,20 @@ export default function Navigation() {
               </motion.a>
             ))}
             <motion.a
-              href="#"
+              href="/autopilot"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
+              onClick={() => setMobileOpen(false)}
+              className="text-2xl font-medium text-bitcoin hover:text-bitcoin-light transition-colors"
+            >
+              Try Autopilot
+            </motion.a>
+            <motion.a
+              href="#"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
               className="btn-primary mt-4"
             >
               Get Started

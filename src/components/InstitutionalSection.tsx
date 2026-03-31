@@ -148,7 +148,7 @@ export default function InstitutionalSection() {
   const ctaInView = useInView(ctaRef, { once: true, margin: "-50px" });
 
   return (
-    <section id="institutional" className="relative py-40 lg:py-56">
+    <section className="relative py-40 lg:py-56">
       {/* Background accent */}
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-bitcoin/[0.02] rounded-full blur-[150px]" />
 

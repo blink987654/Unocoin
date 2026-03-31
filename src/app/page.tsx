@@ -30,7 +30,7 @@ export default function Home() {
       <SocialProofSection />
 
       {/* Institutional — OTC, custody, enterprise */}
-      <section className="bg-surface-elevated/50">
+      <section id="institutional" className="bg-surface-elevated/50">
         <InstitutionalSection />
       </section>
 
