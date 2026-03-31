@@ -3,16 +3,9 @@
 import Navigation from "@/components/Navigation";
 import MarqueeTicker from "@/components/MarqueeTicker";
 import HeroSection from "@/components/HeroSection";
-import HowItWorksSection from "@/components/HowItWorksSection";
 import FeaturesSection from "@/components/FeaturesSection";
-import WealthCalculator from "@/components/WealthCalculator";
-import FeeCalculator from "@/components/FeeCalculator";
-import RemittanceSection from "@/components/RemittanceSection";
 import SocialProofSection from "@/components/SocialProofSection";
 import InstitutionalSection from "@/components/InstitutionalSection";
-import ComparisonSection from "@/components/ComparisonSection";
-import TrustSection from "@/components/TrustSection";
-import BitcoinMissionSection from "@/components/BitcoinMissionSection";
 import CTASection from "@/components/CTASection";
 import FloatingCTA from "@/components/FloatingCTA";
 import Footer from "@/components/Footer";
@@ -25,62 +18,23 @@ export default function Home() {
       <MarqueeTicker />
       <AskSatoshi />
 
-      {/* Hero */}
+      {/* Hero — full viewport, globe + headline + CTA */}
       <HeroSection />
 
-      <div className="section-divider" />
+      {/* Features — 4 cinematic showcases + compact secondary grid */}
+      <section className="bg-surface-elevated/50">
+        <FeaturesSection />
+      </section>
 
-      {/* 3-Step Plan */}
-      <HowItWorksSection />
-
-      <div className="section-divider" />
-
-      {/* Features — 12 products */}
-      <FeaturesSection />
-
-      <div className="section-divider" />
-
-      {/* Wealth Calculator — interactive SIP backtester */}
-      <WealthCalculator />
-
-      <div className="section-divider" />
-
-      {/* Fee Calculator — transparency builds trust */}
-      <FeeCalculator />
-
-      <div className="section-divider" />
-
-      {/* Remittance */}
-      <RemittanceSection />
-
-      <div className="section-divider" />
-
-      {/* Social Proof — numbers, testimonials, media */}
+      {/* Social Proof + Trust — combined "Why Unocoin" section */}
       <SocialProofSection />
 
-      <div className="section-divider" />
-
       {/* Institutional — OTC, custody, enterprise */}
-      <InstitutionalSection />
+      <section className="bg-surface-elevated/50">
+        <InstitutionalSection />
+      </section>
 
-      <div className="section-divider" />
-
-      {/* Comparison — vs competitors */}
-      <ComparisonSection />
-
-      <div className="section-divider" />
-
-      {/* Trust — timeline, investors, Supreme Court */}
-      <TrustSection />
-
-      <div className="section-divider" />
-
-      {/* Bitcoin Mission */}
-      <BitcoinMissionSection />
-
-      <div className="section-divider" />
-
-      {/* CTA */}
+      {/* CTA — final, dramatic */}
       <CTASection />
 
       {/* Floating CTA — persistent bottom bar */}

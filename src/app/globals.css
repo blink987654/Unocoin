@@ -100,17 +100,25 @@ body {
   border-radius: 16px;
   overflow: hidden;
 }
-.gradient-border::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  padding: 1px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(247, 147, 26, 0.3), transparent 50%, rgba(247, 147, 26, 0.1));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+
+/* Display typography — Apple-sized */
+.text-display {
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+.text-display-sm {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+/* Section transitions — subtle color shifts instead of dividers */
+.section-divider {
+  height: 0;
 }
 
 /* Reveal animation */
@@ -231,8 +239,3 @@ body {
   transform: translateY(-2px);
 }
 
-/* Section transitions */
-.section-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06) 50%, transparent);
-}

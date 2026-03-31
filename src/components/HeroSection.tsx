@@ -153,7 +153,7 @@ function PriceTicker({ prices }: { prices: PriceData[] }) {
       {prices.map((p) => (
         <div
           key={p.symbol}
-          className="flex items-center gap-2 bg-surface-elevated/40 backdrop-blur-xl border border-border-subtle rounded-lg px-3 py-1.5 hover:border-border-medium transition-colors"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-surface-elevated/40 transition-colors"
         >
           <span className={`text-sm font-bold ${symbolColors[p.symbol] || "text-text-primary"}`}>
             {symbolIcons[p.symbol] || p.symbol}
@@ -177,35 +177,32 @@ function PriceTicker({ prices }: { prices: PriceData[] }) {
 }
 
 
-// ─── Feature Highlight Cards ────────────────────────────────
+// ─── Feature Highlight Stats ────────────────────────────────
 function FeatureHighlights() {
   const highlights = [
-    { stat: "₹0", label: "SBP Fees", desc: "Auto-invest in BTC & ETH with zero fees", icon: "₿" },
-    { stat: "7%", label: "APY", desc: "Earn yield on USDT. No lock-in", icon: "💰" },
-    { stat: "⚡", label: "Lightning", desc: "BTC transfers in milliseconds", icon: "⚡" },
-    { stat: "₹10", label: "Minimum", desc: "Start investing from ten rupees", icon: "📈" },
+    { stat: "₹0", label: "SBP Fees" },
+    { stat: "7%", label: "APY" },
+    { stat: "<1s", label: "Lightning" },
+    { stat: "₹10", label: "Minimum" },
   ];
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 1.0, duration: 0.6 }}
-      className="flex gap-2 overflow-x-auto scrollbar-hide -mx-1 px-1 pb-1"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1.0, duration: 0.8 }}
+      className="flex items-center gap-8 lg:gap-12"
     >
       {highlights.map((h, i) => (
         <motion.div
           key={h.label}
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.0 + i * 0.08, duration: 0.5 }}
-          className="flex-shrink-0 bg-surface-elevated/40 backdrop-blur-xl border border-border-subtle rounded-xl px-3.5 py-2.5 hover:border-bitcoin/25 transition-colors duration-300 group cursor-default"
+          transition={{ delay: 1.0 + i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="cursor-default"
         >
-          <div className="flex items-center gap-2">
-            <span className="text-lg font-bold gradient-text-bitcoin">{h.stat}</span>
-            <span className="text-xs font-semibold text-text-primary uppercase tracking-wide">{h.label}</span>
-          </div>
-          <p className="text-[11px] text-text-tertiary mt-0.5 whitespace-nowrap">{h.desc}</p>
+          <span className="text-2xl lg:text-3xl font-bold gradient-text-bitcoin block">{h.stat}</span>
+          <span className="text-xs text-text-tertiary uppercase tracking-wider">{h.label}</span>
         </motion.div>
       ))}
     </motion.div>
@@ -249,7 +246,7 @@ function InvestorSpotlight() {
       transition={{ delay: 1.4, duration: 0.8 }}
       className="mt-6"
     >
-      <div className="bg-surface-elevated/30 backdrop-blur-xl border border-border-subtle rounded-xl px-5 py-4 max-w-md">
+      <div className="max-w-md">
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
@@ -267,7 +264,7 @@ function InvestorSpotlight() {
               </div>
               <div>
                 <p className="text-xs font-semibold text-text-primary">{quote.name}</p>
-                <p className="text-[11px] text-text-tertiary">{quote.title}</p>
+                <p className="text-xs text-text-tertiary">{quote.title}</p>
               </div>
             </div>
           </motion.div>
@@ -302,7 +299,7 @@ function LiveMetrics() {
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1.8, duration: 0.6 }}
-      className="bg-surface-card/50 backdrop-blur-xl border border-border-subtle rounded-2xl p-5 max-w-sm"
+      className="bg-surface-card/40 backdrop-blur-xl rounded-2xl p-5 max-w-sm"
     >
       <div className="flex items-center gap-2 mb-3">
         <div className="w-2 h-2 bg-accent-green rounded-full animate-pulse" />
@@ -344,13 +341,12 @@ function InlineSignup() {
       transition={{ duration: 0.6, delay: 0.9 }}
     >
       <div
-        className={`flex items-center gap-2 bg-surface-elevated/60 backdrop-blur-xl rounded-xl border transition-all duration-300 p-1.5 max-w-md ${
-          focused ? "border-bitcoin/40 shadow-[0_0_30px_rgba(247,147,26,0.1)]" : "border-border-subtle"
+        className={`flex items-center gap-2 bg-surface-elevated/60 backdrop-blur-xl rounded-xl transition-all duration-300 p-1.5 max-w-md ${
+          focused ? "shadow-[0_0_30px_rgba(247,147,26,0.15)]" : ""
         }`}
       >
         <div className="flex items-center gap-2 pl-3 text-text-tertiary">
-          <span className="text-sm">🇮🇳</span>
-          <span className="text-sm font-medium">+91</span>
+          <span className="text-sm font-medium text-text-secondary">+91</span>
         </div>
         <input
           type="tel"
@@ -666,7 +662,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
+              <h1 className="text-display">
                 {personalization.greeting}
                 <br />
                 <span className="gradient-text-bitcoin">{personalization.subtext}</span>
@@ -716,16 +712,16 @@ export default function HeroSection() {
               className="flex flex-wrap items-center gap-5 text-text-tertiary pt-2"
             >
               {[
-                { label: "0% SBP Fees", icon: "✓" },
-                { label: "7% USDT APY", icon: "✓" },
-                { label: "95% Cold Storage", icon: "🔒" },
-                { label: "Supreme Court Validated", icon: "⚖️" },
-                { label: "FIU-IND Registered", icon: "🛡️" },
-              ].map((item) => (
-                <div key={item.label} className="flex items-center gap-1.5">
-                  <span className="text-xs text-accent-green">{item.icon}</span>
-                  <span className="text-xs font-medium">{item.label}</span>
-                </div>
+                "0% SBP Fees",
+                "7% USDT APY",
+                "95% Cold Storage",
+                "Supreme Court Validated",
+                "FIU-IND Registered",
+              ].map((label, i) => (
+                <span key={label} className="text-xs font-medium">
+                  {label}
+                  {i < 4 && <span className="ml-5 text-text-tertiary/30">/</span>}
+                </span>
               ))}
             </motion.div>
           </div>

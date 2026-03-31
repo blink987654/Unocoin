@@ -126,25 +126,15 @@ function ServiceCard({
         delay: index * 0.15,
         ease: [0.16, 1, 0.3, 1],
       }}
-      className="group relative gradient-border bg-surface-card rounded-2xl p-10 hover:bg-surface-hover transition-all duration-500"
+      className="group relative rounded-2xl p-10 hover:bg-surface-hover/50 transition-all duration-500"
     >
-      {/* Icon */}
-      <div
-        className={`w-12 h-12 rounded-xl bg-gradient-to-br ${service.accent} flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-500`}
-      >
-        {service.icon}
-      </div>
-
       {/* Content */}
-      <h3 className="text-xl font-semibold mb-2 tracking-tight">
+      <h3 className="text-xl font-semibold mb-3 tracking-tight">
         {service.title}
       </h3>
-      <p className="text-text-secondary leading-relaxed text-[15px]">
+      <p className="text-text-secondary leading-relaxed">
         {service.description}
       </p>
-
-      {/* Subtle hover glow */}
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-bitcoin/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
     </motion.div>
   );
 }
@@ -158,21 +148,18 @@ export default function InstitutionalSection() {
   const ctaInView = useInView(ctaRef, { once: true, margin: "-50px" });
 
   return (
-    <section id="institutional" className="relative py-32 lg:py-40">
+    <section id="institutional" className="relative py-40 lg:py-56">
       {/* Background accent */}
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-bitcoin/[0.02] rounded-full blur-[150px]" />
 
-      {/* Top divider */}
-      <div className="section-divider" />
-
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section header */}
-        <div ref={ref} className="max-w-3xl mx-auto text-center mb-24">
+        <div ref={ref} className="max-w-3xl mx-auto text-center mb-24 lg:mb-32">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
-            className="text-bitcoin font-semibold text-sm tracking-widest uppercase mb-6"
+            className="text-sm uppercase tracking-widest text-bitcoin mb-6"
           >
             Institutional &amp; Private Wealth
           </motion.p>
@@ -181,11 +168,11 @@ export default function InstitutionalSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-8"
+            className="text-display-sm tracking-tight mb-8"
           >
             Where serious capital meets
             <br />
-            <span className="gradient-text-bitcoin">serious infrastructure.</span>
+            serious infrastructure.
           </motion.h2>
 
           <motion.p
