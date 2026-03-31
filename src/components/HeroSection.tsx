@@ -28,7 +28,8 @@ interface PriceData {
 function usePersonalization() {
   const [context, setContext] = useState({
     greeting: "The future of money",
-    subtext: "starts here.",
+    subtext: "starts here",
+    description: "India\u2019s first crypto platform fought the RBI in the Supreme Court \u2014 and won. Since 2013, we\u2019ve been the guide for 2.26 million Indians building wealth with Bitcoin and 120+ cryptocurrencies.",
     timeOfDay: "day" as "morning" | "day" | "evening" | "night",
     isReturning: false,
   });
@@ -45,19 +46,50 @@ function usePersonalization() {
     else if (hour >= 17 && hour < 21) timeOfDay = "evening";
     else timeOfDay = "night";
 
-    let greeting = "The future of money";
-    let subtext = "starts here.";
+    // Headline + subtext pairs for first-time visitors (rotated randomly)
+    const firstTimeHeadlines = [
+      { greeting: "The future of money", subtext: "starts here", description: "India\u2019s first crypto platform fought the RBI in the Supreme Court \u2014 and won. Since 2013, we\u2019ve been the guide for 2.26 million Indians building wealth with Bitcoin and 120+ cryptocurrencies." },
+      { greeting: "India\u2019s crypto pioneer", subtext: "since 2013", description: "From a small office in Tumkur to the Supreme Court of India. 2.26 million users, 120+ cryptocurrencies, and 13 years of building what others wouldn\u2019t." },
+      { greeting: "Build wealth with", subtext: "Bitcoin & crypto", description: "Start your Systematic Buying Plan from just \u20B910. Zero fees on SBP trades. Auto-invest daily, weekly, or monthly \u2014 like a SIP, but for crypto." },
+      { greeting: "From \u20B910 to", subtext: "financial freedom", description: "India\u2019s most trusted crypto platform. Backed by Tim Draper and Barry Silbert. 120+ cryptocurrencies. Industry-lowest fees. Your wealth, your rules." },
+      { greeting: "Bringing crypto", subtext: "to billions", description: "We were arrested for installing India\u2019s first Bitcoin ATM. Then we won in the Supreme Court. Now 2.26 million Indians trust us to build their future." },
+    ];
 
+    // Headline + subtext pairs for returning visitors (time-aware)
+    const returningHeadlines: Record<string, { greeting: string; subtext: string; description: string }[]> = {
+      morning: [
+        { greeting: "Good morning", subtext: "let\u2019s build wealth", description: "Your portfolio is waiting. Check your holdings, top up your SBP, or explore new opportunities across 120+ cryptocurrencies." },
+        { greeting: "Rise and stack", subtext: "sats before chai", description: "Markets never sleep, and neither does your SBP. Your automated buys have been running while you rested." },
+      ],
+      day: [
+        { greeting: "Welcome back", subtext: "to your future", description: "2.26 million Indians are building wealth with Unocoin right now. Check the markets, review your portfolio, or start a new SBP." },
+        { greeting: "The markets are", subtext: "open and moving", description: "Live prices on 120+ cryptocurrencies. Your SBP is running, your portfolio is growing. What\u2019s your next move?" },
+      ],
+      evening: [
+        { greeting: "Good evening", subtext: "Bitcoin never rests", description: "Wind down while your investments work. Review today\u2019s performance, or set up an Auto Sell to catch overnight moves." },
+        { greeting: "Markets are global", subtext: "so is your portfolio", description: "While India sleeps, global markets keep moving. Your SBP and Auto Sell have you covered around the clock." },
+      ],
+      night: [
+        { greeting: "The night owls", subtext: "catch the best dips", description: "Smart money moves while the world sleeps. Check live prices, adjust your SBP, or explore new opportunities." },
+        { greeting: "Still stacking", subtext: "sats at midnight", description: "The best investors are always learning, always building. Your portfolio is live across 120+ cryptocurrencies, 24/7." },
+      ],
+    };
+
+    let headline;
     if (isReturning) {
-      switch (timeOfDay) {
-        case "morning": greeting = "Good morning."; subtext = "Your portfolio awaits."; break;
-        case "day": greeting = "Welcome back."; subtext = "Let's build wealth."; break;
-        case "evening": greeting = "Good evening."; subtext = "Bitcoin never sleeps."; break;
-        case "night": greeting = "Still up?"; subtext = "So is Bitcoin."; break;
-      }
+      const options = returningHeadlines[timeOfDay];
+      headline = options[Math.floor(Math.random() * options.length)];
+    } else {
+      headline = firstTimeHeadlines[Math.floor(Math.random() * firstTimeHeadlines.length)];
     }
 
-    setContext({ greeting, subtext, timeOfDay, isReturning });
+    setContext({
+      greeting: headline.greeting,
+      subtext: headline.subtext,
+      description: headline.description,
+      timeOfDay,
+      isReturning,
+    });
   }, []);
 
   return context;
@@ -392,7 +424,7 @@ function BitcoinLifeline() {
   }, []);
 
   return (
-    <div className="absolute bottom-0 left-0 right-0 h-[45vh] md:h-[50vh] pointer-events-none">
+    <div className="absolute bottom-0 left-0 right-0 h-[25vh] md:h-[30vh] pointer-events-none opacity-60">
       <svg
         viewBox="0 0 1200 300"
         preserveAspectRatio="none"
@@ -632,9 +664,7 @@ export default function HeroSection() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="text-lg md:text-xl text-text-secondary max-w-lg leading-relaxed"
             >
-              India&apos;s first crypto platform fought the RBI in the Supreme Court
-              — and won. Since 2013, we&apos;ve been the guide for 2.26 million
-              Indians building wealth with Bitcoin and 120+ cryptocurrencies.
+              {personalization.description}
             </motion.p>
 
             {/* Inline Signup (#8) */}
