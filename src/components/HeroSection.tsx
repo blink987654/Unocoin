@@ -48,30 +48,30 @@ function usePersonalization() {
 
     // Headline + subtext pairs for first-time visitors (rotated randomly)
     const firstTimeHeadlines = [
-      { greeting: "0% fees on Bitcoin SBP", subtext: "India\u2019s first Bitcoin SIP", description: "Auto-invest in Bitcoin daily, weekly, or monthly \u2014 with zero transaction fees. Like a SIP, but for Bitcoin. Start from just \u20B910. No lock-in. Cancel anytime." },
-      { greeting: "Earn 7% APY", subtext: "on your stablecoins", description: "Put your USDT to work. Earn up to 7% annual yield while you sleep. No lock-in period. Withdraw anytime. Your idle money, always working." },
-      { greeting: "The platform India", subtext: "chose to trust", description: "FIU-IND registered. PMLA compliant. Trusted by sovereign entities and 2.26 million Indians. \u20B93,000 Cr+ processed. 13 years. Zero security breaches." },
+      { greeting: "Own digital gold", subtext: "the decade\u2019s best asset", description: "Bitcoin has outperformed every asset class of the last decade. Auto-invest with zero fees from just \u20B910. India\u2019s most trusted platform since 2013." },
+      { greeting: "Bitcoin SBP", subtext: "at 0% fees", description: "Systematic Buying Plan for Bitcoin \u2014 India\u2019s first. Auto-invest daily, weekly, or monthly. Zero transaction fees. Start from just \u20B910. No lock-in." },
+      { greeting: "India\u2019s most trusted", subtext: "Bitcoin platform", description: "We fought the RBI in the Supreme Court \u2014 and won. 2.26 million Indians trust us with their Bitcoin. \u20B93,000 Cr+ processed. 13 years. Zero breaches." },
+      { greeting: "Bitcoin is digital gold", subtext: "start from \u20B910", description: "The best-performing asset of the last decade. Buy Bitcoin instantly via UPI, earn 7% on stablecoins, and send via Lightning \u2014 all on one platform." },
       { greeting: "Bitcoin at lightning speed", subtext: "for a fraction of a rupee", description: "Send and receive Bitcoin in milliseconds via Lightning Network. Cross-border remittances that settle in seconds, not days. Powered by Voltage." },
-      { greeting: "India\u2019s most trusted", subtext: "Bitcoin platform", description: "We fought the RBI in the Supreme Court \u2014 and won. We survived when every other exchange folded. Now institutions, family offices, and 2.26 million Indians trust us with their wealth." },
     ];
 
     // Headline + subtext pairs for returning visitors (time-aware)
     const returningHeadlines: Record<string, { greeting: string; subtext: string; description: string }[]> = {
       morning: [
-        { greeting: "Good morning", subtext: "let\u2019s build wealth", description: "Your portfolio is waiting. Check your holdings, top up your SBP, or explore new opportunities across 120+ assets." },
-        { greeting: "Rise and stack", subtext: "sats before chai", description: "Markets never sleep, and neither does your SBP. Your automated buys have been running while you rested." },
+        { greeting: "Good morning", subtext: "stack more Bitcoin", description: "Your Bitcoin portfolio is waiting. Check your holdings, top up your SBP, or explore new opportunities. Digital gold doesn\u2019t sleep." },
+        { greeting: "Rise and stack", subtext: "Bitcoin before chai", description: "Markets never sleep, and neither does your Bitcoin SBP. Your automated buys have been running while you rested." },
       ],
       day: [
-        { greeting: "Welcome back", subtext: "to your future", description: "2.26 million Indians are building wealth with Unocoin right now. Check the markets, review your portfolio, or start a new SBP." },
-        { greeting: "The markets are", subtext: "open and moving", description: "Live prices on Bitcoin, ETH, stablecoins, and 120+ more. Your SBP is running, your portfolio is growing. What\u2019s your next move?" },
+        { greeting: "Welcome back", subtext: "Bitcoin is moving", description: "2.26 million Indians are building wealth with Bitcoin on Unocoin. Check the markets, review your portfolio, or increase your SBP." },
+        { greeting: "Digital gold", subtext: "is always open", description: "Live Bitcoin prices, instant trades, and your SBP running on autopilot. The decade\u2019s best-performing asset, available 24/7." },
       ],
       evening: [
-        { greeting: "Good evening", subtext: "Bitcoin never rests", description: "Wind down while your investments work. Review today\u2019s performance, or set up an Auto Sell to catch overnight moves." },
-        { greeting: "Markets are global", subtext: "so is your portfolio", description: "While India sleeps, global markets keep moving. Your SBP and Auto Sell have you covered around the clock." },
+        { greeting: "Good evening", subtext: "Bitcoin never rests", description: "Wind down while your Bitcoin works. Review today\u2019s performance, or set up an Auto Sell to catch overnight moves." },
+        { greeting: "While you rest", subtext: "Bitcoin keeps working", description: "Your Bitcoin SBP runs around the clock. Digital gold doesn\u2019t follow banking hours. Check your portfolio or adjust your strategy." },
       ],
       night: [
-        { greeting: "The night owls", subtext: "catch the best dips", description: "Smart money moves while the world sleeps. Check live prices, adjust your SBP, or explore new opportunities." },
-        { greeting: "Still stacking", subtext: "sats at midnight", description: "The best investors are always learning, always building. Your portfolio is live across 120+ assets, 24/7." },
+        { greeting: "The night owls", subtext: "stack the most Bitcoin", description: "Smart money moves while the world sleeps. Check live Bitcoin prices, adjust your SBP, or explore new opportunities." },
+        { greeting: "Still stacking", subtext: "digital gold", description: "The best investors are always building. Your Bitcoin portfolio is live 24/7. The decade\u2019s best asset doesn\u2019t take nights off." },
       ],
     };
 
