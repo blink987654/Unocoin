@@ -497,14 +497,13 @@ function BitcoinLifeline() {
           } as React.CSSProperties : undefined}
         />
 
-        {/* Milestone markers — fade in after line draws */}
+        {/* Milestone dots only (no text — text rendered as HTML to avoid stretching) */}
         {showMilestones && milestones.map((m, i) => (
           <g
             key={m.label}
             className="animate-milestone"
             style={{ animationDelay: `${i * 0.3}s` }}
           >
-            {/* Dot */}
             <circle
               cx={m.x}
               cy={m.y}
@@ -513,8 +512,6 @@ function BitcoinLifeline() {
               opacity={m.isPulsing ? 0.6 : 0.35}
               className={m.isPulsing ? "animate-pulse-glow" : ""}
             />
-
-            {/* Outer ring for pulsing dot */}
             {m.isPulsing && (
               <circle
                 cx={m.x}
@@ -527,8 +524,6 @@ function BitcoinLifeline() {
                 className="animate-pulse-glow"
               />
             )}
-
-            {/* Vertical tick line */}
             <line
               x1={m.x}
               y1={m.y + (m.y > 150 ? -8 : 8)}
@@ -538,35 +533,41 @@ function BitcoinLifeline() {
               strokeWidth="0.5"
               opacity={0.2}
             />
-
-            {/* Label */}
-            <text
-              x={m.x}
-              y={m.y + (m.y > 150 ? -28 : 32)}
-              textAnchor={m.x < 50 ? "start" : m.x > 1150 ? "end" : "middle"}
-              fill="#666666"
-              fontSize="9"
-              fontFamily="Inter, sans-serif"
-              fontWeight="500"
-            >
-              {m.label}
-            </text>
-
-            {/* Sublabel */}
-            <text
-              x={m.x}
-              y={m.y + (m.y > 150 ? -18 : 43)}
-              textAnchor={m.x < 50 ? "start" : m.x > 1150 ? "end" : "middle"}
-              fill="#444444"
-              fontSize="8"
-              fontFamily="Inter, sans-serif"
-              fontWeight="400"
-            >
-              {m.sublabel}
-            </text>
           </g>
         ))}
       </svg>
+
+      {/* Milestone labels as HTML to avoid horizontal stretching */}
+      {showMilestones && milestones.map((m, i) => {
+        const xPercent = (m.x / 1200) * 100;
+        const yPercent = (m.y / 300) * 100;
+        const above = m.y > 150;
+        return (
+          <div
+            key={m.label}
+            className="absolute animate-milestone"
+            style={{
+              left: `${xPercent}%`,
+              top: `${yPercent}%`,
+              transform: `translate(${m.x < 50 ? '0%' : m.x > 1150 ? '-100%' : '-50%'}, ${above ? '-100%' : '20%'})`,
+              animationDelay: `${i * 0.3}s`,
+            }}
+          >
+            <p
+              className="text-[9px] font-medium whitespace-nowrap"
+              style={{ color: '#666666' }}
+            >
+              {m.label}
+            </p>
+            <p
+              className="text-[8px] whitespace-nowrap"
+              style={{ color: '#444444' }}
+            >
+              {m.sublabel}
+            </p>
+          </div>
+        );
+      })}
     </div>
   );
 }
