@@ -18,7 +18,7 @@ export default function Navigation() {
     { label: "Products", href: "#products" },
     { label: "Institutional", href: "#institutional" },
     { label: "Platform", href: "/platform" },
-    { label: "Remittance", href: "/remittance" },
+    { label: "Partners", href: "/remittance" },
     { label: "API", href: "/api-docs" },
     { label: "Security", href: "/security" },
   ];

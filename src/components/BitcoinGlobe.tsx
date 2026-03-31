@@ -45,6 +45,51 @@ const globalCities = [
   { name: "Hong Kong", lat: 22.32, lon: 114.17 },
 ];
 
+// ─── India Outline (simplified border) ───────────────────────
+
+const INDIA_BORDER: [number, number][] = [
+  [68.14, 23.64], [68.8, 23.95], [70.0, 22.5], [70.5, 21.0],
+  [72.0, 21.3], [72.8, 19.2], [73.0, 17.5], [74.0, 14.8],
+  [74.8, 12.7], [75.5, 11.8], [76.5, 8.3], [77.5, 8.1],
+  [78.0, 9.2], [79.5, 10.3], [80.2, 13.0], [80.3, 15.5],
+  [81.5, 16.5], [83.5, 18.5], [85.0, 20.0], [86.5, 21.5],
+  [87.5, 22.0], [88.0, 21.7], [89.0, 21.8], [89.0, 26.0],
+  [88.1, 26.4], [88.4, 27.0], [88.8, 27.2], [88.1, 27.9],
+  [87.0, 27.1], [85.0, 27.5], [84.0, 27.3], [83.3, 27.4],
+  [82.0, 27.0], [81.0, 28.4], [80.5, 28.7], [80.1, 28.8],
+  [80.0, 30.5], [79.0, 30.9], [78.8, 31.5], [78.0, 32.3],
+  [76.8, 32.9], [76.0, 33.0], [75.0, 34.3], [74.5, 34.7],
+  [74.0, 34.5], [73.9, 34.0], [74.2, 33.0], [74.5, 32.3],
+  [75.0, 31.5], [74.6, 31.0], [73.8, 30.5], [73.4, 29.9],
+  [72.5, 28.9], [71.0, 27.8], [70.4, 27.0], [69.5, 26.2],
+  [70.0, 25.7], [70.5, 25.5], [70.1, 24.8], [68.8, 24.3],
+  [68.14, 23.64],
+];
+
+function IndiaOutline() {
+  const geometry = useMemo(() => {
+    const points = INDIA_BORDER.map(([lon, lat]) =>
+      latLonToVec3(lat, lon, 1.525)
+    );
+    return new THREE.BufferGeometry().setFromPoints(points);
+  }, []);
+
+  return (
+    <primitive
+      object={
+        new THREE.Line(
+          geometry,
+          new THREE.LineBasicMaterial({
+            color: "#F7931A",
+            transparent: true,
+            opacity: 0.2,
+          })
+        )
+      }
+    />
+  );
+}
+
 // ─── Globe Core ───────────────────────────────────────────────
 
 function GlobeCore() {
@@ -94,6 +139,9 @@ function GlobeCore() {
           opacity={0.06}
         />
       </Sphere>
+
+      {/* India outline */}
+      <IndiaOutline />
     </group>
   );
 }
@@ -434,19 +482,33 @@ function GlobeScene() {
   const pulsesRef = useRef(pulses);
   pulsesRef.current = pulses;
 
-  // Decay pulses each frame
-  useFrame(() => {
+  const sceneRef = useRef<THREE.Group>(null);
+
+  // India-centered rotation
+  const indiaYRot = useMemo(() => -(78 * Math.PI) / 180, []);
+
+  useFrame((state) => {
+    // Decay pulses
     setPulses((prev) => {
       let changed = false;
       const next = prev.map((p) => {
         if (p > 0.01) {
           changed = true;
-          return p * 0.95; // Exponential decay
+          return p * 0.95;
         }
         return 0;
       });
       return changed ? next : prev;
     });
+
+    // Oscillate globe rotation: India-centered with ±50° swing
+    if (sceneRef.current) {
+      const t = state.clock.getElapsedTime();
+      const swing = Math.sin(t * 0.07) * (50 * Math.PI / 180);
+      const tilt = Math.sin(t * 0.05) * 0.08;
+      sceneRef.current.rotation.y = indiaYRot + swing;
+      sceneRef.current.rotation.x = tilt;
+    }
   });
 
   const handleArrival = useCallback((destIdx: number) => {
@@ -479,14 +541,13 @@ function GlobeScene() {
       <OrbitControls
         enableZoom={false}
         enablePan={false}
-        autoRotate
-        autoRotateSpeed={0.4}
-        rotateSpeed={0.4}
+        enableRotate={false}
       />
 
       <StarField />
-      <GlobeCore />
-      <BaseArcs />
+      <group ref={sceneRef}>
+        <GlobeCore />
+        <BaseArcs />
 
       {/* Indian city markers */}
       {indianPositions.map((pos, i) => (
@@ -510,6 +571,7 @@ function GlobeScene() {
 
       {/* Live transaction arcs */}
       <LiveTransactions onArrival={handleArrival} />
+      </group>
     </>
   );
 }
