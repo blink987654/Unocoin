@@ -9,11 +9,13 @@ import TrustSection from "@/components/TrustSection";
 import BitcoinMissionSection from "@/components/BitcoinMissionSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
+import AskSatoshi from "@/components/AskSatoshi";
 
 export default function Home() {
   return (
     <main className="relative">
       <Navigation />
+      <AskSatoshi />
 
       {/* Hero - The user is the hero. "Your future runs on Bitcoin." */}
       <HeroSection />
