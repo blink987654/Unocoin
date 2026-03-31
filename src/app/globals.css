@@ -101,17 +101,17 @@ body {
   overflow: hidden;
 }
 
-/* Display typography — Apple-sized */
+/* Display typography — large but fits above fold */
 .text-display {
-  font-size: clamp(3rem, 8vw, 6rem);
-  line-height: 1.0;
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  line-height: 1.08;
   letter-spacing: -0.03em;
   font-weight: 700;
 }
 
 .text-display-sm {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  line-height: 1.1;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  line-height: 1.12;
   letter-spacing: -0.02em;
   font-weight: 600;
 }

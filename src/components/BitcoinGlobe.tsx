@@ -518,7 +518,7 @@ function GlobeScene() {
 
 export default function BitcoinGlobe() {
   return (
-    <div className="w-[300px] h-[300px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] cursor-grab active:cursor-grabbing">
+    <div className="w-[260px] h-[260px] md:w-[400px] md:h-[400px] lg:w-[480px] lg:h-[480px] cursor-grab active:cursor-grabbing">
       <Canvas
         camera={{ position: [0, 0, 4.5], fov: 45 }}
         gl={{ antialias: true, alpha: true }}

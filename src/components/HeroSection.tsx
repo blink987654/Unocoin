@@ -8,7 +8,7 @@ import dynamic from "next/dynamic";
 const BitcoinGlobe = dynamic(() => import("./BitcoinGlobe"), {
   ssr: false,
   loading: () => (
-    <div className="w-[300px] h-[300px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] flex items-center justify-center">
+    <div className="w-[260px] h-[260px] md:w-[400px] md:h-[400px] lg:w-[480px] lg:h-[480px] flex items-center justify-center">
       <div className="w-32 h-32 rounded-full bg-bitcoin/10 animate-pulse-glow" />
     </div>
   ),
@@ -191,7 +191,7 @@ function FeatureHighlights() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 1.0, duration: 0.8 }}
-      className="flex items-center gap-8 lg:gap-12"
+      className="flex items-center gap-6 lg:gap-10"
     >
       {highlights.map((h, i) => (
         <motion.div
@@ -201,7 +201,7 @@ function FeatureHighlights() {
           transition={{ delay: 1.0 + i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="cursor-default"
         >
-          <span className="text-2xl lg:text-3xl font-bold gradient-text-bitcoin block">{h.stat}</span>
+          <span className="text-xl lg:text-2xl font-bold gradient-text-bitcoin block">{h.stat}</span>
           <span className="text-xs text-text-tertiary uppercase tracking-wider">{h.label}</span>
         </motion.div>
       ))}
@@ -648,14 +648,11 @@ export default function HeroSection() {
 
       <motion.div
         style={{ opacity: heroOpacity, scale: heroScale, y: heroY }}
-        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full pt-36 pb-16 lg:pt-44 lg:pb-24"
+        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full pt-28 pb-12 lg:pt-32 lg:pb-16"
       >
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-4 items-center">
           {/* Left - Content */}
-          <div className="order-2 lg:order-1 space-y-6">
-            {/* Live Price Ticker (#1) */}
-            <PriceTicker prices={prices} />
-
+          <div className="order-2 lg:order-1 space-y-4">
             {/* Dynamic Headline (#3 + #10) */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -674,7 +671,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="text-lg md:text-xl text-text-secondary max-w-lg leading-relaxed"
+              className="text-base md:text-lg text-text-secondary max-w-lg leading-relaxed"
             >
               {personalization.description}
             </motion.p>
@@ -701,15 +698,12 @@ export default function HeroSection() {
               </a>
             </motion.div>
 
-            {/* Investor Spotlight (rotating quotes) */}
-            <InvestorSpotlight />
-
             {/* Trust bar — differentiators */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.6, duration: 0.8 }}
-              className="flex flex-wrap items-center gap-5 text-text-tertiary pt-2"
+              className="flex flex-wrap items-center gap-4 text-text-tertiary"
             >
               {[
                 "0% SBP Fees",
@@ -733,7 +727,7 @@ export default function HeroSection() {
           >
             <Suspense
               fallback={
-                <div className="w-[300px] h-[300px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] flex items-center justify-center">
+                <div className="w-[260px] h-[260px] md:w-[400px] md:h-[400px] lg:w-[480px] lg:h-[480px] flex items-center justify-center">
                   <div className="w-32 h-32 rounded-full bg-bitcoin/10 animate-pulse-glow" />
                 </div>
               }
