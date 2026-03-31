@@ -326,6 +326,208 @@ function InvestorBadges() {
   );
 }
 
+// ─── Bitcoin Lifeline — Background Price Chart (#11) ────────
+function BitcoinLifeline() {
+  const pathRef = useRef<SVGPathElement>(null);
+  const [pathLength, setPathLength] = useState(0);
+  const [showMilestones, setShowMilestones] = useState(false);
+
+  // BTC price history 2013-2026, normalized to SVG viewBox (0 0 1200 300)
+  // Y is inverted (0 = top = high price, 300 = bottom = low price)
+  // Price range: $0 → $84,000 mapped to 290 → 10
+  const priceToY = (price: number) => 290 - (price / 84000) * 280;
+
+  const dataPoints = useMemo(() => [
+    { x: 0,    price: 100,   year: 2013 },    // Unocoin Founded
+    { x: 70,   price: 300,   year: 2014 },
+    { x: 140,  price: 430,   year: 2015 },
+    { x: 210,  price: 960,   year: 2016 },
+    { x: 300,  price: 19000, year: 2017 },    // First big peak
+    { x: 370,  price: 3200,  year: 2018 },    // RBI Ban crash
+    { x: 440,  price: 7200,  year: 2019 },
+    { x: 500,  price: 5000,  year: 2020.0 },  // COVID crash
+    { x: 540,  price: 10500, year: 2020.3 },  // Supreme Court Victory recovery
+    { x: 620,  price: 29000, year: 2020.9 },
+    { x: 720,  price: 69000, year: 2021 },    // ATH
+    { x: 810,  price: 16000, year: 2022 },    // Bear market
+    { x: 900,  price: 42000, year: 2023 },
+    { x: 990,  price: 70000, year: 2024 },
+    { x: 1080, price: 76000, year: 2025 },
+    { x: 1200, price: 84000, year: 2026 },    // Today
+  ], []);
+
+  // Build smooth SVG path using cubic bezier curves
+  const linePath = useMemo(() => {
+    const pts = dataPoints.map(d => ({ x: d.x, y: priceToY(d.price) }));
+    let path = `M ${pts[0].x} ${pts[0].y}`;
+
+    for (let i = 1; i < pts.length; i++) {
+      const prev = pts[i - 1];
+      const curr = pts[i];
+      const cpx1 = prev.x + (curr.x - prev.x) * 0.4;
+      const cpx2 = prev.x + (curr.x - prev.x) * 0.6;
+      path += ` C ${cpx1} ${prev.y}, ${cpx2} ${curr.y}, ${curr.x} ${curr.y}`;
+    }
+
+    return path;
+  }, [dataPoints]);
+
+  // Area fill path (line path + close to bottom)
+  const areaPath = useMemo(() => {
+    return `${linePath} L 1200 300 L 0 300 Z`;
+  }, [linePath]);
+
+  // Milestones
+  const milestones = useMemo(() => [
+    { x: 0,    y: priceToY(100),   label: "Founded", sublabel: "2013" },
+    { x: 370,  y: priceToY(3200),  label: "RBI Ban", sublabel: "2018" },
+    { x: 540,  y: priceToY(10500), label: "Supreme Court", sublabel: "Victory 2020" },
+    { x: 1200, y: priceToY(84000), label: "Today", sublabel: "$84K+", isPulsing: true },
+  ], []);
+
+  useEffect(() => {
+    if (pathRef.current) {
+      const len = pathRef.current.getTotalLength();
+      setPathLength(len);
+      // Show milestones after line finishes drawing
+      const timer = setTimeout(() => setShowMilestones(true), 4200);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  return (
+    <div className="absolute bottom-0 left-0 right-0 h-[45vh] md:h-[50vh] pointer-events-none">
+      <svg
+        viewBox="0 0 1200 300"
+        preserveAspectRatio="none"
+        className="w-full h-full"
+      >
+        <defs>
+          {/* Gradient for the line stroke — fades in from left to right */}
+          <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#F7931A" stopOpacity="0.04" />
+            <stop offset="30%" stopColor="#F7931A" stopOpacity="0.08" />
+            <stop offset="70%" stopColor="#F7931A" stopOpacity="0.12" />
+            <stop offset="100%" stopColor="#F7931A" stopOpacity="0.18" />
+          </linearGradient>
+
+          {/* Gradient for area fill — subtle bottom fade */}
+          <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#F7931A" stopOpacity="0.04" />
+            <stop offset="100%" stopColor="#F7931A" stopOpacity="0" />
+          </linearGradient>
+
+          {/* Glow filter for the line */}
+          <filter id="lineGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        {/* Area fill — appears instantly but very subtle */}
+        <path
+          d={areaPath}
+          fill="url(#areaGradient)"
+          className={pathLength ? "animate-draw-line" : ""}
+          style={pathLength ? {
+            "--path-length": `${pathLength}`,
+          } as React.CSSProperties : undefined}
+          opacity={0.6}
+        />
+
+        {/* Main line with draw animation */}
+        <path
+          ref={pathRef}
+          d={linePath}
+          fill="none"
+          stroke="url(#lineGradient)"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          filter="url(#lineGlow)"
+          className={pathLength ? "animate-draw-line" : ""}
+          style={pathLength ? {
+            "--path-length": `${pathLength}`,
+          } as React.CSSProperties : undefined}
+        />
+
+        {/* Milestone markers — fade in after line draws */}
+        {showMilestones && milestones.map((m, i) => (
+          <g
+            key={m.label}
+            className="animate-milestone"
+            style={{ animationDelay: `${i * 0.3}s` }}
+          >
+            {/* Dot */}
+            <circle
+              cx={m.x}
+              cy={m.y}
+              r={m.isPulsing ? 5 : 3}
+              fill="#F7931A"
+              opacity={m.isPulsing ? 0.6 : 0.35}
+              className={m.isPulsing ? "animate-pulse-glow" : ""}
+            />
+
+            {/* Outer ring for pulsing dot */}
+            {m.isPulsing && (
+              <circle
+                cx={m.x}
+                cy={m.y}
+                r={10}
+                fill="none"
+                stroke="#F7931A"
+                strokeWidth="1"
+                opacity={0.2}
+                className="animate-pulse-glow"
+              />
+            )}
+
+            {/* Vertical tick line */}
+            <line
+              x1={m.x}
+              y1={m.y + (m.y > 150 ? -8 : 8)}
+              x2={m.x}
+              y2={m.y + (m.y > 150 ? -22 : 22)}
+              stroke="#F7931A"
+              strokeWidth="0.5"
+              opacity={0.2}
+            />
+
+            {/* Label */}
+            <text
+              x={m.x}
+              y={m.y + (m.y > 150 ? -28 : 32)}
+              textAnchor={m.x < 50 ? "start" : m.x > 1150 ? "end" : "middle"}
+              fill="#666666"
+              fontSize="9"
+              fontFamily="Inter, sans-serif"
+              fontWeight="500"
+            >
+              {m.label}
+            </text>
+
+            {/* Sublabel */}
+            <text
+              x={m.x}
+              y={m.y + (m.y > 150 ? -18 : 43)}
+              textAnchor={m.x < 50 ? "start" : m.x > 1150 ? "end" : "middle"}
+              fill="#444444"
+              fontSize="8"
+              fontFamily="Inter, sans-serif"
+              fontWeight="400"
+            >
+              {m.sublabel}
+            </text>
+          </g>
+        ))}
+      </svg>
+    </div>
+  );
+}
+
 // ─── Cinematic Background (#7) ──────────────────────────────
 function CinematicBackground({ timeOfDay }: { timeOfDay: string }) {
   const ambientColor = useMemo(() => {
@@ -350,6 +552,9 @@ function CinematicBackground({ timeOfDay }: { timeOfDay: string }) {
           backgroundSize: "80px 80px",
         }}
       />
+
+      {/* Bitcoin Lifeline — price history chart drawing animation */}
+      <BitcoinLifeline />
 
       {/* Moving gradient orbs for cinematic depth */}
       <motion.div
