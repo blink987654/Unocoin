@@ -1,5 +1,7 @@
 "use client";
 
+import { UnocoinBrand } from "./UnocoinLogo";
+
 const footerLinks = {
   Products: [
     { label: "Buy Bitcoin", href: "#products" },
@@ -47,15 +49,9 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-10 mb-16">
           {/* Brand column */}
           <div className="col-span-2 md:col-span-4 lg:col-span-1 mb-4 lg:mb-0">
-            <a href="#" className="flex items-center gap-2.5 mb-4">
-              <div className="relative w-8 h-8">
-                <div className="absolute inset-0 bg-bitcoin rounded-lg rotate-45" />
-                <span className="absolute inset-0 flex items-center justify-center text-white font-bold text-base">
-                  U
-                </span>
-              </div>
-              <span className="text-lg font-bold tracking-tight">Unocoin</span>
-            </a>
+            <div className="mb-4">
+              <UnocoinBrand logoSize={32} wordmarkSize="text-lg" animated={false} />
+            </div>
             <p className="text-sm text-text-tertiary leading-relaxed max-w-xs mb-4">
               India&apos;s pioneer crypto platform. Bringing Bitcoin to billions
               since 2013.

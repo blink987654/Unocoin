@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { UnocoinBrand } from "./UnocoinLogo";
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
@@ -35,17 +36,7 @@ export default function Navigation() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
-            <a href="#" className="flex items-center gap-2.5 group">
-              <div className="relative w-9 h-9">
-                <div className="absolute inset-0 bg-bitcoin rounded-lg rotate-45 group-hover:rotate-[55deg] transition-transform duration-500" />
-                <span className="absolute inset-0 flex items-center justify-center text-white font-bold text-lg">
-                  U
-                </span>
-              </div>
-              <span className="text-xl font-bold tracking-tight">
-                Unocoin
-              </span>
-            </a>
+            <UnocoinBrand logoSize={36} />
 
             {/* Desktop Links */}
             <div className="hidden md:flex items-center gap-8">
