@@ -7,32 +7,42 @@ const timeline = [
   {
     year: "2013",
     title: "India's First Bitcoin Platform",
-    desc: "Founded by Sathvik Vishwanath, Sunny Ray, Harish BV, and Abhinand Kaseti. When no one in India believed in Bitcoin, we built.",
+    desc: "Founded in Tumkur, Karnataka by Sathvik Vishwanath, Sunny Ray, Harish BV, and Abhinand Kaseti. When Bitcoin was $100 and no one in India believed, we built.",
   },
   {
     year: "2014",
     title: "Silbert Leads $250K Seed",
-    desc: "Barry Silbert and Digital Currency Group lead our seed round. Draper Associates, Blume Ventures, and Boost VC follow.",
+    desc: "Barry Silbert and Digital Currency Group lead our seed round. Draper Associates, Blume Ventures, and Boost VC follow. Operations move to Bangalore.",
+  },
+  {
+    year: "2016",
+    title: "$1.5M Funding Round",
+    desc: "Blume Ventures, Mumbai Angels, and Boost VC invest $1.5M. Unocoin launches India's first Bitcoin SBP (Systematic Buying Plan) — crypto's answer to SIP.",
   },
   {
     year: "2018",
     title: "RBI Ban & Arrest",
-    desc: "RBI bans crypto banking. Our co-founders are arrested for installing India's first Bitcoin ATM. Many exchanges fold. We fight back.",
+    desc: "RBI bans crypto banking. Our co-founders Harish BV and Sathvik Vishwanath are arrested for installing India's first Bitcoin ATM. Many exchanges fold or flee. We fight back.",
   },
   {
     year: "2020",
     title: "Supreme Court Victory",
-    desc: "After 20 weeks of hearings, the Supreme Court strikes down the RBI ban as unconstitutional. Customers surge 10X. India's crypto future is saved.",
+    desc: "After 20 weeks of hearings, the Supreme Court strikes down the RBI ban as unconstitutional. Karnataka HC quashes the FIR. Customers surge 10X. Tim Draper leads our Series A.",
+  },
+  {
+    year: "2024",
+    title: "Draper Doubles Down",
+    desc: "Tim Draper reinvests in Unocoin. Total funding reaches $6.75M. Platform crosses 2 million users and 120+ listed cryptocurrencies.",
   },
   {
     year: "2025",
     title: "Lightning Network Goes Live",
-    desc: "Partnered with Voltage to bring instant Bitcoin settlements to India. USDT on Lightning on the horizon.",
+    desc: "Partnered with Voltage, the longest-standing Lightning payments provider. Instant BTC settlements in milliseconds. USDT on Lightning coming soon.",
   },
   {
     year: "2026",
     title: "Remittance Revolution",
-    desc: "Pioneering Lightning-powered cross-border payments for India's $125B+ remittance market. The next chapter begins.",
+    desc: "Pioneering Lightning-powered cross-border payments for India's $125B+ remittance market. Near-zero fees. Instant settlement. The next chapter begins.",
   },
 ];
 
@@ -40,7 +50,9 @@ const stats = [
   { value: "2013", label: "India's First Crypto Exchange", icon: "🕐" },
   { value: "2.26M+", label: "Users Trust Unocoin", icon: "👥" },
   { value: "₹3K Cr+", label: "Transactions Processed", icon: "📊" },
-  { value: "120+", label: "Cryptocurrencies Listed", icon: "🔒" },
+  { value: "120+", label: "Cryptocurrencies Listed", icon: "🪙" },
+  { value: "$6.75M", label: "Total Funding Raised", icon: "💰" },
+  { value: "3", label: "Markets: INR, BTC, USDT", icon: "📈" },
 ];
 
 function TimelineItem({
