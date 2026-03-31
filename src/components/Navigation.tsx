@@ -16,11 +16,11 @@ export default function Navigation() {
 
   const navLinks = [
     { label: "Products", href: "#products" },
-    { label: "Institutional", href: "#institutional" },
-    { label: "Platform", href: "/platform" },
+    { label: "Platform", href: "/platform", badge: "AI" },
     { label: "Partners", href: "/remittance" },
-    { label: "API", href: "/api-docs" },
+    { label: "Institutional", href: "#institutional" },
     { label: "Security", href: "/security" },
+    { label: "API", href: "/api-docs" },
   ];
 
   return (
@@ -46,9 +46,14 @@ export default function Navigation() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-sm transition-colors duration-300 text-text-secondary hover:text-text-primary"
+                  className="text-sm transition-colors duration-300 text-text-secondary hover:text-text-primary flex items-center gap-1.5"
                 >
                   {link.label}
+                  {link.badge && (
+                    <span className="text-[9px] bg-bitcoin/15 text-bitcoin font-bold px-1.5 py-0.5 rounded-full">
+                      {link.badge}
+                    </span>
+                  )}
                 </a>
               ))}
             </div>
