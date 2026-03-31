@@ -16,10 +16,10 @@ export default function Navigation() {
 
   const navLinks = [
     { label: "Products", href: "#products" },
-    { label: "Autopilot", href: "/autopilot", isNew: true },
-    { label: "API", href: "/api-docs" },
+    { label: "Institutional", href: "#institutional" },
     { label: "Partners", href: "/partners" },
-    { label: "Portfolio", href: "/portfolio" },
+    { label: "API", href: "/api-docs" },
+    { label: "Autopilot", href: "/autopilot", isNew: true },
     { label: "About", href: "#about" },
   ];
 

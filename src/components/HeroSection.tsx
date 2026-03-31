@@ -48,11 +48,11 @@ function usePersonalization() {
 
     // Headline + subtext pairs for first-time visitors (rotated randomly)
     const firstTimeHeadlines = [
-      { greeting: "The future of money", subtext: "starts here", description: "India\u2019s first crypto platform fought the RBI in the Supreme Court \u2014 and won. Since 2013, we\u2019ve been the guide for 2.26 million Indians building wealth with Bitcoin and 120+ cryptocurrencies." },
-      { greeting: "India\u2019s crypto pioneer", subtext: "since 2013", description: "From a small office in Tumkur to the Supreme Court of India. 2.26 million users, 120+ cryptocurrencies, and 13 years of building what others wouldn\u2019t." },
-      { greeting: "Build wealth with", subtext: "Bitcoin & crypto", description: "Start your Systematic Buying Plan from just \u20B910. Zero fees on SBP trades. Auto-invest daily, weekly, or monthly \u2014 like a SIP, but for crypto." },
-      { greeting: "From \u20B910 to", subtext: "financial freedom", description: "India\u2019s most trusted crypto platform. Backed by Tim Draper and Barry Silbert. 120+ cryptocurrencies. Industry-lowest fees. Your wealth, your rules." },
-      { greeting: "Bringing crypto", subtext: "to billions", description: "We were arrested for installing India\u2019s first Bitcoin ATM. Then we won in the Supreme Court. Now 2.26 million Indians trust us to build their future." },
+      { greeting: "Trusted at the highest", subtext: "levels of India", description: "From sovereign institutions to 2.26 million individuals \u2014 India\u2019s most trusted crypto platform. 13 years of operation. Supreme Court validated. Backed by Tim Draper and Barry Silbert." },
+      { greeting: "Where serious capital", subtext: "meets crypto", description: "OTC desk for large volumes. Institutional-grade custody. 95% cold storage. Multi-signature security. Whether you\u2019re investing \u20B910 or \u20B910 crore, this is your platform." },
+      { greeting: "India\u2019s crypto pioneer", subtext: "since 2013", description: "We fought the RBI in the Supreme Court \u2014 and won. We survived when every other exchange folded. Now institutions, family offices, and 2.26 million Indians trust us with their wealth." },
+      { greeting: "The platform India", subtext: "chose to trust", description: "FIU-IND registered. PMLA compliant. Chosen by entities that can\u2019t afford to be wrong. 120+ cryptocurrencies. Industry-lowest fees. $3,000 Cr+ processed." },
+      { greeting: "Build generational", subtext: "wealth with crypto", description: "Systematic Buying Plans with zero fees. AI-powered portfolio construction. From daily micro-investments to institutional OTC trades \u2014 every wealth tier, one platform." },
     ];
 
     // Headline + subtext pairs for returning visitors (time-aware)

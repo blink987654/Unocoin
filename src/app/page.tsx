@@ -7,6 +7,8 @@ import FeaturesSection from "@/components/FeaturesSection";
 import RemittanceSection from "@/components/RemittanceSection";
 import TrustSection from "@/components/TrustSection";
 import BitcoinMissionSection from "@/components/BitcoinMissionSection";
+import SocialProofSection from "@/components/SocialProofSection";
+import InstitutionalSection from "@/components/InstitutionalSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import AskSatoshi from "@/components/AskSatoshi";
@@ -34,6 +36,16 @@ export default function Home() {
 
       {/* Remittance - The new frontier */}
       <RemittanceSection />
+
+      <div className="section-divider" />
+
+      {/* Social Proof — Numbers, testimonials, media */}
+      <SocialProofSection />
+
+      <div className="section-divider" />
+
+      {/* Institutional — For HNIs, family offices, sovereign entities */}
+      <InstitutionalSection />
 
       <div className="section-divider" />
 

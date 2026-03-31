@@ -213,19 +213,19 @@ export default function ApiDocsPage() {
             transition={{ duration: 0.8 }}
           >
             <div className="inline-flex items-center gap-2 bg-accent-blue/10 border border-accent-blue/20 rounded-full px-4 py-1.5 mb-6">
-              <span className="text-sm text-accent-blue font-medium">Developer Platform</span>
+              <span className="text-sm text-accent-blue font-medium">Enterprise-Grade Infrastructure</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
               Unocoin <span className="gradient-text-bitcoin">API</span>
             </h1>
             <p className="text-xl text-text-secondary max-w-3xl mx-auto mb-4">
-              Build the future of crypto in India
+              India&apos;s most trusted crypto infrastructure for institutions and developers
             </p>
             <p className="text-text-tertiary max-w-2xl mx-auto mb-10 leading-relaxed">
-              Integrate Bitcoin buying, selling, SBP automation, Lightning payments, and
-              portfolio management into your application. Everything you can do in the
-              Unocoin app, you can do via API.
+              Powering remittance companies, trading algorithms, fintech platforms, and enterprise applications.
+              From Lightning settlement to SBP automation — everything you can do in the
+              Unocoin app, you can do via API. Trusted by entities that demand institutional-grade reliability.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
@@ -238,7 +238,7 @@ export default function ApiDocsPage() {
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
-              {["REST API", "WebSocket Streams", "99.9% Uptime", "FIU Compliant"].map((badge) => (
+              {["REST API", "WebSocket Streams", "99.99% Uptime SLA", "FIU-IND Compliant", "HMAC-SHA256 Auth", "Dedicated Support"].map((badge) => (
                 <span key={badge} className="bg-surface-elevated border border-border-subtle rounded-lg px-3 py-1.5 text-xs text-text-tertiary">
                   {badge}
                 </span>
@@ -257,7 +257,7 @@ export default function ApiDocsPage() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl font-bold mb-2">Quick Start</h2>
-            <p className="text-text-secondary mb-8">Get up and running in minutes.</p>
+            <p className="text-text-secondary mb-8">Production-ready in 48 hours with dedicated technical support.</p>
 
             <div className="gradient-border bg-surface-card rounded-2xl overflow-hidden">
               {/* Tabs */}

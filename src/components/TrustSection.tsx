@@ -47,12 +47,14 @@ const timeline = [
 ];
 
 const stats = [
-  { value: "2013", label: "India's First Crypto Exchange", icon: "🕐" },
-  { value: "2.26M+", label: "Users Trust Unocoin", icon: "👥" },
-  { value: "₹3K Cr+", label: "Transactions Processed", icon: "📊" },
-  { value: "120+", label: "Cryptocurrencies Listed", icon: "🪙" },
-  { value: "$6.75M", label: "Total Funding Raised", icon: "💰" },
-  { value: "3", label: "Markets: INR, BTC, USDT", icon: "📈" },
+  { value: "2013", label: "India\u2019s First Crypto Exchange", icon: "\uD83D\uDD50" },
+  { value: "2.26M+", label: "Verified Users", icon: "\uD83D\uDC65" },
+  { value: "\u20B93K Cr+", label: "Transactions Processed", icon: "\uD83D\uDCCA" },
+  { value: "120+", label: "Cryptocurrencies Listed", icon: "\uD83E\uDE99" },
+  { value: "95%", label: "Assets in Cold Storage", icon: "\uD83D\uDD12" },
+  { value: "$6.75M", label: "Backed by Draper & Silbert", icon: "\uD83D\uDCB0" },
+  { value: "99.9%", label: "Platform Uptime", icon: "\u2705" },
+  { value: "24/7", label: "Settlement & Support", icon: "\u26A1" },
 ];
 
 function TimelineItem({
@@ -138,14 +140,15 @@ export default function TrustSection() {
             className="text-lg text-text-secondary leading-relaxed"
           >
             When banks shut us down, we took it to the Supreme Court — and won.
-            When others pivoted to meme coins, we stayed true to Bitcoin. This
-            isn&apos;t just a company. It&apos;s a movement.
+            When others pivoted to meme coins, we stayed true to Bitcoin.
+            Today, from sovereign institutions to family offices to everyday investors,
+            India&apos;s most discerning choose Unocoin. This isn&apos;t just a company. It&apos;s a movement.
           </motion.p>
         </div>
 
         {/* Stats bar */}
         <div ref={statsRef} className="mb-24">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {stats.map((stat, i) => (
               <motion.div
                 key={stat.label}

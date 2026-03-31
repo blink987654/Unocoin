@@ -12,7 +12,8 @@ const trustBadges = [
   "FIU-IND Registered",
   "Lightning Network",
   "24/7 Settlement",
-  "Zero Hidden Fees",
+  "99.99% Uptime SLA",
+  "Trusted by Sovereign Entities",
 ];
 
 const corridors = [
@@ -197,24 +198,24 @@ export default function PartnersPage() {
           >
             <div className="inline-flex items-center gap-2 bg-bitcoin/10 border border-bitcoin/20 rounded-full px-4 py-1.5 mb-6">
               <span className="text-sm text-bitcoin font-medium">
-                Partner Program
+                Institutional Partner Program
               </span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-              Lightning-Fast{" "}
-              <span className="gradient-text-bitcoin">Remittance</span> to India
+              Instant Settlement.{" "}
+              <span className="gradient-text-bitcoin">97% Cheaper.</span>
             </h1>
             <p className="text-xl text-text-secondary max-w-3xl mx-auto mb-4">
-              India receives over $100B in remittances every year. Partner with
-              Unocoin to deliver instant, low-cost transfers powered by the
-              Lightning Network.
+              India receives over $100B in remittances every year. Your customers
+              deserve instant, transparent, near-zero-cost transfers — not 3-5 day
+              bank delays with hidden 5-8% fees.
             </p>
             <p className="text-text-tertiary max-w-2xl mx-auto mb-10 leading-relaxed">
-              Since 2013, Unocoin has been India&apos;s pioneer crypto exchange.
-              Our Voltage-powered Lightning infrastructure lets your customers
-              send money home in seconds instead of days — at a fraction of
-              traditional costs.
+              Unocoin has been India&apos;s most trusted crypto infrastructure since 2013.
+              FIU-IND registered. PMLA compliant. Trusted by sovereign entities.
+              Our Voltage-powered Lightning Network settles in seconds, not days.
+              Partner with the platform that institutions choose when they can&apos;t afford to be wrong.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">

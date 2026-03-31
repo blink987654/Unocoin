@@ -252,9 +252,7 @@ export default function FeaturesSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg text-text-secondary leading-relaxed"
           >
-            13 years of building the most complete crypto platform for India.
-            120+ cryptocurrencies. Industry-low fees. Every feature built with
-            one goal — making crypto accessible to everyone.
+            From retail SIPs to institutional OTC. From Lightning-fast settlements to AI-powered wealth management. 13 years of building the infrastructure that India&apos;s most discerning investors depend on.
           </motion.p>
         </div>
 
