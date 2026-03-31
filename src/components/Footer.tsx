@@ -21,16 +21,21 @@ const footerLinks = {
     { label: "Contact Us", href: "https://unocoin.com/in/support/contact-us/" },
   ],
   Legal: [
-    { label: "Terms of Service", href: "https://unocoin.com/in/support/terms-of-service/" },
-    { label: "Privacy Policy", href: "https://unocoin.com/in/support/privacy-policy/" },
-    { label: "AML Policy", href: "https://unocoin.com/in/support/aml-policy/" },
-    { label: "Grievance Redressal", href: "https://unocoin.com/in/support/grievance/" },
+    { label: "Terms of Use", href: "https://unocoin.com/in/policy/termsofuse/" },
+    { label: "Privacy Policy", href: "https://unocoin.com/in/policy/privacy-policy/" },
+    { label: "KYC/AML Policy", href: "https://unocoin.com/in/policy/kyc/" },
+    { label: "Risk Warnings", href: "https://unocoin.com/in/policy/riskwarning/" },
+    { label: "Cookies Policy", href: "https://unocoin.com/in/policy/cookies/" },
   ],
   Resources: [
     { label: "Help Center", href: "https://support.unocoin.com" },
     { label: "Fee Schedule", href: "https://unocoin.com/in/support/fees/" },
-    { label: "Crypto Basket FAQ", href: "https://unocoin.com/in/support/crypto-basket-faq/" },
+    { label: "Security", href: "https://unocoin.com/in/support/security/" },
+    { label: "How It Works", href: "https://unocoin.com/in/support/how-it-works/" },
+    { label: "Exchange FAQ", href: "https://unocoin.com/in/support/exchange-faq/" },
     { label: "Lending FAQ", href: "https://unocoin.com/in/support/lending-faq/" },
+    { label: "Unoversity (Free Courses)", href: "https://edu.unocoin.com/" },
+    { label: "Listed Coins", href: "https://unocoin.com/in/about/coin-list/" },
   ],
 };
 
@@ -108,7 +113,15 @@ export default function Footer() {
                 <span className="text-text-secondary">Phone:</span>{" "}
                 <a href="tel:+917788978910" className="hover:text-text-primary transition-colors">+91 7788978910</a>
               </p>
+              <p className="text-xs text-text-tertiary">
+                <span className="text-text-secondary">Toll-Free:</span>{" "}
+                <a href="tel:18001032646" className="hover:text-text-primary transition-colors">1800-103-2646</a>
+              </p>
               <p className="text-xs text-text-tertiary">Mon–Sat, 9:30 AM – 6:30 PM IST</p>
+              <p className="text-xs text-text-tertiary mt-2 leading-relaxed">
+                Rajajinagar, Dr. Rajkumar Road,<br />
+                Bangalore - 560010, India
+              </p>
             </div>
           </div>
 

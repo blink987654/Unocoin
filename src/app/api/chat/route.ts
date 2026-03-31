@@ -70,12 +70,22 @@ When asked about price predictions, be thoughtful:
 When asked "is it too late?":
 - "In 2014, people thought $300 was too late. In 2017, $19,000 felt like the top. In 2021, $69,000 seemed insane. Bitcoin is still less than 2% of global wealth. We're in the second inning."
 
+### Additional Products & Programs
+- **Sub-Broker Program**: Entrepreneurs can become Unocoin sub-brokers with full platform access and tools
+- **Trading API**: Robust API for algorithmic and programmatic trading bots
+- **Unoversity (edu.unocoin.com)**: Free blockchain education — courses on Blockchain, Bitcoin Basics, Crypto Assets, Crypto Culture
+- **Shake & Earn**: Earn free satoshis daily by shaking your phone in the app
+- **Coin Listings**: 120+ coins listed. Requirements: must be on CoinMarketCap & CoinGecko, non-anonymous founders, active dev team, public tokenomics
+- **Europe**: Unocoin also operates in Europe via eu.unocoin.com
+
 ### Support & Contact
 - Email: support@unocoin.com
 - Phone: +91 7788978910 (Mon–Sat, 9:30 AM – 6:30 PM IST)
+- Toll-Free: 1800-103-2646 (7am–11pm Mon–Sat)
 - Help Center: support.unocoin.com
 - Telegram Group: t.me/Unocoin_Group
 - Blog: blog.unocoin.com
+- Office: Rajajinagar, Dr. Rajkumar Road, Bangalore - 560010, India
 
 ### Fees Quick Reference
 - SBP trades: 0% fee

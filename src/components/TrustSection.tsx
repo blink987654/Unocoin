@@ -208,8 +208,8 @@ export default function TrustSection() {
                 </div>
                 <p className="text-text-secondary text-sm leading-relaxed">
                   Early Skype, Tesla, and Coinbase investor. Bought 30,000 BTC
-                  at the US Marshals auction. Led Unocoin&apos;s Series A in 2020
-                  and doubled down in 2024. Predicted Bitcoin at $250K.
+                  at the US Marshals auction. Led Unocoin&apos;s Series A at $20M
+                  valuation in 2020 and doubled down in 2024. Predicted Bitcoin at $250K.
                 </p>
               </motion.div>
 
@@ -234,9 +234,42 @@ export default function TrustSection() {
                 <p className="text-text-secondary text-sm leading-relaxed">
                   Founder of Digital Currency Group — the most prolific investor
                   in crypto. Led Unocoin&apos;s $250K seed round in 2014 when
-                  Bitcoin in India was just an idea. Grayscale, CoinDesk, Genesis
-                  — his portfolio defines the ecosystem.
+                  Bitcoin in India was just an idea. &ldquo;Unocoin has solidified its
+                  position as the leading Bitcoin company in India.&rdquo;
                 </p>
+              </motion.div>
+
+              {/* Additional investors */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="bg-surface-card border border-border-subtle rounded-2xl p-6"
+              >
+                <p className="text-sm text-text-tertiary uppercase tracking-wider mb-3">
+                  Also backed by
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    "Blume Ventures",
+                    "Mumbai Angels",
+                    "Boost VC",
+                    "XBTO Ventures",
+                    "ah! Ventures",
+                    "Bank to the Future",
+                    "Bitcoin Capital",
+                    "Digital Finance Group",
+                    "FundersClub",
+                  ].map((investor) => (
+                    <span
+                      key={investor}
+                      className="bg-surface-elevated/60 border border-border-subtle rounded-lg px-3 py-1.5 text-xs text-text-secondary"
+                    >
+                      {investor}
+                    </span>
+                  ))}
+                </div>
               </motion.div>
             </div>
 
