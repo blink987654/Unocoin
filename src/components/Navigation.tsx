@@ -17,7 +17,9 @@ export default function Navigation() {
   const navLinks = [
     { label: "Products", href: "#products" },
     { label: "Autopilot", href: "/autopilot", isNew: true },
-    { label: "Remittance", href: "#remittance" },
+    { label: "API", href: "/api-docs" },
+    { label: "Partners", href: "/partners" },
+    { label: "Portfolio", href: "/portfolio" },
     { label: "About", href: "#about" },
   ];
 
