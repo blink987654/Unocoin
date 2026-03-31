@@ -117,26 +117,7 @@ function allocationTextColor(product: string): string {
   return "text-accent-blue";
 }
 
-// ─── Navigation Bar (minimal) ───────────────────────────────
-function AutopilotNav() {
-  return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-2xl border-b border-border-subtle">
-      <div className="max-w-5xl mx-auto px-6 flex items-center justify-between h-16">
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="relative w-8 h-8">
-            <div className="absolute inset-0 bg-bitcoin rounded-lg rotate-45 group-hover:rotate-[55deg] transition-transform duration-500" />
-            <span className="absolute inset-0 flex items-center justify-center text-white font-bold text-sm">U</span>
-          </div>
-          <span className="text-lg font-bold tracking-tight">Autopilot</span>
-          <span className="text-xs bg-bitcoin/10 text-bitcoin font-semibold px-2 py-0.5 rounded-full">AI</span>
-        </Link>
-        <Link href="/" className="text-sm text-text-tertiary hover:text-text-primary transition-colors">
-          ← Back to Unocoin
-        </Link>
-      </div>
-    </nav>
-  );
-}
+import Navigation from "@/components/Navigation";
 
 // ─── Step 1: Welcome ────────────────────────────────────────
 function WelcomeScreen({ onStart }: { onStart: () => void }) {
@@ -781,7 +762,7 @@ export default function AutopilotPage() {
 
   return (
     <div className="bg-surface text-text-primary min-h-screen">
-      <AutopilotNav />
+      <Navigation />
 
       {/* Background effects */}
       <div className="fixed inset-0 pointer-events-none">

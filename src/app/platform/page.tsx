@@ -3,41 +3,9 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
+import Navigation from "@/components/Navigation";
 
 const easing: [number, number, number, number] = [0.16, 1, 0.3, 1];
-
-// ─── Navigation ────────────────────────────────────────────
-function PlatformNav() {
-  return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-2xl border-b border-border-subtle">
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="relative w-8 h-8">
-            <div className="absolute inset-0 bg-bitcoin rounded-lg rotate-45 group-hover:rotate-[55deg] transition-transform duration-500" />
-            <span className="absolute inset-0 flex items-center justify-center text-white font-bold text-sm">
-              U
-            </span>
-          </div>
-          <span className="text-lg font-bold tracking-tight">Platform</span>
-        </Link>
-        <div className="flex items-center gap-4">
-          <Link
-            href="/"
-            className="text-sm text-text-tertiary hover:text-text-primary transition-colors"
-          >
-            Home
-          </Link>
-          <Link
-            href="/autopilot"
-            className="btn-primary !py-2 !px-5 !rounded-lg text-sm"
-          >
-            Try Autopilot
-          </Link>
-        </div>
-      </div>
-    </nav>
-  );
-}
 
 // ─── Section wrapper ───────────────────────────────────────
 function Section({
@@ -177,7 +145,7 @@ const timeline = [
 export default function PlatformPage() {
   return (
     <main className="bg-surface text-text-primary min-h-screen">
-      <PlatformNav />
+      <Navigation />
 
       {/* Hero */}
       <Section className="pt-32 pb-24 lg:pt-40 lg:pb-32">
