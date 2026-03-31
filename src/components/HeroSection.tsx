@@ -52,7 +52,7 @@ function usePersonalization() {
       { greeting: "Where serious capital", subtext: "meets crypto", description: "OTC desk for large volumes. Institutional-grade custody. 95% cold storage. Multi-signature security. Whether you\u2019re investing \u20B910 or \u20B910 crore, this is your platform." },
       { greeting: "India\u2019s crypto pioneer", subtext: "since 2013", description: "We fought the RBI in the Supreme Court \u2014 and won. We survived when every other exchange folded. Now institutions, family offices, and 2.26 million Indians trust us with their wealth." },
       { greeting: "The platform India", subtext: "chose to trust", description: "FIU-IND registered. PMLA compliant. Chosen by entities that can\u2019t afford to be wrong. 120+ cryptocurrencies. Industry-lowest fees. $3,000 Cr+ processed." },
-      { greeting: "Build generational", subtext: "wealth with crypto", description: "Systematic Buying Plans with zero fees. AI-powered portfolio construction. From daily micro-investments to institutional OTC trades \u2014 every wealth tier, one platform." },
+      { greeting: "Build generational", subtext: "wealth with crypto", description: "Bitcoin, Ethereum, stablecoins, and 120+ assets. Systematic Buying Plans with zero fees. Earn 7% APY on USDT. From daily micro-investments to institutional OTC trades \u2014 every wealth tier, one platform." },
     ];
 
     // Headline + subtext pairs for returning visitors (time-aware)
@@ -160,7 +160,7 @@ function PriceTicker({ prices }: { prices: PriceData[] }) {
           </span>
           <span className="text-xs text-text-secondary font-medium">{p.symbol}</span>
           <span className="text-xs font-semibold text-text-primary font-mono">
-            ${p.price < 2 ? p.price.toFixed(4) : p.price.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+            ₹{p.price < 2 ? (p.price * 83).toFixed(2) : (p.price * 83).toLocaleString("en-IN", { maximumFractionDigits: 0 })}
           </span>
           <span
             className={`text-xs font-medium ${
@@ -633,16 +633,13 @@ export default function HeroSection() {
 
       <motion.div
         style={{ opacity: heroOpacity, scale: heroScale, y: heroY }}
-        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full pt-28 pb-16 lg:pt-36 lg:pb-24"
+        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full pt-36 pb-16 lg:pt-44 lg:pb-24"
       >
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-4 items-center">
           {/* Left - Content */}
           <div className="order-2 lg:order-1 space-y-6">
             {/* Live Price Ticker (#1) */}
             <PriceTicker prices={prices} />
-
-            {/* Social Proof (#6) */}
-            <SocialProofTicker />
 
             {/* Dynamic Headline (#3 + #10) */}
             <motion.div

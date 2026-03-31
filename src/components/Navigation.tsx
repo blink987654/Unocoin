@@ -19,8 +19,8 @@ export default function Navigation() {
     { label: "Institutional", href: "#institutional" },
     { label: "Partners", href: "/partners" },
     { label: "API", href: "/api-docs" },
+    { label: "Security", href: "/security" },
     { label: "Autopilot", href: "/autopilot", isNew: true },
-    { label: "About", href: "#about" },
   ];
 
   return (

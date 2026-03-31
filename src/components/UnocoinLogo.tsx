@@ -31,11 +31,17 @@ export function UnocoinLogo({
         className={`w-full h-full ${animated ? "group-hover:scale-105 transition-transform duration-500" : ""}`}
       >
         <defs>
-          {/* Main gradient — bitcoin orange to gold */}
+          {/* Main gradient — bitcoin orange to gold with shimmer */}
           <linearGradient id={`${id}-grad`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#F7931A" />
-            <stop offset="50%" stopColor="#FFAB40" />
-            <stop offset="100%" stopColor="#F7931A" />
+            <stop offset="0%" stopColor="#F7931A">
+              <animate attributeName="stopColor" values="#F7931A;#FFAB40;#FFD54F;#FFAB40;#F7931A" dur="5s" repeatCount="indefinite" />
+            </stop>
+            <stop offset="50%" stopColor="#FFAB40">
+              <animate attributeName="stopColor" values="#FFAB40;#FFD54F;#F7931A;#FFD54F;#FFAB40" dur="5s" repeatCount="indefinite" />
+            </stop>
+            <stop offset="100%" stopColor="#F7931A">
+              <animate attributeName="stopColor" values="#F7931A;#F7931A;#FFAB40;#FFD54F;#F7931A" dur="5s" repeatCount="indefinite" />
+            </stop>
           </linearGradient>
 
           {/* Inner shadow gradient */}
