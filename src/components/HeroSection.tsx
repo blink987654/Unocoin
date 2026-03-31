@@ -1,286 +1,506 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useEffect, useState, useRef, useMemo, Suspense } from "react";
+import dynamic from "next/dynamic";
 
-function BitcoinOrb() {
-  return (
-    <div className="relative w-[300px] h-[300px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px]">
-      {/* Outer ring glow */}
-      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-bitcoin/20 to-transparent blur-3xl animate-pulse-glow" />
-
-      {/* Rotating orbital rings */}
-      <div className="absolute inset-8 md:inset-12 animate-rotate-slow">
-        <svg viewBox="0 0 400 400" className="w-full h-full opacity-10">
-          <circle
-            cx="200"
-            cy="200"
-            r="180"
-            fill="none"
-            stroke="#F7931A"
-            strokeWidth="0.5"
-            strokeDasharray="4 8"
-          />
-        </svg>
-      </div>
-
-      {/* Second ring - reverse */}
-      <div
-        className="absolute inset-4 md:inset-8"
-        style={{ animation: "rotate-slow 45s linear infinite reverse" }}
-      >
-        <svg viewBox="0 0 400 400" className="w-full h-full opacity-[0.07]">
-          <circle
-            cx="200"
-            cy="200"
-            r="190"
-            fill="none"
-            stroke="#F7931A"
-            strokeWidth="0.5"
-            strokeDasharray="2 12"
-          />
-        </svg>
-      </div>
-
-      {/* Central Bitcoin symbol */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-          className="relative"
-        >
-          {/* Glow behind symbol */}
-          <div className="absolute inset-0 -m-8 bg-bitcoin/20 rounded-full blur-[60px]" />
-
-          <svg
-            viewBox="0 0 64 64"
-            className="w-20 h-20 md:w-32 md:h-32 lg:w-40 lg:h-40 relative z-10"
-          >
-            <defs>
-              <linearGradient
-                id="btcGrad"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop offset="0%" stopColor="#FFD700" />
-                <stop offset="50%" stopColor="#F7931A" />
-                <stop offset="100%" stopColor="#E8850F" />
-              </linearGradient>
-            </defs>
-            <text
-              x="32"
-              y="46"
-              textAnchor="middle"
-              fill="url(#btcGrad)"
-              fontSize="44"
-              fontWeight="700"
-              fontFamily="Inter, sans-serif"
-            >
-              ₿
-            </text>
-          </svg>
-        </motion.div>
-      </div>
-
-      {/* Floating particles */}
-      {[...Array(6)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-1 h-1 md:w-1.5 md:h-1.5 bg-bitcoin rounded-full"
-          style={{
-            top: `${20 + Math.random() * 60}%`,
-            left: `${20 + Math.random() * 60}%`,
-          }}
-          animate={{
-            y: [0, -15, 0],
-            opacity: [0.2, 0.6, 0.2],
-          }}
-          transition={{
-            duration: 3 + i * 0.5,
-            repeat: Infinity,
-            delay: i * 0.4,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
+// Lazy load the 3D globe so it doesn't block initial render
+const BitcoinGlobe = dynamic(() => import("./BitcoinGlobe"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-[300px] h-[300px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] flex items-center justify-center">
+      <div className="w-32 h-32 rounded-full bg-bitcoin/10 animate-pulse-glow" />
     </div>
-  );
+  ),
+});
+
+// ─── Types ───────────────────────────────────────────────────
+interface PriceData {
+  symbol: string;
+  name: string;
+  price: number;
+  change1h: number;
+  change24h: number;
+  marketCap: number;
 }
 
-function LivePrice() {
-  const [price, setPrice] = useState("$84,231");
-  const [change] = useState("+2.4%");
+// ─── Dynamic Personalization (#10) ──────────────────────────
+function usePersonalization() {
+  const [context, setContext] = useState({
+    greeting: "Your future",
+    subtext: "runs on",
+    timeOfDay: "day" as "morning" | "day" | "evening" | "night",
+    isReturning: false,
+  });
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const base = 84231;
-      const variance = Math.floor(Math.random() * 500 - 250);
-      setPrice(`$${(base + variance).toLocaleString()}`);
-    }, 3000);
+    const hour = new Date().getHours();
+    const visited = localStorage.getItem("unocoin_visited");
+    const isReturning = !!visited;
+    localStorage.setItem("unocoin_visited", "true");
+
+    let greeting = "Your future";
+    let subtext = "runs on";
+    let timeOfDay: "morning" | "day" | "evening" | "night" = "day";
+
+    if (hour >= 5 && hour < 12) {
+      timeOfDay = "morning";
+      greeting = isReturning ? "Good morning" : "Your future";
+      subtext = isReturning ? "Bitcoin is waiting." : "runs on";
+    } else if (hour >= 12 && hour < 17) {
+      timeOfDay = "day";
+      greeting = isReturning ? "Welcome back" : "Your future";
+      subtext = isReturning ? "Let's check Bitcoin." : "runs on";
+    } else if (hour >= 17 && hour < 21) {
+      timeOfDay = "evening";
+      greeting = isReturning ? "Good evening" : "Your future";
+      subtext = isReturning ? "Bitcoin never sleeps." : "runs on";
+    } else {
+      timeOfDay = "night";
+      greeting = isReturning ? "Still up?" : "While you sleep,";
+      subtext = isReturning ? "So is Bitcoin." : "Bitcoin doesn't.";
+    }
+
+    setContext({ greeting, subtext, timeOfDay, isReturning });
+  }, []);
+
+  return context;
+}
+
+// ─── Live Prices from CoinMarketCap (#1) ────────────────────
+function useLivePrices() {
+  const [prices, setPrices] = useState<PriceData[]>([
+    { symbol: "BTC", name: "Bitcoin", price: 84231, change1h: 0.12, change24h: 2.4, marketCap: 1670000000000 },
+    { symbol: "ETH", name: "Ethereum", price: 3245, change1h: -0.05, change24h: 1.8, marketCap: 390000000000 },
+    { symbol: "USDT", name: "Tether", price: 1.0, change1h: 0.0, change24h: 0.01, marketCap: 140000000000 },
+    { symbol: "USDC", name: "USD Coin", price: 1.0, change1h: 0.0, change24h: 0.0, marketCap: 52000000000 },
+  ]);
+
+  useEffect(() => {
+    async function fetchPrices() {
+      try {
+        const res = await fetch("/api/prices");
+        if (res.ok) {
+          const data = await res.json();
+          setPrices(data);
+        }
+      } catch {
+        // Keep fallback data
+      }
+    }
+    fetchPrices();
+    const interval = setInterval(fetchPrices, 30000); // Refresh every 30s
     return () => clearInterval(interval);
   }, []);
+
+  return prices;
+}
+
+function PriceTicker({ prices }: { prices: PriceData[] }) {
+  const symbolIcons: Record<string, string> = {
+    BTC: "₿",
+    ETH: "Ξ",
+    USDT: "₮",
+    USDC: "$",
+  };
+
+  const symbolColors: Record<string, string> = {
+    BTC: "text-bitcoin",
+    ETH: "text-accent-purple",
+    USDT: "text-accent-green",
+    USDC: "text-accent-blue",
+  };
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 1.5, duration: 0.6 }}
-      className="inline-flex items-center gap-3 bg-surface-elevated/60 backdrop-blur-xl border border-border-subtle rounded-full px-5 py-2.5"
+      transition={{ delay: 0.8, duration: 0.6 }}
+      className="flex flex-wrap items-center gap-4 md:gap-6"
     >
-      <div className="w-2 h-2 bg-accent-green rounded-full animate-pulse" />
-      <span className="text-sm text-text-secondary">BTC</span>
-      <span className="text-sm font-semibold text-text-primary font-mono">
-        {price}
-      </span>
-      <span className="text-sm font-medium text-accent-green">{change}</span>
+      <div className="flex items-center gap-2 mr-2">
+        <div className="w-2 h-2 bg-accent-green rounded-full animate-pulse" />
+        <span className="text-xs text-text-tertiary uppercase tracking-wider font-medium">Live</span>
+      </div>
+      {prices.map((p) => (
+        <div
+          key={p.symbol}
+          className="flex items-center gap-2 bg-surface-elevated/40 backdrop-blur-xl border border-border-subtle rounded-lg px-3 py-1.5 hover:border-border-medium transition-colors"
+        >
+          <span className={`text-sm font-bold ${symbolColors[p.symbol] || "text-text-primary"}`}>
+            {symbolIcons[p.symbol] || p.symbol}
+          </span>
+          <span className="text-xs text-text-secondary font-medium">{p.symbol}</span>
+          <span className="text-xs font-semibold text-text-primary font-mono">
+            ${p.price < 2 ? p.price.toFixed(4) : p.price.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+          </span>
+          <span
+            className={`text-xs font-medium ${
+              p.change24h >= 0 ? "text-accent-green" : "text-red-400"
+            }`}
+          >
+            {p.change24h >= 0 ? "+" : ""}
+            {p.change24h.toFixed(1)}%
+          </span>
+        </div>
+      ))}
     </motion.div>
   );
 }
 
-export default function HeroSection() {
+// ─── Investment Calculator Counter (#4) ─────────────────────
+function InvestmentCounter() {
+  const [displayValue, setDisplayValue] = useState(0);
+  // ₹1,000/month since Jan 2013 in BTC
+  // Approximate: ~₹1.56 Crore based on historical BTC/INR
+  const targetValue = 15600000;
+
+  useEffect(() => {
+    const duration = 2500;
+    const start = Date.now();
+
+    function animate() {
+      const elapsed = Date.now() - start;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplayValue(Math.floor(targetValue * eased));
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    }
+
+    const timeout = setTimeout(() => {
+      requestAnimationFrame(animate);
+    }, 1500);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  const formatted = `₹${(displayValue / 10000000).toFixed(2)} Cr`;
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute inset-0">
-        {/* Top radial gradient */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-gradient-radial from-bitcoin/[0.07] via-transparent to-transparent rounded-full blur-3xl" />
-        {/* Grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
-          }}
-        />
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 1.8, duration: 0.6 }}
+      className="bg-surface-card/50 backdrop-blur-xl border border-border-subtle rounded-2xl p-5 max-w-sm"
+    >
+      <p className="text-xs text-text-tertiary uppercase tracking-wider mb-2">
+        If you invested ₹1,000/month since 2013
+      </p>
+      <div className="flex items-baseline gap-2">
+        <span className="text-3xl md:text-4xl font-bold gradient-text-bitcoin font-mono">
+          {formatted}
+        </span>
       </div>
+      <p className="text-xs text-text-tertiary mt-1.5">
+        Total invested: ₹1.56L · That&apos;s a <span className="text-bitcoin font-semibold">100x return</span>
+      </p>
+    </motion.div>
+  );
+}
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full pt-32 pb-20 lg:pt-40 lg:pb-32">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+// ─── Social Proof Activity Feed (#6) ────────────────────────
+const activityMessages = [
+  { city: "Mumbai", action: "bought ₹25,000 BTC", icon: "₿" },
+  { city: "Bangalore", action: "activated Bitcoin SBP", icon: "⚡" },
+  { city: "Delhi", action: "received Lightning payment", icon: "⚡" },
+  { city: "Pune", action: "bought ₹5,000 ETH", icon: "Ξ" },
+  { city: "Chennai", action: "withdrew BTC to cold storage", icon: "🔒" },
+  { city: "Hyderabad", action: "set up ₹500/week SBP", icon: "📈" },
+  { city: "Kolkata", action: "bought ₹10,000 BTC", icon: "₿" },
+  { city: "Ahmedabad", action: "earned 7% on USDT", icon: "💰" },
+  { city: "Jaipur", action: "sent remittance via Lightning", icon: "⚡" },
+  { city: "Kochi", action: "bought ₹1,000 BTC", icon: "₿" },
+];
+
+function SocialProofTicker() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % activityMessages.length);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, []);
+
+  const msg = activityMessages[currentIndex];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 2.5 }}
+      className="flex items-center gap-3 bg-surface-elevated/30 backdrop-blur-xl border border-border-subtle rounded-full px-4 py-2"
+    >
+      <div className="w-2 h-2 bg-accent-green rounded-full animate-pulse" />
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={currentIndex}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.3 }}
+          className="text-xs text-text-secondary"
+        >
+          <span className="text-text-tertiary">{msg.icon}</span>{" "}
+          Someone in <span className="text-text-primary font-medium">{msg.city}</span>{" "}
+          {msg.action}
+        </motion.span>
+      </AnimatePresence>
+    </motion.div>
+  );
+}
+
+// ─── Inline Signup (#8) ─────────────────────────────────────
+function InlineSignup() {
+  const [phone, setPhone] = useState("");
+  const [focused, setFocused] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.9 }}
+    >
+      <div
+        className={`flex items-center gap-2 bg-surface-elevated/60 backdrop-blur-xl rounded-xl border transition-all duration-300 p-1.5 max-w-md ${
+          focused ? "border-bitcoin/40 shadow-[0_0_30px_rgba(247,147,26,0.1)]" : "border-border-subtle"
+        }`}
+      >
+        <div className="flex items-center gap-2 pl-3 text-text-tertiary">
+          <span className="text-sm">🇮🇳</span>
+          <span className="text-sm font-medium">+91</span>
+        </div>
+        <input
+          type="tel"
+          placeholder="Enter your mobile number"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+          className="flex-1 bg-transparent text-sm text-text-primary placeholder:text-text-tertiary outline-none py-2.5 px-2"
+        />
+        <button className="btn-primary !py-2.5 !px-5 !rounded-lg text-sm whitespace-nowrap">
+          Get Started
+        </button>
+      </div>
+      <p className="text-xs text-text-tertiary mt-2.5 ml-1">
+        Free account. No minimum balance. Start your SBP from ₹10.
+      </p>
+    </motion.div>
+  );
+}
+
+// ─── Investor Trust Anchors (#9) ────────────────────────────
+function InvestorBadges() {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1.4, duration: 0.8 }}
+      className="flex flex-wrap items-center gap-3 mt-8"
+    >
+      <span className="text-xs text-text-tertiary uppercase tracking-wider mr-1">Backed by</span>
+      <div className="flex items-center gap-1.5 bg-surface-elevated/40 border border-border-subtle rounded-lg px-3 py-1.5">
+        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-bitcoin to-bitcoin-light flex items-center justify-center text-[8px] font-bold text-white">
+          TD
+        </div>
+        <span className="text-xs text-text-secondary font-medium">Tim Draper</span>
+      </div>
+      <div className="flex items-center gap-1.5 bg-surface-elevated/40 border border-border-subtle rounded-lg px-3 py-1.5">
+        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center text-[8px] font-bold text-white">
+          BS
+        </div>
+        <span className="text-xs text-text-secondary font-medium">Barry Silbert</span>
+      </div>
+      <div className="flex items-center gap-1.5 bg-surface-elevated/40 border border-border-subtle rounded-lg px-3 py-1.5">
+        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-accent-green to-accent-blue flex items-center justify-center text-[8px] font-bold text-white">
+          BV
+        </div>
+        <span className="text-xs text-text-secondary font-medium">Blume Ventures</span>
+      </div>
+    </motion.div>
+  );
+}
+
+// ─── Cinematic Background (#7) ──────────────────────────────
+function CinematicBackground({ timeOfDay }: { timeOfDay: string }) {
+  const ambientColor = useMemo(() => {
+    switch (timeOfDay) {
+      case "morning": return "from-bitcoin/[0.05] via-bitcoin/[0.02]";
+      case "evening": return "from-bitcoin/[0.08] via-orange-900/[0.03]";
+      case "night": return "from-accent-purple/[0.04] via-accent-blue/[0.02]";
+      default: return "from-bitcoin/[0.06] via-transparent";
+    }
+  }, [timeOfDay]);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      {/* Ambient gradient based on time of day */}
+      <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-[1400px] h-[1000px] bg-gradient-radial ${ambientColor} to-transparent rounded-full blur-3xl`} />
+
+      {/* Subtle grid */}
+      <div
+        className="absolute inset-0 opacity-[0.025]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundSize: "80px 80px",
+        }}
+      />
+
+      {/* Moving gradient orbs for cinematic depth */}
+      <motion.div
+        className="absolute top-[20%] right-[10%] w-[400px] h-[400px] bg-bitcoin/[0.03] rounded-full blur-[100px]"
+        animate={{
+          x: [0, 30, 0],
+          y: [0, -20, 0],
+        }}
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-[10%] left-[5%] w-[300px] h-[300px] bg-accent-blue/[0.03] rounded-full blur-[80px]"
+        animate={{
+          x: [0, -20, 0],
+          y: [0, 15, 0],
+        }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* Radial light beam from center */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[600px] bg-gradient-to-b from-bitcoin/[0.02] via-transparent to-transparent rotate-[15deg] blur-[60px]" />
+    </div>
+  );
+}
+
+// ─── Main Hero (#3 headline, #5 scroll transition) ──────────
+export default function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const prices = useLivePrices();
+  const personalization = usePersonalization();
+
+  // Scroll-triggered transitions (#5)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
+  const heroY = useTransform(scrollYProgress, [0, 0.5], [0, -60]);
+  const globeScale = useTransform(scrollYProgress, [0, 0.3], [1, 1.15]);
+  const globeOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  return (
+    <section ref={sectionRef} className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Cinematic Background (#7) */}
+      <CinematicBackground timeOfDay={personalization.timeOfDay} />
+
+      <motion.div
+        style={{ opacity: heroOpacity, scale: heroScale, y: heroY }}
+        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full pt-28 pb-16 lg:pt-36 lg:pb-24"
+      >
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-4 items-center">
           {/* Left - Content */}
-          <div className="order-2 lg:order-1">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-6"
-            >
-              <LivePrice />
-            </motion.div>
+          <div className="order-2 lg:order-1 space-y-6">
+            {/* Live Price Ticker (#1) */}
+            <PriceTicker prices={prices} />
 
-            <motion.h1
+            {/* Dynamic Headline (#3 + #10) */}
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight mb-6"
             >
-              Your future
-              <br />
-              runs on{" "}
-              <span className="gradient-text-bitcoin">Bitcoin.</span>
-            </motion.h1>
+              {personalization.isReturning ? (
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
+                  {personalization.greeting}.
+                  <br />
+                  <span className="gradient-text-bitcoin">{personalization.subtext}</span>
+                </h1>
+              ) : (
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
+                  {personalization.greeting}
+                  <br />
+                  {personalization.subtext}{" "}
+                  <span className="gradient-text-bitcoin">Bitcoin.</span>
+                </h1>
+              )}
+            </motion.div>
 
+            {/* Subheadline with stakes (#3) */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="text-lg md:text-xl text-text-secondary max-w-lg leading-relaxed mb-10"
+              className="text-lg md:text-xl text-text-secondary max-w-lg leading-relaxed"
             >
-              India&apos;s first Bitcoin platform. Since 2013, we&apos;ve survived
-              bans, fought the RBI in the Supreme Court — and won. Backed by
-              Tim Draper and Barry Silbert. Trusted by 2.26 million Indians.
+              India&apos;s first Bitcoin platform fought the RBI in the Supreme Court
+              — and won. Since 2013, we&apos;ve been the guide for 2.26 million
+              Indians building wealth with Bitcoin.
             </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className="flex flex-col sm:flex-row gap-4"
-            >
-              <a href="#" className="btn-primary text-center text-base">
-                Start Your Bitcoin Journey
-              </a>
-              <a href="#about" className="btn-secondary text-center text-base">
-                Our Story
-              </a>
-            </motion.div>
+            {/* Inline Signup (#8) */}
+            <InlineSignup />
+
+            {/* Investor Badges (#9) */}
+            <InvestorBadges />
 
             {/* Trust bar */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1.2, duration: 0.8 }}
-              className="mt-14 flex flex-wrap items-center gap-8 text-text-tertiary"
+              transition={{ delay: 1.6, duration: 0.8 }}
+              className="flex flex-wrap items-center gap-6 text-text-tertiary pt-2"
             >
-              <div className="flex items-center gap-2">
-                <svg
-                  className="w-4 h-4 text-accent-green"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span className="text-sm">Since 2013</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <svg
-                  className="w-4 h-4 text-accent-green"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span className="text-sm">Lightning Network</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <svg
-                  className="w-4 h-4 text-accent-green"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span className="text-sm">FIU Registered</span>
-              </div>
+              {[
+                { label: "Since 2013", icon: "🕐" },
+                { label: "Lightning Network", icon: "⚡" },
+                { label: "FIU Registered", icon: "✓" },
+              ].map((item) => (
+                <div key={item.label} className="flex items-center gap-1.5">
+                  <span className="text-xs">{item.icon}</span>
+                  <span className="text-xs font-medium">{item.label}</span>
+                </div>
+              ))}
             </motion.div>
           </div>
 
-          {/* Right - Bitcoin Orb */}
+          {/* Right - 3D Globe (#2) + Investment Counter (#4) */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              duration: 1.2,
-              ease: [0.16, 1, 0.3, 1],
-              delay: 0.1,
-            }}
-            className="order-1 lg:order-2 flex justify-center"
+            style={{ scale: globeScale, opacity: globeOpacity }}
+            className="order-1 lg:order-2 flex flex-col items-center gap-4"
           >
-            <BitcoinOrb />
+            <Suspense
+              fallback={
+                <div className="w-[300px] h-[300px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] flex items-center justify-center">
+                  <div className="w-32 h-32 rounded-full bg-bitcoin/10 animate-pulse-glow" />
+                </div>
+              }
+            >
+              <BitcoinGlobe />
+            </Suspense>
+
+            {/* Investment Calculator (#4) */}
+            <InvestmentCounter />
           </motion.div>
         </div>
-      </div>
+
+        {/* Social Proof Ticker (#6) */}
+        <div className="mt-8 flex justify-center">
+          <SocialProofTicker />
+        </div>
+      </motion.div>
 
       {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        transition={{ delay: 3 }}
+        style={{ opacity: heroOpacity }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
