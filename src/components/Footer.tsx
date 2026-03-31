@@ -153,11 +153,13 @@ export default function Footer() {
         {/* Fee summary */}
         <div className="mb-8 flex flex-wrap items-center gap-4 justify-center">
           {[
+            { label: "SBP Trades", value: "0%" },
+            { label: "Auto Sell", value: "0%" },
             { label: "Maker Fee", value: "0.2%" },
             { label: "Taker Fee", value: "0.3%" },
-            { label: "Instant BTC", value: "0.5%" },
             { label: "INR Deposit", value: "Free" },
             { label: "Crypto Deposit", value: "Free" },
+            { label: "Batch BTC Withdrawal", value: "Free" },
           ].map((fee) => (
             <div key={fee.label} className="flex items-center gap-2 bg-surface-elevated/40 rounded-lg px-3 py-1.5 border border-border-subtle">
               <span className="text-xs text-text-tertiary">{fee.label}</span>

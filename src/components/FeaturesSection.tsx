@@ -12,9 +12,9 @@ const features = [
       </svg>
     ),
     title: "Bitcoin SBP",
-    subtitle: "Systematic Buying Plan",
+    subtitle: "0% Fee Crypto SIP",
     description:
-      "India's first Crypto SIP. Automate daily, weekly, or monthly buying starting at just ₹10. Dollar-cost average like a pro.",
+      "India's first Crypto SIP since 2015. Auto-buy BTC or ETH daily, weekly, or monthly from just ₹10. Zero transaction fees on all SBP trades.",
     accent: "from-bitcoin to-bitcoin-light",
   },
   {
@@ -94,9 +94,9 @@ const features = [
       </svg>
     ),
     title: "Crypto Basket",
-    subtitle: "Diversified Portfolios",
+    subtitle: "One-Click Diversification",
     description:
-      "Build diversified crypto portfolios based on market cap or volume. One click to invest across multiple assets at once.",
+      "6-coin baskets allocated by market cap or volume. Choose from 40+ coins or build custom baskets. Auto-rebalanced like an index fund.",
     accent: "from-accent-blue to-accent-green",
   },
   {
@@ -107,9 +107,9 @@ const features = [
       </svg>
     ),
     title: "Auto Sell",
-    subtitle: "BTC to INR on Autopilot",
+    subtitle: "0% Fee BTC→INR",
     description:
-      "Get a unique BTC deposit address that auto-sells to INR and deposits to your bank. Perfect for freelancers receiving crypto payments.",
+      "Get a unique BTC deposit address that auto-sells to INR at market rate — zero fees. Perfect for freelancers and remittance recipients.",
     accent: "from-accent-green to-bitcoin",
   },
   {
@@ -123,7 +123,7 @@ const features = [
     title: "Crypto Controls",
     subtitle: "Full Withdrawal Freedom",
     description:
-      "Move crypto to your own wallet anytime. Send to other Unocoin users by mobile number with zero fees. Your keys, your coins.",
+      "Move crypto to your own wallet anytime. Send to other Unocoin users by mobile number — zero fees. Plus zero-fee BTC batch withdrawals twice weekly.",
     accent: "from-accent-green to-accent-blue",
   },
   {
