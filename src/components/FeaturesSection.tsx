@@ -11,7 +11,7 @@ const heroFeatures = [
       "Auto-invest in BTC or ETH daily, weekly, or monthly from just ₹10. Zero transaction fees on every trade.",
   },
   {
-    stat: "Milliseconds",
+    stat: "<1s",
     headline: "Bitcoin at lightning speed",
     description:
       "Send and receive Bitcoin instantly on the Lightning Network. Settlements in milliseconds at a fraction of a rupee.",

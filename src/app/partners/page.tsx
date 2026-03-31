@@ -6,156 +6,16 @@ import Link from "next/link";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
-// ─── Data ──────────────────────────────────────────────────
+const easing: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-const trustBadges = [
-  "FIU-IND Registered",
-  "Lightning Network",
-  "24/7 Settlement",
-  "99.99% Uptime SLA",
-  "Trusted by Sovereign Entities",
-];
-
-const corridors = [
-  { from: "USA", flag: "🇺🇸", fee: "0.5%", time: "<1 min" },
-  { from: "UK", flag: "🇬🇧", fee: "0.6%", time: "<1 min" },
-  { from: "UAE", flag: "🇦🇪", fee: "0.5%", time: "<1 min" },
-  { from: "Singapore", flag: "🇸🇬", fee: "0.6%", time: "<1 min" },
-  { from: "Canada", flag: "🇨🇦", fee: "0.7%", time: "<1 min" },
-  { from: "Australia", flag: "🇦🇺", fee: "0.7%", time: "<1 min" },
-  { from: "Europe", flag: "🇪🇺", fee: "0.6%", time: "<1 min" },
-];
-
-const integrationSteps = [
-  {
-    step: "01",
-    title: "Sign Partnership Agreement",
-    desc: "Complete our streamlined onboarding with KYB verification, compliance review, and partnership terms. Typically done in one business day.",
-  },
-  {
-    step: "02",
-    title: "Get API Keys",
-    desc: "Receive your sandbox and production API credentials. Access our comprehensive developer documentation and SDKs.",
-  },
-  {
-    step: "03",
-    title: "Integrate SDK",
-    desc: "Use our REST API or drop-in SDKs for Python, Node.js, Go, and more. Our solutions team is available to assist with architecture.",
-  },
-  {
-    step: "04",
-    title: "Go Live",
-    desc: "After testing in sandbox, pass our compliance checklist and launch. Your first remittance settles in under 60 seconds.",
-  },
-];
-
-const partnerBenefits = [
-  {
-    icon: "💰",
-    title: "Revenue Sharing",
-    desc: "Earn competitive commissions on every transaction your platform processes through our network.",
-  },
-  {
-    icon: "🏷️",
-    title: "White-Label Option",
-    desc: "Offer remittance services under your own brand. Fully customizable UI components and email templates.",
-  },
-  {
-    icon: "🤝",
-    title: "Dedicated Support",
-    desc: "Get a dedicated partner manager, priority Slack channel, and direct engineering support for integrations.",
-  },
-  {
-    icon: "⚡",
-    title: "Real-Time Settlement",
-    desc: "Funds settle to Indian bank accounts in under 60 seconds via Lightning Network and UPI rails.",
-  },
-  {
-    icon: "🛡️",
-    title: "Compliance Handled",
-    desc: "We manage KYC/AML, FEMA regulations, and FIU-IND reporting. You focus on growing your business.",
-  },
-  {
-    icon: "🌐",
-    title: "Multi-Currency Support",
-    desc: "Accept USD, GBP, EUR, AED, SGD, CAD, AUD and more. Auto-conversion to INR at competitive FX rates.",
-  },
-];
-
-const pricingTiers = [
-  {
-    name: "Starter",
-    volume: "<$100K/month",
-    fee: "1%",
-    highlight: false,
-    features: [
-      "Standard REST API access",
-      "Email support (24h response)",
-      "Sandbox environment",
-      "Basic analytics dashboard",
-      "Up to 500 transactions/day",
-    ],
-  },
-  {
-    name: "Growth",
-    volume: "$100K-$1M/month",
-    fee: "0.7%",
-    highlight: true,
-    features: [
-      "Priority API access",
-      "Priority support (4h response)",
-      "Dedicated partner manager",
-      "White-label option",
-      "Advanced analytics & reporting",
-      "Up to 5,000 transactions/day",
-    ],
-  },
-  {
-    name: "Enterprise",
-    volume: "$1M+/month",
-    fee: "Custom",
-    highlight: false,
-    features: [
-      "Custom integration support",
-      "24/7 phone & Slack support",
-      "SLA guarantee (99.99% uptime)",
-      "Custom pricing & terms",
-      "Unlimited transactions",
-      "On-premise deployment option",
-    ],
-  },
-];
-
-const timelineSteps = [
-  {
-    week: "Week 1",
-    title: "Onboarding",
-    desc: "Partnership agreement, KYB verification, compliance review, and account setup.",
-  },
-  {
-    week: "Week 2",
-    title: "Technical Integration",
-    desc: "API key provisioning, SDK setup, webhook configuration, and architecture review.",
-  },
-  {
-    week: "Week 3",
-    title: "Testing & Compliance",
-    desc: "End-to-end testing in sandbox, compliance checklist, and UAT sign-off.",
-  },
-  {
-    week: "Week 4",
-    title: "Go Live",
-    desc: "Production deployment, monitoring setup, and first live transaction.",
-  },
-];
-
-// ─── Animated Section Wrapper ──────────────────────────────
-
-function AnimatedSection({
+// ─── Animated block ───────────────────────────────────────
+function AnimatedBlock({
   children,
+  delay = 0,
   className = "",
 }: {
   children: React.ReactNode;
+  delay?: number;
   className?: string;
 }) {
   const ref = useRef(null);
@@ -163,9 +23,9 @@ function AnimatedSection({
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.7, delay, ease: easing }}
       className={className}
     >
       {children}
@@ -173,504 +33,433 @@ function AnimatedSection({
   );
 }
 
-// ─── Component ─────────────────────────────────────────────
+// ─── App features ─────────────────────────────────────────
+const appFeatures = [
+  {
+    title: "Bitcoin SBP",
+    subtitle: "Systematic Buying Plan",
+    description:
+      "India's first Bitcoin SIP. Auto-invest in BTC, ETH, or any of 120+ assets daily, weekly, or monthly. Zero transaction fees. Start from just ₹10.",
+    stat: "₹0 fees",
+    details: [
+      "Set once, runs forever — no manual intervention",
+      "Choose from daily, weekly, or monthly frequency",
+      "Supports BTC, ETH, USDT, and 120+ digital assets",
+      "Pause or cancel anytime with zero penalties",
+    ],
+  },
+  {
+    title: "Lightning Transfers",
+    subtitle: "Send and receive in milliseconds",
+    description:
+      "Bitcoin transfers that settle faster than a UPI payment. Powered by Voltage infrastructure with 99.99% routing success. Cross-border remittances in under a second.",
+    stat: "<1s",
+    details: [
+      "Instant Bitcoin transfers via Lightning Network",
+      "Near-zero fees regardless of amount",
+      "Cross-border settlements without correspondent banks",
+      "24/7/365 availability — no banking hours",
+    ],
+  },
+  {
+    title: "USDT Earnings",
+    subtitle: "Put idle stablecoins to work",
+    description:
+      "Earn up to 7% annual yield on your USDT holdings. No lock-in period. Withdraw anytime. Your money works while you sleep.",
+    stat: "7% APY",
+    details: [
+      "Daily interest accrual on USDT balances",
+      "No minimum holding period or lock-in",
+      "Withdraw principal and earnings anytime",
+      "Compounding returns for long-term holders",
+    ],
+  },
+  {
+    title: "Vault Security",
+    subtitle: "Institutional-grade protection",
+    description:
+      "95% of all assets secured in air-gapped cold storage with multi-signature wallets. Biometric authentication. Zero security breaches in 13 years.",
+    stat: "95%",
+    details: [
+      "Multi-signature cold storage wallets",
+      "Biometric + 2FA authentication",
+      "Real-time fraud monitoring and alerting",
+      "Regular third-party security audits",
+    ],
+  },
+];
 
-export default function PartnersPage() {
+const appScreens = [
+  {
+    title: "Portfolio Dashboard",
+    description:
+      "See your complete holdings at a glance. Real-time P&L, asset allocation breakdown, and performance history — all in one clean view.",
+  },
+  {
+    title: "Instant Trade",
+    description:
+      "Buy or sell any of 120+ digital assets in under 3 taps. Live order book, limit orders, and instant market execution via UPI, IMPS, or NEFT.",
+  },
+  {
+    title: "SBP Manager",
+    description:
+      "Set up, modify, and track all your Systematic Buying Plans. Visual progress toward goals. Automated recurring investments on your schedule.",
+  },
+  {
+    title: "Auto Sell",
+    description:
+      "Generate a unique Bitcoin address that auto-converts incoming BTC to INR at zero fees. Perfect for freelancers and businesses receiving Bitcoin payments.",
+  },
+];
+
+const stats = [
+  { value: "2.26M+", label: "Users" },
+  { value: "₹3,000 Cr+", label: "Volume Processed" },
+  { value: "120+", label: "Digital Assets" },
+  { value: "13 Years", label: "Track Record" },
+  { value: "0", label: "Security Breaches" },
+  { value: "99.99%", label: "Uptime" },
+];
+
+export default function AppPage() {
   const heroRef = useRef(null);
   const heroInView = useInView(heroRef, { once: true });
 
   return (
-    <main className="relative">
+    <main className="relative bg-surface text-text-primary">
       <Navigation />
 
-      {/* ─── Hero ──────────────────────────────────────────── */}
+      {/* Hero */}
       <section
         ref={heroRef}
         className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden"
       >
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-bitcoin/[0.04] rounded-full blur-[200px]" />
 
-        <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 text-center">
+        <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, ease: easing }}
           >
-            <div className="inline-flex items-center gap-2 bg-bitcoin/10 border border-bitcoin/20 rounded-full px-4 py-1.5 mb-6">
-              <span className="text-sm text-bitcoin font-medium">
-                Institutional Partner Program
+            <p className="text-sm uppercase tracking-widest text-bitcoin mb-6">
+              The Unocoin App
+            </p>
+            <h1
+              className="font-bold tracking-tight mb-6"
+              style={{
+                fontSize: "clamp(2.25rem, 5vw, 3.75rem)",
+                lineHeight: 1.08,
+                letterSpacing: "-0.03em",
+              }}
+            >
+              Buy, sell, and grow
+              <br />
+              <span className="gradient-text-bitcoin">
+                your digital wealth
               </span>
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-              Instant Settlement.{" "}
-              <span className="gradient-text-bitcoin">97% Cheaper.</span>
             </h1>
-            <p className="text-xl text-text-secondary max-w-3xl mx-auto mb-4">
-              India receives over $100B in remittances every year. Your customers
-              deserve instant, transparent, near-zero-cost transfers — not 3-5 day
-              bank delays with hidden 5-8% fees.
-            </p>
-            <p className="text-text-tertiary max-w-2xl mx-auto mb-10 leading-relaxed">
-              Unocoin has been India&apos;s most trusted digital asset infrastructure since 2013.
-              FIU-IND registered. PMLA compliant. Trusted by sovereign entities.
-              Our Voltage-powered Lightning Network settles in seconds, not days.
-              Partner with the platform that institutions choose when they can&apos;t afford to be wrong.
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.15, ease: easing }}
+          >
+            <p className="text-lg text-text-secondary max-w-2xl leading-relaxed mb-10">
+              India&apos;s most trusted Bitcoin platform. Trade 120+ digital
+              assets, auto-invest with SBP, earn yield on stablecoins, and send
+              Bitcoin at lightning speed — all from one app.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-              <a
-                href="#contact"
-                className="btn-primary !py-3 !px-8 rounded-xl text-lg"
-              >
-                Become a Partner
-              </a>
+            <div className="flex flex-col sm:flex-row gap-4 mb-12">
               <Link
-                href="/api-docs"
-                className="btn-secondary !py-3 !px-8 rounded-xl text-lg"
+                href="/autopilot"
+                className="btn-primary !py-3.5 !px-8 rounded-xl text-lg"
               >
-                View API Docs &rarr;
+                Get Started
+              </Link>
+              <Link
+                href="/platform"
+                className="text-text-secondary hover:text-text-primary transition-colors flex items-center gap-2 text-lg py-3.5 px-2"
+              >
+                See AI features →
               </Link>
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              {trustBadges.map((badge) => (
-                <span
-                  key={badge}
-                  className="bg-surface-elevated border border-border-subtle rounded-lg px-3 py-1.5 text-xs text-text-tertiary"
-                >
-                  {badge}
-                </span>
+            {/* Stats row */}
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-6">
+              {stats.map((s) => (
+                <div key={s.label}>
+                  <span className="text-xl font-bold gradient-text-bitcoin block">
+                    {s.value}
+                  </span>
+                  <span className="text-xs text-text-tertiary">{s.label}</span>
+                </div>
               ))}
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* ─── Traditional vs Lightning ─────────────────────── */}
-      <section className="py-20 lg:py-28">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <AnimatedSection>
-            <h2 className="text-3xl font-bold mb-2 text-center">
-              Traditional vs{" "}
-              <span className="gradient-text-bitcoin">Lightning</span>
-            </h2>
-            <p className="text-text-secondary text-center mb-12 max-w-2xl mx-auto">
-              See why remittance companies are switching to Lightning-powered
-              settlement through Unocoin.
+      {/* Core Features */}
+      <section className="py-24 lg:py-32">
+        <div className="max-w-6xl mx-auto px-6">
+          <AnimatedBlock>
+            <p className="text-sm uppercase tracking-widest text-bitcoin mb-6">
+              Core Features
             </p>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              {/* Traditional */}
-              <div className="bg-surface-card border border-border-subtle rounded-2xl p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center text-red-400 text-lg">
-                    🏦
-                  </div>
-                  <h3 className="text-xl font-semibold text-text-primary">
-                    Traditional Remittance
-                  </h3>
-                </div>
-                <div className="space-y-4">
-                  {[
-                    { label: "Settlement Time", value: "3-5 business days" },
-                    { label: "Total Fees", value: "5-8% per transfer" },
-                    { label: "Availability", value: "Limited banking hours" },
-                    { label: "Compliance", value: "Manual KYC/AML checks" },
-                    { label: "Minimum Transfer", value: "$200-$500" },
-                    { label: "Transparency", value: "Hidden markups on FX" },
-                  ].map((item) => (
-                    <div
-                      key={item.label}
-                      className="flex justify-between items-center py-2 border-b border-border-subtle last:border-0"
-                    >
-                      <span className="text-text-tertiary text-sm">
-                        {item.label}
-                      </span>
-                      <span className="text-red-400 text-sm font-medium">
-                        {item.value}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Lightning */}
-              <div className="gradient-border bg-surface-card rounded-2xl p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-full bg-bitcoin/10 flex items-center justify-center text-bitcoin text-lg">
-                    ⚡
-                  </div>
-                  <h3 className="text-xl font-semibold text-text-primary">
-                    Unocoin Lightning
-                  </h3>
-                </div>
-                <div className="space-y-4">
-                  {[
-                    { label: "Settlement Time", value: "<1 minute" },
-                    { label: "Total Fees", value: "0.5-1% per transfer" },
-                    { label: "Availability", value: "24/7/365" },
-                    { label: "Compliance", value: "Automated KYC/AML" },
-                    { label: "Minimum Transfer", value: "No minimum" },
-                    { label: "Transparency", value: "Real-time FX rates" },
-                  ].map((item) => (
-                    <div
-                      key={item.label}
-                      className="flex justify-between items-center py-2 border-b border-border-subtle last:border-0"
-                    >
-                      <span className="text-text-tertiary text-sm">
-                        {item.label}
-                      </span>
-                      <span className="text-accent-green text-sm font-medium">
-                        {item.value}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* ─── Supported Corridors ──────────────────────────── */}
-      <section className="py-20 lg:py-28">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <AnimatedSection>
-            <h2 className="text-3xl font-bold mb-2 text-center">
-              Supported Corridors
+            <h2
+              className="font-bold tracking-tight mb-20"
+              style={{
+                fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
+                lineHeight: 1.12,
+                letterSpacing: "-0.02em",
+              }}
+            >
+              Everything you need to invest
             </h2>
-            <p className="text-text-secondary text-center mb-12 max-w-2xl mx-auto">
-              Send to India from all major remittance corridors. Instant
-              settlement via Lightning, final mile delivery to any Indian bank
-              account or UPI ID.
-            </p>
+          </AnimatedBlock>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-              {corridors.map((c) => (
-                <div
-                  key={c.from}
-                  className="bg-surface-card border border-border-subtle rounded-xl p-5 hover:border-bitcoin/30 transition-colors"
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-2xl">{c.flag}</span>
-                    <div>
-                      <p className="font-semibold text-text-primary">
-                        {c.from} &rarr; India
-                      </p>
-                      <p className="text-xs text-text-tertiary">
-                        {c.from} &rarr; 🇮🇳
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <div>
-                      <p className="text-text-tertiary">Est. Fee</p>
-                      <p className="text-accent-green font-medium">{c.fee}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-text-tertiary">Settlement</p>
-                      <p className="text-bitcoin font-medium">{c.time}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* ─── How Integration Works ────────────────────────── */}
-      <section className="py-20 lg:py-28">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <AnimatedSection>
-            <h2 className="text-3xl font-bold mb-2 text-center">
-              How Integration Works
-            </h2>
-            <p className="text-text-secondary text-center mb-12 max-w-2xl mx-auto">
-              Go from partnership agreement to live transactions in as little as
-              four weeks.
-            </p>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {integrationSteps.map((s, i) => (
-                <div key={s.step} className="relative">
-                  {/* Connector line */}
-                  {i < integrationSteps.length - 1 && (
-                    <div className="hidden lg:block absolute top-8 left-full w-full h-px bg-border-subtle -translate-x-3" />
-                  )}
-                  <div className="bg-surface-card border border-border-subtle rounded-xl p-6 h-full">
-                    <div className="w-12 h-12 rounded-xl bg-bitcoin/10 flex items-center justify-center text-bitcoin font-bold text-lg mb-4">
-                      {s.step}
-                    </div>
-                    <h3 className="font-semibold text-text-primary mb-2">
-                      {s.title}
-                    </h3>
-                    <p className="text-sm text-text-tertiary leading-relaxed">
-                      {s.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* ─── Partner Benefits ─────────────────────────────── */}
-      <section className="py-20 lg:py-28">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <AnimatedSection>
-            <h2 className="text-3xl font-bold mb-2 text-center">
-              Partner Benefits
-            </h2>
-            <p className="text-text-secondary text-center mb-12 max-w-2xl mx-auto">
-              Everything you need to build a world-class remittance product,
-              without the infrastructure headaches.
-            </p>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {partnerBenefits.map((b) => (
-                <div
-                  key={b.title}
-                  className="bg-surface-card border border-border-subtle rounded-xl p-6 hover:border-bitcoin/20 transition-colors"
-                >
-                  <span className="text-3xl mb-4 block">{b.icon}</span>
-                  <h3 className="font-semibold text-text-primary text-lg mb-2">
-                    {b.title}
-                  </h3>
-                  <p className="text-sm text-text-tertiary leading-relaxed">
-                    {b.desc}
+          {appFeatures.map((feature, i) => (
+            <div
+              key={feature.title}
+              className={`py-16 lg:py-24 ${i < appFeatures.length - 1 ? "border-b border-border-subtle" : ""}`}
+            >
+              <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
+                <AnimatedBlock>
+                  <p className="text-xs uppercase tracking-widest text-text-tertiary mb-3">
+                    {feature.subtitle}
                   </p>
-                </div>
-              ))}
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* ─── Pricing Tiers ────────────────────────────────── */}
-      <section className="py-20 lg:py-28">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <AnimatedSection>
-            <h2 className="text-3xl font-bold mb-2 text-center">
-              Pricing Tiers
-            </h2>
-            <p className="text-text-secondary text-center mb-12 max-w-2xl mx-auto">
-              Transparent, volume-based pricing. No setup fees, no hidden
-              charges. Pay only for what you use.
-            </p>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {pricingTiers.map((tier) => (
-                <div
-                  key={tier.name}
-                  className={`rounded-2xl p-8 h-full flex flex-col ${
-                    tier.highlight
-                      ? "gradient-border bg-surface-card"
-                      : "bg-surface-card border border-border-subtle"
-                  }`}
-                >
-                  {tier.highlight && (
-                    <div className="inline-flex self-start items-center gap-1 bg-bitcoin/10 border border-bitcoin/20 rounded-full px-3 py-1 mb-4">
-                      <span className="text-xs text-bitcoin font-medium">
-                        Most Popular
-                      </span>
-                    </div>
-                  )}
-                  <h3 className="text-xl font-bold text-text-primary mb-1">
-                    {tier.name}
+                  <h3
+                    className="font-bold tracking-tight mb-4"
+                    style={{
+                      fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+                      lineHeight: 1.15,
+                    }}
+                  >
+                    {feature.title}
                   </h3>
-                  <p className="text-sm text-text-tertiary mb-4">
-                    {tier.volume}
+                  <p className="text-text-secondary leading-relaxed">
+                    {feature.description}
                   </p>
-
-                  <div className="mb-6">
-                    <span className="text-4xl font-bold text-text-primary">
-                      {tier.fee}
-                    </span>
-                    {tier.fee !== "Custom" && (
-                      <span className="text-text-tertiary ml-1">per txn</span>
-                    )}
-                  </div>
-
-                  <ul className="space-y-3 flex-1 mb-8">
-                    {tier.features.map((f) => (
+                </AnimatedBlock>
+                <AnimatedBlock delay={0.1}>
+                  <span
+                    className="gradient-text-bitcoin font-bold block mb-8"
+                    style={{
+                      fontSize: "clamp(3rem, 8vw, 6rem)",
+                      lineHeight: 1,
+                    }}
+                  >
+                    {feature.stat}
+                  </span>
+                  <ul className="space-y-3">
+                    {feature.details.map((detail) => (
                       <li
-                        key={f}
-                        className="flex items-start gap-2 text-sm text-text-secondary"
+                        key={detail}
+                        className="flex items-start gap-3 text-sm text-text-secondary"
                       >
-                        <svg
-                          className="w-4 h-4 text-accent-green mt-0.5 shrink-0"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                        {f}
+                        <span className="w-1.5 h-1.5 bg-bitcoin rounded-full mt-1.5 shrink-0" />
+                        <span>{detail}</span>
                       </li>
                     ))}
                   </ul>
-
-                  <a
-                    href="#contact"
-                    className={`text-center py-3 px-6 rounded-xl font-medium transition-colors ${
-                      tier.highlight
-                        ? "btn-primary"
-                        : "btn-secondary"
-                    }`}
-                  >
-                    {tier.name === "Enterprise"
-                      ? "Contact Sales"
-                      : "Get Started"}
-                  </a>
-                </div>
-              ))}
+                </AnimatedBlock>
+              </div>
             </div>
-          </AnimatedSection>
+          ))}
         </div>
       </section>
 
-      {/* ─── Integration Timeline ─────────────────────────── */}
-      <section className="py-20 lg:py-28">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <AnimatedSection>
-            <h2 className="text-3xl font-bold mb-2 text-center">
-              Integration Timeline
-            </h2>
-            <p className="text-text-secondary text-center mb-12 max-w-2xl mx-auto">
-              From first conversation to live transactions in just four weeks.
+      {/* App Screens */}
+      <section className="bg-surface-elevated/50 py-24 lg:py-32">
+        <div className="max-w-6xl mx-auto px-6">
+          <AnimatedBlock>
+            <p className="text-sm uppercase tracking-widest text-bitcoin mb-6">
+              Inside the App
             </p>
+            <h2
+              className="font-bold tracking-tight mb-16"
+              style={{
+                fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
+                lineHeight: 1.12,
+                letterSpacing: "-0.02em",
+              }}
+            >
+              Designed for clarity
+            </h2>
+          </AnimatedBlock>
 
-            <div className="relative">
-              {/* Vertical line */}
-              <div className="absolute left-6 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-0.5 bg-border-subtle" />
-
-              <div className="space-y-12">
-                {timelineSteps.map((t, i) => (
-                  <div
-                    key={t.week}
-                    className={`relative flex items-start gap-6 md:gap-12 ${
-                      i % 2 === 0
-                        ? "md:flex-row"
-                        : "md:flex-row-reverse md:text-right"
-                    }`}
-                  >
-                    {/* Dot */}
-                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-bitcoin border-4 border-surface z-10 mt-1" />
-
-                    {/* Content */}
-                    <div className="md:w-1/2" />
-                    <div className="ml-12 md:ml-0 md:w-1/2">
-                      <div className="bg-surface-card border border-border-subtle rounded-xl p-6">
-                        <span className="text-xs text-bitcoin font-semibold uppercase tracking-wider">
-                          {t.week}
-                        </span>
-                        <h3 className="font-semibold text-text-primary text-lg mt-1 mb-2">
-                          {t.title}
-                        </h3>
-                        <p className="text-sm text-text-tertiary leading-relaxed">
-                          {t.desc}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </AnimatedSection>
+          <div className="grid sm:grid-cols-2 gap-12 lg:gap-16">
+            {appScreens.map((screen, i) => (
+              <AnimatedBlock key={screen.title} delay={i * 0.08}>
+                <h3 className="text-xl font-semibold mb-2 text-text-primary">
+                  {screen.title}
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed">
+                  {screen.description}
+                </p>
+              </AnimatedBlock>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ─── Contact / CTA ────────────────────────────────── */}
-      <section id="contact" className="py-20 lg:py-28">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8">
-          <AnimatedSection>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-                Ready to Transform{" "}
-                <span className="gradient-text-bitcoin">Remittance</span>?
-              </h2>
-              <p className="text-text-secondary max-w-xl mx-auto">
-                Join leading fintech companies already using Unocoin&apos;s
-                Lightning infrastructure to power instant remittances to India.
-              </p>
-            </div>
-
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="bg-surface-card border border-border-subtle rounded-2xl p-8 space-y-6"
+      {/* How SBP Works */}
+      <section className="py-24 lg:py-32">
+        <div className="max-w-6xl mx-auto px-6">
+          <AnimatedBlock>
+            <p className="text-sm uppercase tracking-widest text-bitcoin mb-6">
+              How SBP Works
+            </p>
+            <h2
+              className="font-bold tracking-tight mb-16"
+              style={{
+                fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
+                lineHeight: 1.12,
+                letterSpacing: "-0.02em",
+              }}
             >
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-text-secondary mb-2">
-                    Company Name
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Acme Remittance Inc."
-                    className="w-full bg-surface-elevated border border-border-subtle rounded-xl px-4 py-3 text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-bitcoin/50 transition-colors"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-text-secondary mb-2">
-                    Contact Email
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="partner@company.com"
-                    className="w-full bg-surface-elevated border border-border-subtle rounded-xl px-4 py-3 text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-bitcoin/50 transition-colors"
-                  />
-                </div>
-              </div>
+              Set it once. Build wealth forever.
+            </h2>
+          </AnimatedBlock>
 
-              <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">
-                  Estimated Monthly Volume
-                </label>
-                <select className="w-full bg-surface-elevated border border-border-subtle rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-bitcoin/50 transition-colors appearance-none">
-                  <option value="">Select volume range</option>
-                  <option value="<100k">Less than $100K</option>
-                  <option value="100k-500k">$100K - $500K</option>
-                  <option value="500k-1m">$500K - $1M</option>
-                  <option value="1m-5m">$1M - $5M</option>
-                  <option value="5m+">$5M+</option>
-                </select>
-              </div>
+          <div className="grid md:grid-cols-3 gap-12 lg:gap-16">
+            {[
+              {
+                step: "01",
+                title: "Choose your asset",
+                desc: "Pick from Bitcoin, Ethereum, USDT, or any of 120+ supported digital assets.",
+              },
+              {
+                step: "02",
+                title: "Set amount and frequency",
+                desc: "Start from ₹10. Choose daily, weekly, or monthly auto-investment. Zero fees on every SBP trade.",
+              },
+              {
+                step: "03",
+                title: "Watch it grow",
+                desc: "Your SBP runs automatically. Rupee-cost averaging smooths out volatility. Track progress in real time.",
+              },
+            ].map((item, i) => (
+              <AnimatedBlock key={item.step} delay={i * 0.1}>
+                <span className="text-5xl font-bold gradient-text-bitcoin block mb-4">
+                  {item.step}
+                </span>
+                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                <p className="text-text-secondary text-sm leading-relaxed">
+                  {item.desc}
+                </p>
+              </AnimatedBlock>
+            ))}
+          </div>
+        </div>
+      </section>
 
-              <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">
-                  Message
-                </label>
-                <textarea
-                  rows={4}
-                  placeholder="Tell us about your remittance business and how you'd like to integrate with Unocoin..."
-                  className="w-full bg-surface-elevated border border-border-subtle rounded-xl px-4 py-3 text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-bitcoin/50 transition-colors resize-none"
-                />
-              </div>
+      {/* Trust */}
+      <section className="bg-surface-elevated/50 py-24 lg:py-32">
+        <div className="max-w-6xl mx-auto px-6">
+          <AnimatedBlock>
+            <p className="text-sm uppercase tracking-widest text-bitcoin mb-6">
+              Trust
+            </p>
+            <h2
+              className="font-bold tracking-tight mb-12"
+              style={{
+                fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
+                lineHeight: 1.12,
+                letterSpacing: "-0.02em",
+              }}
+            >
+              13 years. Zero compromises.
+            </h2>
+            <p className="text-text-secondary max-w-2xl leading-relaxed mb-16">
+              Unocoin is India&apos;s oldest Bitcoin platform. FIU-IND
+              registered. PMLA compliant. Trusted by sovereign entities, family
+              offices, and 2.26 million individuals. We fought the RBI in the
+              Supreme Court — and won.
+            </p>
+          </AnimatedBlock>
 
-              <button type="submit" className="btn-primary w-full !py-3 rounded-xl text-lg">
-                Submit Partnership Inquiry
-              </button>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-8">
+            {[
+              {
+                label: "Registration",
+                value: "FIU-IND Registered",
+              },
+              {
+                label: "Compliance",
+                value: "PMLA & FEMA Compliant",
+              },
+              {
+                label: "Asset Security",
+                value: "95% Cold Storage",
+              },
+              {
+                label: "Authentication",
+                value: "Biometric + 2FA",
+              },
+              {
+                label: "Investors",
+                value: "Draper, Silbert, Blume",
+              },
+              {
+                label: "Legal",
+                value: "Supreme Court Validated",
+              },
+            ].map((item, i) => (
+              <AnimatedBlock key={item.label} delay={i * 0.05}>
+                <p className="text-xs uppercase tracking-widest text-text-tertiary mb-1">
+                  {item.label}
+                </p>
+                <p className="text-lg font-semibold text-text-primary">
+                  {item.value}
+                </p>
+              </AnimatedBlock>
+            ))}
+          </div>
+        </div>
+      </section>
 
-              <p className="text-xs text-text-tertiary text-center">
-                Our partnerships team typically responds within one business day.
-                For urgent inquiries, email{" "}
-                <a
-                  href="mailto:partnerships@unocoin.com"
-                  className="text-bitcoin hover:underline"
-                >
-                  partnerships@unocoin.com
-                </a>
-              </p>
-            </form>
-          </AnimatedSection>
+      {/* CTA */}
+      <section className="py-32 lg:py-48">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <AnimatedBlock>
+            <h2
+              className="font-bold tracking-tight mb-6"
+              style={{
+                fontSize: "clamp(2rem, 4vw, 3rem)",
+                lineHeight: 1.1,
+                letterSpacing: "-0.03em",
+              }}
+            >
+              Start building wealth
+              <br />
+              <span className="gradient-text-bitcoin">with ₹10</span>
+            </h2>
+            <p className="text-text-secondary max-w-lg mx-auto mb-10">
+              Join 2.26 million Indians on India&apos;s most trusted Bitcoin
+              platform. Free account. Zero SBP fees. No lock-in.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/autopilot"
+                className="btn-primary !py-4 !px-10 !rounded-xl text-lg"
+              >
+                Get Started Free
+              </Link>
+              <Link
+                href="/platform"
+                className="text-sm text-text-tertiary hover:text-text-primary transition-colors"
+              >
+                Explore AI features →
+              </Link>
+            </div>
+            <p className="text-xs text-text-tertiary mt-6">
+              FIU-IND Registered · PMLA Compliant · 95% Cold Storage
+            </p>
+          </AnimatedBlock>
         </div>
       </section>
 
