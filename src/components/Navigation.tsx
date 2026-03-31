@@ -17,7 +17,8 @@ export default function Navigation() {
   const navLinks = [
     { label: "Products", href: "#products" },
     { label: "Institutional", href: "#institutional" },
-    { label: "Partners", href: "/remittance", isNew: true },
+    { label: "Platform", href: "/platform" },
+    { label: "Remittance", href: "/remittance" },
     { label: "API", href: "/api-docs" },
     { label: "Security", href: "/security" },
   ];
@@ -45,18 +46,9 @@ export default function Navigation() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className={`text-sm transition-colors duration-300 flex items-center gap-1.5 ${
-                    (link as { isNew?: boolean }).isNew
-                      ? "text-bitcoin hover:text-bitcoin-light font-medium"
-                      : "text-text-secondary hover:text-text-primary"
-                  }`}
+                  className="text-sm transition-colors duration-300 text-text-secondary hover:text-text-primary"
                 >
                   {link.label}
-                  {(link as { isNew?: boolean }).isNew && (
-                    <span className="text-[9px] bg-bitcoin/15 text-bitcoin font-bold px-1.5 py-0.5 rounded-full">
-                      AI
-                    </span>
-                  )}
                 </a>
               ))}
             </div>
@@ -70,13 +62,13 @@ export default function Navigation() {
                 Try Autopilot
               </a>
               <a
-                href="#"
+                href="/autopilot"
                 className="text-sm text-text-secondary hover:text-text-primary transition-colors px-4 py-2"
               >
                 Sign In
               </a>
               <a
-                href="#"
+                href="/autopilot"
                 className="btn-primary text-sm !py-2.5 !px-6 rounded-lg"
               >
                 Get Started
@@ -136,7 +128,7 @@ export default function Navigation() {
               Try Autopilot
             </motion.a>
             <motion.a
-              href="#"
+              href="/autopilot"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}

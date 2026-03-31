@@ -198,7 +198,7 @@ export default function RemittancePage() {
               Thirteen years of operation. ₹3,000 Cr+ processed.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
               <a
                 href="#contact"
                 className="btn-primary !py-3 !px-8 rounded-xl text-lg"
@@ -212,6 +212,10 @@ export default function RemittancePage() {
                 View API Docs &rarr;
               </Link>
             </div>
+
+            <p className="text-xs text-text-tertiary text-center mb-10 max-w-xl mx-auto">
+              Primary settlement via Bitcoin Lightning Network. Also supports USDT, USDC, and XRP corridors for partners requiring stablecoin or multi-asset settlement.
+            </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               {trustBadges.map((badge) => (
@@ -355,6 +359,9 @@ export default function RemittancePage() {
                 Partner sends USD/GBP/EUR &rarr; Lightning Network (milliseconds)
                 &rarr; Unocoin converts to INR &rarr; Recipient receives INR via
                 IMPS/UPI
+              </p>
+              <p className="text-xs text-text-tertiary mt-3">
+                Stablecoin (USDT/USDC) and XRP settlement rails also available for partners requiring alternative corridors.
               </p>
             </div>
           </AnimatedSection>

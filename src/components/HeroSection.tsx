@@ -377,7 +377,7 @@ function BitcoinLifeline() {
 
   // BTC price history 2013-2026, normalized to SVG viewBox (0 0 1200 300)
   // Y is inverted (0 = top = high price, 300 = bottom = low price)
-  // Price range: $0 → $84,000 mapped to 290 → 10
+  // Price range: ₹0 → ₹70L mapped to 290 → 10
   const priceToY = (price: number) => 290 - (price / 84000) * 280;
 
   const dataPoints = useMemo(() => [
@@ -425,7 +425,7 @@ function BitcoinLifeline() {
     { x: 0,    y: priceToY(100),   label: "Founded", sublabel: "2013" },
     { x: 370,  y: priceToY(3200),  label: "RBI Ban", sublabel: "2018" },
     { x: 540,  y: priceToY(10500), label: "Supreme Court", sublabel: "Victory 2020" },
-    { x: 1200, y: priceToY(84000), label: "Today", sublabel: "$84K+", isPulsing: true },
+    { x: 1200, y: priceToY(84000), label: "Today", sublabel: "₹70L+", isPulsing: true },
   ], []);
 
   useEffect(() => {
@@ -682,42 +682,15 @@ export default function HeroSection() {
             {/* Inline Signup (#8) */}
             <InlineSignup />
 
-            {/* Secondary CTA for skeptics */}
-            <motion.div
+            {/* Trust line */}
+            <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1.1, duration: 0.6 }}
-              className="flex items-center gap-4 text-xs"
+              transition={{ delay: 1.2, duration: 0.8 }}
+              className="text-xs text-text-tertiary"
             >
-              <a href="#products" className="text-text-tertiary hover:text-bitcoin transition-colors">
-                Explore SBP plans →
-              </a>
-              <span className="text-border-subtle">|</span>
-              <a href="#comparison" className="text-text-tertiary hover:text-bitcoin transition-colors">
-                See how we compare →
-              </a>
-            </motion.div>
-
-            {/* Trust bar — differentiators */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.6, duration: 0.8 }}
-              className="flex flex-wrap items-center gap-4 text-text-tertiary"
-            >
-              {[
-                "0% SBP Fees",
-                "7% USDT APY",
-                "95% Cold Storage",
-                "Supreme Court Validated",
-                "FIU-IND Registered",
-              ].map((label, i) => (
-                <span key={label} className="text-xs font-medium">
-                  {label}
-                  {i < 4 && <span className="ml-5 text-text-tertiary/30">/</span>}
-                </span>
-              ))}
-            </motion.div>
+              FIU-IND Registered · Supreme Court Validated · 95% Cold Storage
+            </motion.p>
           </div>
 
           {/* Right - 3D Globe (#2) + Investment Counter (#4) */}
