@@ -15,9 +15,9 @@ export default function Navigation() {
 
   const navLinks = [
     { label: "Products", href: "#products" },
+    { label: "Autopilot", href: "/autopilot", isNew: true },
     { label: "Remittance", href: "#remittance" },
     { label: "About", href: "#about" },
-    { label: "Bitcoin", href: "#bitcoin" },
   ];
 
   return (
@@ -53,9 +53,18 @@ export default function Navigation() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-sm text-text-secondary hover:text-text-primary transition-colors duration-300"
+                  className={`text-sm transition-colors duration-300 flex items-center gap-1.5 ${
+                    (link as { isNew?: boolean }).isNew
+                      ? "text-bitcoin hover:text-bitcoin-light font-medium"
+                      : "text-text-secondary hover:text-text-primary"
+                  }`}
                 >
                   {link.label}
+                  {(link as { isNew?: boolean }).isNew && (
+                    <span className="text-[9px] bg-bitcoin/15 text-bitcoin font-bold px-1.5 py-0.5 rounded-full">
+                      AI
+                    </span>
+                  )}
                 </a>
               ))}
             </div>
