@@ -25,11 +25,17 @@ const fallbackData: CoinPrice[] = [
 /** Height of the marquee bar in pixels, export so pages can add matching padding. */
 export const MARQUEE_HEIGHT = 36;
 
-function formatPrice(price: number): string {
-  if (price >= 1) {
-    return "$" + price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const USD_TO_INR = 83;
+
+function formatPrice(priceUsd: number): string {
+  const price = priceUsd * USD_TO_INR;
+  if (price >= 100) {
+    return "₹" + price.toLocaleString("en-IN", { maximumFractionDigits: 0 });
   }
-  return "$" + price.toFixed(price < 0.01 ? 4 : 3);
+  if (price >= 1) {
+    return "₹" + price.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  return "₹" + price.toFixed(price < 0.01 ? 4 : 3);
 }
 
 function CoinItem({ coin }: { coin: CoinPrice }) {
