@@ -27,8 +27,8 @@ interface PriceData {
 // ─── Dynamic Personalization (#10) ──────────────────────────
 function usePersonalization() {
   const [context, setContext] = useState({
-    greeting: "Your future",
-    subtext: "runs on",
+    greeting: "The future of money",
+    subtext: "starts here.",
     timeOfDay: "day" as "morning" | "day" | "evening" | "night",
     isReturning: false,
   });
@@ -39,26 +39,22 @@ function usePersonalization() {
     const isReturning = !!visited;
     localStorage.setItem("unocoin_visited", "true");
 
-    let greeting = "Your future";
-    let subtext = "runs on";
     let timeOfDay: "morning" | "day" | "evening" | "night" = "day";
+    if (hour >= 5 && hour < 12) timeOfDay = "morning";
+    else if (hour >= 12 && hour < 17) timeOfDay = "day";
+    else if (hour >= 17 && hour < 21) timeOfDay = "evening";
+    else timeOfDay = "night";
 
-    if (hour >= 5 && hour < 12) {
-      timeOfDay = "morning";
-      greeting = isReturning ? "Good morning" : "Your future";
-      subtext = isReturning ? "Bitcoin is waiting." : "runs on";
-    } else if (hour >= 12 && hour < 17) {
-      timeOfDay = "day";
-      greeting = isReturning ? "Welcome back" : "Your future";
-      subtext = isReturning ? "Let's check Bitcoin." : "runs on";
-    } else if (hour >= 17 && hour < 21) {
-      timeOfDay = "evening";
-      greeting = isReturning ? "Good evening" : "Your future";
-      subtext = isReturning ? "Bitcoin never sleeps." : "runs on";
-    } else {
-      timeOfDay = "night";
-      greeting = isReturning ? "Still up?" : "While you sleep,";
-      subtext = isReturning ? "So is Bitcoin." : "Bitcoin doesn't.";
+    let greeting = "The future of money";
+    let subtext = "starts here.";
+
+    if (isReturning) {
+      switch (timeOfDay) {
+        case "morning": greeting = "Good morning."; subtext = "Your portfolio awaits."; break;
+        case "day": greeting = "Welcome back."; subtext = "Let's build wealth."; break;
+        case "evening": greeting = "Good evening."; subtext = "Bitcoin never sleeps."; break;
+        case "night": greeting = "Still up?"; subtext = "So is Bitcoin."; break;
+      }
     }
 
     setContext({ greeting, subtext, timeOfDay, isReturning });
@@ -613,26 +609,20 @@ export default function HeroSection() {
             {/* Live Price Ticker (#1) */}
             <PriceTicker prices={prices} />
 
+            {/* Social Proof (#6) */}
+            <SocialProofTicker />
+
             {/* Dynamic Headline (#3 + #10) */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
             >
-              {personalization.isReturning ? (
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
-                  {personalization.greeting}.
-                  <br />
-                  <span className="gradient-text-bitcoin">{personalization.subtext}</span>
-                </h1>
-              ) : (
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
-                  {personalization.greeting}
-                  <br />
-                  {personalization.subtext}{" "}
-                  <span className="gradient-text-bitcoin">Bitcoin.</span>
-                </h1>
-              )}
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
+                {personalization.greeting}
+                <br />
+                <span className="gradient-text-bitcoin">{personalization.subtext}</span>
+              </h1>
             </motion.div>
 
             {/* Subheadline with stakes (#3) */}
@@ -642,9 +632,9 @@ export default function HeroSection() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="text-lg md:text-xl text-text-secondary max-w-lg leading-relaxed"
             >
-              India&apos;s first Bitcoin platform fought the RBI in the Supreme Court
+              India&apos;s first crypto platform fought the RBI in the Supreme Court
               — and won. Since 2013, we&apos;ve been the guide for 2.26 million
-              Indians building wealth with Bitcoin.
+              Indians building wealth with Bitcoin and 120+ cryptocurrencies.
             </motion.p>
 
             {/* Inline Signup (#8) */}
@@ -662,6 +652,7 @@ export default function HeroSection() {
             >
               {[
                 { label: "Since 2013", icon: "🕐" },
+                { label: "120+ Cryptos", icon: "🪙" },
                 { label: "Lightning Network", icon: "⚡" },
                 { label: "FIU Registered", icon: "✓" },
               ].map((item) => (
@@ -693,10 +684,6 @@ export default function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Social Proof Ticker (#6) */}
-        <div className="mt-8 flex justify-center">
-          <SocialProofTicker />
-        </div>
       </motion.div>
 
       {/* Scroll indicator */}

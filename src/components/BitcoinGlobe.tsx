@@ -2,7 +2,7 @@
 
 import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Sphere, Points, PointMaterial } from "@react-three/drei";
+import { Sphere, Points, PointMaterial, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 
 function GlobeCore() {
@@ -12,11 +12,7 @@ function GlobeCore() {
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
-    if (meshRef.current) {
-      meshRef.current.rotation.y = t * 0.05;
-    }
     if (wireRef.current) {
-      wireRef.current.rotation.y = t * 0.05;
       wireRef.current.rotation.x = Math.sin(t * 0.02) * 0.1;
     }
     if (glowRef.current) {
@@ -81,10 +77,8 @@ function ConnectionArcs() {
     []
   );
 
-  useFrame((state) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.y = state.clock.getElapsedTime() * 0.05;
-    }
+  useFrame(() => {
+    // Rotation handled by OrbitControls autoRotate
   });
 
   return (
@@ -195,7 +189,7 @@ function latLonToVec3(lat: number, lon: number, radius: number): THREE.Vector3 {
 
 export default function BitcoinGlobe() {
   return (
-    <div className="w-[300px] h-[300px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px]">
+    <div className="w-[300px] h-[300px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] cursor-grab active:cursor-grabbing">
       <Canvas
         camera={{ position: [0, 0, 4.5], fov: 45 }}
         gl={{ antialias: true, alpha: true }}
@@ -204,6 +198,14 @@ export default function BitcoinGlobe() {
         <ambientLight intensity={0.3} />
         <pointLight position={[5, 3, 5]} intensity={0.8} color="#F7931A" />
         <pointLight position={[-5, -3, -5]} intensity={0.3} color="#3B82F6" />
+
+        <OrbitControls
+          enableZoom={false}
+          enablePan={false}
+          autoRotate
+          autoRotateSpeed={0.5}
+          rotateSpeed={0.4}
+        />
 
         <StarField />
         <GlobeCore />
