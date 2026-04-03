@@ -10,6 +10,8 @@ import CTASection from "@/components/CTASection";
 import FloatingCTA from "@/components/FloatingCTA";
 import Footer from "@/components/Footer";
 import AskSatoshi from "@/components/AskSatoshi";
+import LiveActivityFeed from "@/components/LiveActivityFeed";
+import DipAlert from "@/components/DipAlert";
 
 export default function Home() {
   return (
@@ -20,6 +22,9 @@ export default function Home() {
 
       {/* Hero — full viewport, globe + headline + CTA */}
       <HeroSection />
+
+      {/* What India is Buying — live activity feed */}
+      <LiveActivityFeed />
 
       {/* Features — 4 cinematic showcases + compact secondary grid */}
       <section className="bg-surface-elevated/50">
@@ -36,6 +41,9 @@ export default function Home() {
 
       {/* CTA — final, dramatic */}
       <CTASection />
+
+      {/* Price Drop Alert */}
+      <DipAlert />
 
       {/* Floating CTA — persistent bottom bar */}
       <FloatingCTA />

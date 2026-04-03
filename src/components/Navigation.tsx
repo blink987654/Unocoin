@@ -3,10 +3,14 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { UnocoinBrand } from "./UnocoinLogo";
+import AchievementPanel from "./AchievementPanel";
+import { useAchievements } from "@/lib/hooks";
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [showAchievements, setShowAchievements] = useState(false);
+  const { totalUnlocked, unlocked } = useAchievements();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -17,10 +21,10 @@ export default function Navigation() {
   const navLinks = [
     { label: "Products", href: "#products" },
     { label: "Platform", href: "/platform", badge: "AI" },
+    { label: "Advisor", href: "/advisor", badge: "AI" },
     { label: "Partners", href: "/remittance" },
     { label: "Institutional", href: "#institutional" },
     { label: "Security", href: "/security" },
-    { label: "API", href: "/api-docs" },
   ];
 
   return (
@@ -60,6 +64,18 @@ export default function Navigation() {
 
             {/* CTA */}
             <div className="hidden md:flex items-center gap-3">
+              <button
+                onClick={() => setShowAchievements(true)}
+                className="relative w-9 h-9 rounded-lg hover:bg-surface-hover flex items-center justify-center transition-colors"
+                title="Achievements"
+              >
+                <span className="text-lg">🏆</span>
+                {totalUnlocked > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-bitcoin rounded-full text-[9px] font-bold text-white flex items-center justify-center">
+                    {totalUnlocked}
+                  </span>
+                )}
+              </button>
               <a
                 href="/autopilot"
                 className="text-sm text-bitcoin hover:text-bitcoin-light transition-colors px-4 py-2 font-medium"
@@ -144,6 +160,13 @@ export default function Navigation() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Achievement Panel */}
+      <AchievementPanel
+        isOpen={showAchievements}
+        onClose={() => setShowAchievements(false)}
+        unlockedMap={unlocked}
+      />
     </>
   );
 }

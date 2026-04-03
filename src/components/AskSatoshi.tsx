@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocalStorage } from "@/lib/hooks";
 
 interface Message {
   id: string;
@@ -16,6 +17,24 @@ const SUGGESTIONS = [
   "How does the SBP work?",
   "Tell me about the Supreme Court case",
   "What would ₹500/month in BTC be worth?",
+];
+
+const DAILY_INSIGHTS = [
+  { icon: "💡", text: "If you'd started a ₹500/month BTC SBP in 2020, you'd have over ₹4.7L today." },
+  { icon: "📊", text: "Bitcoin has been profitable to hold for 95% of its existence." },
+  { icon: "⛏️", text: "There will only ever be 21 million Bitcoin. 19.7 million have already been mined." },
+  { icon: "🇮🇳", text: "India has 100M+ crypto holders — more than any other country except the US." },
+  { icon: "⚡", text: "Lightning Network transactions settle in under 1 second with near-zero fees." },
+  { icon: "🏦", text: "Your weekly ₹2,000 SBP could be worth ₹28L+ in 10 years at historical growth rates." },
+  { icon: "🔒", text: "Unocoin keeps 95% of all crypto in cold storage, protected by multi-signature security." },
+  { icon: "📈", text: "Bitcoin's average annual return over the past decade exceeds 100%." },
+  { icon: "🌍", text: "El Salvador made Bitcoin legal tender in 2021. Several countries are now exploring the same." },
+  { icon: "💎", text: "60% of all Bitcoin hasn't moved in over a year — true diamond hands." },
+  { icon: "🔥", text: "Bitcoin survived 400+ 'obituaries' from media declaring it dead. It keeps coming back." },
+  { icon: "🏆", text: "Bitcoin is the best-performing asset of the last decade, outpacing stocks, gold, and real estate." },
+  { icon: "🤖", text: "Unocoin's AI Autopilot can build a personalized crypto strategy for you in under 60 seconds." },
+  { icon: "📅", text: "SBP investors who stayed consistent for 3+ years have historically never lost money." },
+  { icon: "🌙", text: "Bitcoin's halving events reduce new supply by 50% roughly every 4 years, increasing scarcity." },
 ];
 
 function TypingIndicator() {
@@ -138,6 +157,15 @@ export default function AskSatoshi() {
   const [showWelcome, setShowWelcome] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Daily insight — select based on day of year
+  const [insightDismissedDate, setInsightDismissedDate] = useLocalStorage<string>("uno_insight_dismissed", "");
+  const todayStr = new Date().toISOString().split("T")[0];
+  const dailyInsight = useMemo(() => {
+    const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000);
+    return DAILY_INSIGHTS[dayOfYear % DAILY_INSIGHTS.length];
+  }, []);
+  const showInsight = insightDismissedDate !== todayStr;
 
   const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -279,6 +307,32 @@ export default function AskSatoshi() {
                     &ldquo;what is Bitcoin?&rdquo; to &ldquo;what would my SBP be
                     worth in 10 years?&rdquo;
                   </p>
+
+                  {/* Daily Insight Card */}
+                  {showInsight && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                      className="relative mx-2 mb-4 p-3 rounded-xl bg-gradient-to-r from-bitcoin/10 to-bitcoin/5 border border-bitcoin/20"
+                    >
+                      <button
+                        onClick={() => setInsightDismissedDate(todayStr)}
+                        className="absolute top-2 right-2 w-5 h-5 rounded-full hover:bg-surface-hover flex items-center justify-center text-text-tertiary hover:text-text-secondary transition-colors"
+                      >
+                        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                      <div className="flex items-start gap-2.5 pr-4">
+                        <span className="text-lg shrink-0">{dailyInsight.icon}</span>
+                        <div>
+                          <p className="text-[10px] font-semibold text-bitcoin uppercase tracking-wider mb-0.5">Did you know?</p>
+                          <p className="text-xs text-text-secondary leading-relaxed">{dailyInsight.text}</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
 
                   {/* Suggestion chips */}
                   <div className="flex flex-wrap justify-center gap-2 px-2">
