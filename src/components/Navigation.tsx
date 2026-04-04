@@ -117,19 +117,13 @@ export default function Navigation() {
                 )}
               </button>
               <a
-                href="/autopilot"
-                className="text-sm text-bitcoin hover:text-bitcoin-light transition-colors px-4 py-2 font-medium"
-              >
-                Try Autopilot
-              </a>
-              <a
-                href="/autopilot"
+                href="/dashboard"
                 className="text-sm text-text-secondary hover:text-text-primary transition-colors px-4 py-2"
               >
                 Sign In
               </a>
               <a
-                href="/autopilot"
+                href="/dashboard"
                 className="btn-primary text-sm !py-2.5 !px-6 rounded-lg"
               >
                 Get Started
@@ -192,23 +186,14 @@ export default function Navigation() {
               </motion.a>
             ))}
             <motion.a
-              href="/autopilot"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              onClick={() => setMobileOpen(false)}
-              className="text-2xl font-medium text-bitcoin hover:text-bitcoin-light transition-colors"
-            >
-              Try Autopilot
-            </motion.a>
-            <motion.a
-              href="/autopilot"
+              href="/dashboard"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
+              onClick={() => setMobileOpen(false)}
               className="btn-primary mt-4"
             >
-              Get Started
+              Go to Dashboard
             </motion.a>
           </motion.div>
         )}
