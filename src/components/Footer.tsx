@@ -24,7 +24,7 @@ const footerLinks = {
     { label: "Security", href: "/security" },
     { label: "Partners", href: "/partners" },
     { label: "API Docs", href: "/api-docs" },
-    { label: "Blog", href: "https://blog.unocoin.com" },
+    { label: "Bitshala (Learn Bitcoin)", href: "https://www.bitshala.org" },
   ],
   Legal: [
     { label: "Terms of Use", href: "https://unocoin.com/in/policy/termsofuse/" },

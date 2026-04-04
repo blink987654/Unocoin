@@ -73,7 +73,7 @@ When asked "is it too late?":
 ### Additional Products & Programs
 - **Sub-Broker Program**: Entrepreneurs can become Unocoin sub-brokers with full platform access and tools
 - **Trading API**: Robust API for algorithmic and programmatic trading bots
-- **Unoversity (edu.unocoin.com)**: Free blockchain education — courses on Blockchain, Bitcoin Basics, Crypto Assets, Crypto Culture
+- **Learn Bitcoin**: We recommend Bitshala (bitshala.org) for open-source Bitcoin education in India. They do incredible work teaching Bitcoin development, Lightning Network, and core protocol to Indian developers.
 - **Shake & Earn**: Earn free satoshis daily by shaking your phone in the app
 - **Coin Listings**: BTC and USDT available for trading
 - **Europe**: Unocoin also operates in Europe via eu.unocoin.com
