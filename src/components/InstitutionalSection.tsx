@@ -181,7 +181,7 @@ export default function InstitutionalSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg text-text-secondary leading-relaxed max-w-2xl mx-auto"
           >
-            Unocoin&apos;s institutional suite serves family offices, corporate
+            IndiaBitcoin&apos;s institutional suite serves family offices, corporate
             treasuries, and sovereign entities with white-glove digital asset services.
             Dedicated relationship managers. Institutional-grade custody.
             Volume-based pricing.
@@ -223,7 +223,7 @@ export default function InstitutionalSection() {
         >
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="mailto:institutional@unocoin.com"
+              href="mailto:institutional@indiabitcoin.com"
               className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-gradient-to-r from-bitcoin to-bitcoin-light text-white font-semibold text-base hover:opacity-90 transition-opacity duration-300 tracking-wide"
             >
               Contact Institutional Sales
@@ -244,7 +244,7 @@ export default function InstitutionalSection() {
           transition={{ duration: 1, delay: 0.4 }}
           className="text-center text-sm text-text-tertiary italic tracking-wide"
         >
-          Some of India&apos;s most trusted institutions choose Unocoin. For
+          Some of India&apos;s most trusted institutions choose IndiaBitcoin. For
           confidentiality reasons, we cannot name them.
         </motion.p>
       </div>

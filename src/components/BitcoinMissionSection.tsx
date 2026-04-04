@@ -114,7 +114,7 @@ export default function BitcoinMissionSection() {
               <div className="text-left">
                 <p className="font-semibold text-sm">Sunny Ray</p>
                 <p className="text-xs text-text-tertiary">
-                  Co-founder, Unocoin
+                  Co-founder, IndiaBitcoin
                 </p>
               </div>
             </div>

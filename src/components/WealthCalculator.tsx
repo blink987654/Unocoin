@@ -9,12 +9,6 @@ const btcYearlyPrices: Record<number, number> = {
   2024: 45000, 2025: 70000, 2026: 85000,
 };
 
-const ethYearlyPrices: Record<number, number> = {
-  2013: 0, 2014: 0, 2015: 1, 2016: 10, 2017: 360, 2018: 600,
-  2019: 180, 2020: 250, 2021: 2800, 2022: 1800, 2023: 1850,
-  2024: 2500, 2025: 3200, 2026: 3800,
-};
-
 const INR = 83;
 const amountSteps = [500, 1000, 2000, 5000, 10000, 25000, 50000, 100000, 500000];
 
@@ -30,43 +24,26 @@ function formatAmount(value: number): string {
   return `₹${value}`;
 }
 
-type Asset = "BTC" | "ETH" | "Both";
-
 export default function WealthCalculator() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   const [amountIndex, setAmountIndex] = useState(4); // 10,000
   const [startYear, setStartYear] = useState(2017);
-  const [asset, setAsset] = useState<Asset>("BTC");
-
   const monthlyAmount = amountSteps[amountIndex];
 
   const results = useMemo(() => {
     let totalBtc = 0;
-    let totalEth = 0;
     const years = 2026 - startYear + 1;
     const totalInvested = monthlyAmount * 12 * years;
 
     for (let y = startYear; y <= 2026; y++) {
       const yearlyInvest = monthlyAmount * 12;
-      if (asset === "BTC" || asset === "Both") {
-        const price = btcYearlyPrices[y] || 85000;
-        totalBtc += yearlyInvest / (price * INR);
-      }
-      if (asset === "ETH" || asset === "Both") {
-        const price = ethYearlyPrices[y];
-        if (price > 0) totalEth += yearlyInvest / (price * INR);
-      }
+      const price = btcYearlyPrices[y] || 85000;
+      totalBtc += yearlyInvest / (price * INR);
     }
 
-    const currentBtcValue = totalBtc * 85000 * INR;
-    const currentEthValue = totalEth * 3800 * INR;
-
-    let currentValue: number;
-    if (asset === "BTC") currentValue = currentBtcValue;
-    else if (asset === "ETH") currentValue = currentEthValue;
-    else currentValue = currentBtcValue + currentEthValue;
+    const currentValue = totalBtc * 85000 * INR;
 
     // FD at 6% compound
     let fdValue = 0;
@@ -77,7 +54,7 @@ export default function WealthCalculator() {
     const returns = totalInvested > 0 ? ((currentValue - totalInvested) / totalInvested) * 100 : 0;
 
     return { totalInvested, currentValue, returns, fdValue };
-  }, [monthlyAmount, startYear, asset]);
+  }, [monthlyAmount, startYear]);
 
   return (
     <section ref={sectionRef} className="relative py-32 lg:py-40">
@@ -173,23 +150,13 @@ export default function WealthCalculator() {
                 </div>
               </div>
 
-              {/* Asset toggle */}
+              {/* Asset label */}
               <div>
                 <label className="text-text-secondary text-sm font-medium block mb-4">Asset</label>
                 <div className="flex gap-2">
-                  {(["BTC", "ETH", "Both"] as Asset[]).map((a) => (
-                    <button
-                      key={a}
-                      onClick={() => setAsset(a)}
-                      className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
-                        asset === a
-                          ? "bg-bitcoin text-white shadow-lg shadow-bitcoin/25"
-                          : "bg-surface-elevated text-text-secondary hover:text-text-primary border border-border-subtle"
-                      }`}
-                    >
-                      {a}
-                    </button>
-                  ))}
+                  <span className="px-6 py-2.5 rounded-xl text-sm font-semibold bg-bitcoin text-white shadow-lg shadow-bitcoin/25">
+                    Bitcoin (BTC)
+                  </span>
                 </div>
               </div>
             </div>
@@ -255,7 +222,7 @@ export default function WealthCalculator() {
 
                 {/* SBP Fee */}
                 <div className="pt-2 border-t border-border-subtle">
-                  <p className="text-text-tertiary text-sm mb-1">SBP Fee on Unocoin</p>
+                  <p className="text-text-tertiary text-sm mb-1">SBP Fee on IndiaBitcoin</p>
                   <p className="text-accent-green font-semibold">₹0 (Zero fees on all SBP trades)</p>
                 </div>
               </div>

@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const competitors = ["Unocoin", "WazirX", "CoinDCX", "Binance", "Coinbase"] as const;
+const competitors = ["IndiaBitcoin", "WazirX", "CoinDCX", "Binance", "Coinbase"] as const;
 
 const rows: { feature: string; values: string[]; highlight?: boolean }[] = [
   { feature: "Founded", values: ["2013", "2018", "2018", "2017", "2012"] },
@@ -43,7 +43,7 @@ export default function ComparisonSection() {
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-bitcoin/10 text-bitcoin border border-bitcoin/20 mb-6">
-            Why Unocoin
+            Why IndiaBitcoin
           </span>
           <h2 className="text-4xl lg:text-5xl font-bold text-text-primary mb-6">
             See how we{" "}
@@ -125,7 +125,7 @@ export default function ComparisonSection() {
           className="mt-8 rounded-xl bg-surface-elevated border border-border-subtle px-6 py-5 text-center max-w-3xl mx-auto"
         >
           <p className="text-text-secondary text-sm leading-relaxed">
-            <span className="text-bitcoin font-semibold">Unocoin</span> is the only
+            <span className="text-bitcoin font-semibold">IndiaBitcoin</span> is the only
             platform in India to be validated by the{" "}
             <span className="text-text-primary font-medium">Supreme Court of India</span> and
             trusted by sovereign institutions.

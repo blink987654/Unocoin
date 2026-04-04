@@ -179,7 +179,7 @@ const methodColors: Record<string, string> = {
 // ─── Use Cases ──────────────────────────────────────────────
 const useCases = [
   { icon: "🌍", title: "Remittance Companies", desc: "Integrate Lightning-powered cross-border payments. Send money to India in seconds at near-zero cost. Auto-convert to INR via our settlement API." },
-  { icon: "🤖", title: "Trading Bots", desc: "Build algorithmic trading strategies with real-time WebSocket feeds, instant order execution, and 120+ trading pairs across INR, BTC, and USDT markets." },
+  { icon: "🤖", title: "Trading Bots", desc: "Build algorithmic trading strategies with real-time WebSocket feeds, instant order execution, and BTC/USDT trading pairs across INR markets." },
   { icon: "💳", title: "Payment Gateways", desc: "Accept Bitcoin and stablecoin payments in your app or website. Auto Sell API converts received BTC to INR instantly at 0% fee." },
   { icon: "📱", title: "Portfolio Trackers", desc: "Access real-time balances, transaction history, SBP performance data, and Lightning wallet stats for your users." },
 ];
@@ -228,7 +228,7 @@ export default function ApiDocsPage() {
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-              Unocoin <span className="gradient-text-bitcoin">API</span>
+              IndiaBitcoin <span className="gradient-text-bitcoin">API</span>
             </h1>
             <p className="text-xl text-text-secondary max-w-3xl mx-auto mb-4">
               India&apos;s most trusted digital asset infrastructure for institutions and developers
@@ -236,7 +236,7 @@ export default function ApiDocsPage() {
             <p className="text-text-tertiary max-w-2xl mx-auto mb-10 leading-relaxed">
               Powering remittance companies, trading algorithms, fintech platforms, and enterprise applications.
               From Lightning settlement to SBP automation — everything you can do in the
-              Unocoin app, you can do via API. Trusted by entities that demand institutional-grade reliability.
+              IndiaBitcoin app, you can do via API. Trusted by entities that demand institutional-grade reliability.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
@@ -314,7 +314,7 @@ export default function ApiDocsPage() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl font-bold mb-2">API Reference</h2>
-            <p className="text-text-secondary mb-10">Complete endpoint documentation for the Unocoin API v2.</p>
+            <p className="text-text-secondary mb-10">Complete endpoint documentation for the IndiaBitcoin API v2.</p>
 
             <div className="space-y-4">
               {categories.map((cat) => (
