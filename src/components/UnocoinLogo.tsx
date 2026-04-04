@@ -82,58 +82,37 @@ export function UnocoinLogo({
           fill={`url(#${id}-inner)`}
         />
 
-        {/* The "U" letterform — custom drawn, not a font */}
+        {/* Bitcoin ₿ symbol */}
+        {/* Vertical strokes extending above and below */}
+        <line x1="45" y1="18" x2="45" y2="82" stroke={`url(#${id}-grad)`} strokeWidth="5" strokeLinecap="round" filter={`url(#${id}-glow)`} />
+        <line x1="55" y1="18" x2="55" y2="82" stroke={`url(#${id}-grad)`} strokeWidth="5" strokeLinecap="round" filter={`url(#${id}-glow)`} />
+
+        {/* Top bumps of the ₿ */}
         <path
-          d="M35 30 L35 58 C35 72 42 80 50 80 C58 80 65 72 65 58 L65 30"
+          d="M36 28 H54 C64 28 66 36 58 40 H36"
           fill="none"
           stroke={`url(#${id}-grad)`}
-          strokeWidth="7"
+          strokeWidth="5"
           strokeLinecap="round"
           strokeLinejoin="round"
           filter={`url(#${id}-glow)`}
         />
 
-        {/* Horizontal bars — Bitcoin-inspired serifs */}
-        <line
-          x1="28"
-          y1="30"
-          x2="42"
-          y2="30"
+        {/* Horizontal middle bar */}
+        <line x1="36" y1="50" x2="58" y2="50" stroke={`url(#${id}-grad)`} strokeWidth="5" strokeLinecap="round" />
+
+        {/* Bottom bumps of the ₿ */}
+        <path
+          d="M36 50 H56 C68 50 68 62 58 66 H36"
+          fill="none"
           stroke={`url(#${id}-grad)`}
-          strokeWidth="3.5"
+          strokeWidth="5"
           strokeLinecap="round"
-        />
-        <line
-          x1="58"
-          y1="30"
-          x2="72"
-          y2="30"
-          stroke={`url(#${id}-grad)`}
-          strokeWidth="3.5"
-          strokeLinecap="round"
+          strokeLinejoin="round"
+          filter={`url(#${id}-glow)`}
         />
 
-        {/* Small vertical tick marks at top — like Bitcoin's ₿ strokes */}
-        <line
-          x1="35"
-          y1="23"
-          x2="35"
-          y2="30"
-          stroke={`url(#${id}-grad)`}
-          strokeWidth="3"
-          strokeLinecap="round"
-        />
-        <line
-          x1="65"
-          y1="23"
-          x2="65"
-          y2="30"
-          stroke={`url(#${id}-grad)`}
-          strokeWidth="3"
-          strokeLinecap="round"
-        />
-
-        {/* Subtle corner accent — top right */}
+        {/* Subtle corner accent */}
         <circle
           cx="80"
           cy="20"

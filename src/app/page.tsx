@@ -31,7 +31,7 @@ export default function Home() {
         <FeaturesSection />
       </section>
 
-      {/* Social Proof + Trust — combined "Why Unocoin" section */}
+      {/* Social Proof + Trust — combined "Why IndiaBitcoin" section */}
       <SocialProofSection />
 
       {/* Institutional — OTC, custody, enterprise */}

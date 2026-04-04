@@ -7,13 +7,13 @@ const stats = [
   { value: 3000, prefix: "₹", suffix: " Cr+", label: "Transactions processed" },
   { value: 2.26, suffix: "M+", label: "Verified users" },
   { value: 13, label: "Years of operation" },
-  { value: 120, suffix: "+", label: "Digital assets" },
+  { value: 2, suffix: "", label: "Assets: BTC & USDT" },
   { value: 99.9, suffix: "%", label: "Platform uptime" },
 ];
 
 const testimonial = {
   quote:
-    "We evaluated every platform in India. Unocoin's institutional infrastructure, regulatory compliance, and 13-year track record made it the only choice for our clients' portfolios.",
+    "We evaluated every platform in India. IndiaBitcoin's institutional infrastructure, regulatory compliance, and 13-year track record made it the only choice for our clients' portfolios.",
   name: "Senior Portfolio Manager",
   title: "Mumbai-based Family Office",
 };
@@ -71,7 +71,7 @@ export default function SocialProofSection() {
             transition={{ duration: 0.5 }}
             className="text-sm uppercase tracking-widest text-bitcoin mb-8"
           >
-            Why Unocoin
+            Why IndiaBitcoin
           </motion.p>
         </div>
 

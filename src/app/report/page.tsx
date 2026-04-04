@@ -175,7 +175,7 @@ export default function ReportPage() {
               <p className="text-3xl font-bold">47-day streak</p>
               <p className="text-text-secondary mt-1">
                 You&apos;re in the <span className="text-bitcoin font-semibold">top 6%</span> of
-                Unocoin investors
+                IndiaBitcoin investors
               </p>
             </div>
           </div>
@@ -185,7 +185,7 @@ export default function ReportPage() {
         <RevealCard delay={0.15}>
           <h3 className="text-lg font-semibold mb-4">Peer Ranking</h3>
           <p className="text-text-secondary text-sm mb-4">
-            You outperformed <span className="text-primary font-semibold">73%</span> of Unocoin
+            You outperformed <span className="text-primary font-semibold">73%</span> of IndiaBitcoin
             investors this week
           </p>
           <div className="relative w-full h-4 rounded-full bg-white/5 overflow-hidden">
