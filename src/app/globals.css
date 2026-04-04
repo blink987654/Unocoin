@@ -22,6 +22,19 @@
   --font-mono: "SF Mono", "Fira Code", monospace;
 }
 
+/* Light theme overrides */
+html.light-theme {
+  --color-surface: #F5F5F5;
+  --color-surface-elevated: #EEEEEE;
+  --color-surface-card: #FFFFFF;
+  --color-surface-hover: #E8E8E8;
+  --color-border-subtle: rgba(0, 0, 0, 0.08);
+  --color-border-medium: rgba(0, 0, 0, 0.12);
+  --color-text-primary: #111111;
+  --color-text-secondary: #555555;
+  --color-text-tertiary: #888888;
+}
+
 /* Base styles */
 html {
   scroll-behavior: smooth;
