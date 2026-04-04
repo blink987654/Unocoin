@@ -18,13 +18,21 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const [moreOpen, setMoreOpen] = useState(false);
+
   const navLinks = [
     { label: "Products", href: "#products" },
     { label: "Platform", href: "/platform", badge: "AI" },
     { label: "Advisor", href: "/advisor", badge: "AI" },
     { label: "Partners", href: "/remittance" },
-    { label: "Institutional", href: "#institutional" },
     { label: "Security", href: "/security" },
+  ];
+
+  const moreLinks = [
+    { label: "Time Machine", href: "/time-machine" },
+    { label: "Daily Ritual", href: "/daily" },
+    { label: "Kundali", href: "/kundali" },
+    { label: "Parivaar", href: "/parivaar" },
   ];
 
   return (
@@ -60,6 +68,38 @@ export default function Navigation() {
                   )}
                 </a>
               ))}
+              {/* More dropdown */}
+              <div className="relative" onMouseLeave={() => setMoreOpen(false)}>
+                <button
+                  onMouseEnter={() => setMoreOpen(true)}
+                  onClick={() => setMoreOpen(!moreOpen)}
+                  className="text-sm transition-colors duration-300 text-text-secondary hover:text-text-primary flex items-center gap-1"
+                >
+                  More
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+                <AnimatePresence>
+                  {moreOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full right-0 mt-2 w-44 bg-surface-elevated border border-border-subtle rounded-xl shadow-2xl overflow-hidden py-1"
+                    >
+                      {moreLinks.map((link) => (
+                        <a
+                          key={link.label}
+                          href={link.href}
+                          className="block px-4 py-2.5 text-sm text-text-secondary hover:text-text-primary hover:bg-surface-hover transition-colors"
+                        >
+                          {link.label}
+                        </a>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
 
             {/* CTA */}
@@ -134,6 +174,19 @@ export default function Navigation() {
                 transition={{ delay: i * 0.1 }}
                 onClick={() => setMobileOpen(false)}
                 className="text-2xl font-medium text-text-secondary hover:text-text-primary transition-colors"
+              >
+                {link.label}
+              </motion.a>
+            ))}
+            {moreLinks.map((link, i) => (
+              <motion.a
+                key={link.label}
+                href={link.href}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: (navLinks.length + i) * 0.1 }}
+                onClick={() => setMobileOpen(false)}
+                className="text-xl font-medium text-bitcoin hover:text-bitcoin-light transition-colors"
               >
                 {link.label}
               </motion.a>
