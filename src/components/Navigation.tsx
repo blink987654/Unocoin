@@ -73,7 +73,7 @@ export default function Navigation() {
                 <button
                   onMouseEnter={() => setMoreOpen(true)}
                   onClick={() => setMoreOpen(!moreOpen)}
-                  className="text-sm transition-colors duration-300 text-text-secondary hover:text-text-primary flex items-center gap-1"
+                  className="text-sm transition-colors duration-300 text-text-secondary hover:text-text-primary flex items-center gap-1 py-2"
                 >
                   More
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9l6 6 6-6"/></svg>
@@ -85,7 +85,7 @@ export default function Navigation() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 8 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute top-full right-0 mt-2 w-44 bg-surface-elevated border border-border-subtle rounded-xl shadow-2xl overflow-hidden py-1"
+                      className="absolute top-full right-0 w-44 bg-surface-elevated border border-border-subtle rounded-xl shadow-2xl overflow-hidden py-1"
                     >
                       {moreLinks.map((link) => (
                         <a
