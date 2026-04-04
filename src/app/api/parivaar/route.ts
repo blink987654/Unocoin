@@ -32,6 +32,20 @@ export async function POST(req: Request) {
       ? Math.round((goals[0].currentAmount / goals[0].targetAmount) * 100)
       : 0;
 
+    const apiKey = process.env.ANTHROPIC_API_KEY;
+
+    if (!apiKey) {
+      return NextResponse.json({
+        month: new Date().toLocaleDateString("en-IN", { month: "long" }),
+        totalContributed,
+        topContributor: topContributor?.name || "Papa",
+        streakChampion: streakChampion?.name || "Papa",
+        goalProgress,
+        aiInsight: `Parivaar ka portfolio steady grow ho raha hai! ${topContributor?.name || "Papa"} leading from the front with the highest contribution. ${streakChampion?.name || "Papa"} ka streak bhi impressive hai. Next milestone Rs.5L tak pahunchna hai. Saath mein sanchay, saath mein safar!`,
+        generatedAt: Date.now(),
+      });
+    }
+
     const message = await client.messages.create({
       model: "claude-haiku-4-5-20251001",
       max_tokens: 250,

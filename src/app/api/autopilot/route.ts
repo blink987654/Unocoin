@@ -69,16 +69,37 @@ Be specific with numbers. Be encouraging but honest. Reference their goals when 
 export async function POST(req: NextRequest) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
 
-  if (!apiKey) {
-    return Response.json(
-      { error: "Autopilot AI is not configured. Set ANTHROPIC_API_KEY." },
-      { status: 503 }
-    );
-  }
-
   try {
     const body = await req.json();
     const { action, profile, portfolio } = body;
+
+    // Demo mode when no API key
+    if (!apiKey) {
+      if (action === "create_strategy") {
+        return Response.json({
+          strategyName: "Steady Accumulator",
+          monthlyBudget: 10000,
+          allocation: { BTC: 85, USDT: 15 },
+          sbpFrequency: "weekly",
+          sbpAmount: 2500,
+          riskLevel: "moderate",
+          reasoning: "Based on your income and goals, a weekly Rs.2,500 SBP gives you consistent exposure to Bitcoin while keeping 15% in USDT as a stability buffer. This strategy has historically outperformed lump-sum investing in volatile markets. At current prices, you would accumulate roughly 0.015 BTC per month.",
+          projections: {
+            "1year": { invested: 120000, estimatedValue: 156000, returnPct: 30 },
+            "3year": { invested: 360000, estimatedValue: 612000, returnPct: 70 },
+            "5year": { invested: 600000, estimatedValue: 1380000, returnPct: 130 },
+          },
+        });
+      }
+      if (action === "portfolio_summary") {
+        return Response.json({
+          headline: "Your Stack Grew 2.4% This Week",
+          summary: "Strong week for your portfolio. BTC gained Rs.8,450 while your USDT holdings earned Rs.56 in interest. Your 47-day SBP streak is in the top 6% of all IndiaBitcoin users.",
+          suggestion: "Consider increasing your weekly SBP by Rs.500 to accelerate toward your Rs.5L goal.",
+        });
+      }
+      return Response.json({ error: "Unknown action" }, { status: 400 });
+    }
 
     const client = new Anthropic({ apiKey });
 

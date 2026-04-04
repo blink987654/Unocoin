@@ -47,21 +47,35 @@ export async function POST(req: Request) {
       .map(([q, a]) => `${q}: ${a}`)
       .join("\n");
 
-    const message = await client.messages.create({
-      model: "claude-haiku-4-5-20251001",
-      max_tokens: 300,
-      system: SYSTEM_PROMPT,
-      messages: [{ role: "user", content: userPrompt }],
-    });
+    let result: Record<string, unknown>;
+    const apiKey = process.env.ANTHROPIC_API_KEY;
 
-    const text = message.content[0].type === "text" ? message.content[0].text : "";
-    const result = JSON.parse(text);
+    if (apiKey) {
+      const message = await client.messages.create({
+        model: "claude-haiku-4-5-20251001",
+        max_tokens: 300,
+        system: SYSTEM_PROMPT,
+        messages: [{ role: "user", content: userPrompt }],
+      });
+      const text = message.content[0].type === "text" ? message.content[0].text : "";
+      result = JSON.parse(text);
+    } else {
+      // Demo mode: deterministic result based on first answer
+      const firstAnswer = Object.values(answers)[0] || "";
+      const demoMap: Record<string, Record<string, unknown>> = {
+        "Buy more": { nakshatra: "vajra", strength: "Your ability to see opportunity in chaos is remarkable. While others panic, you accumulate.", blindSpot: "Sometimes conviction can look like stubbornness. Set a maximum allocation limit.", auspiciousTime: "Tuesday mornings, right after your chai", cosmicMatch: "indra", prediction2026: "2026 will reward your diamond hands. A surprise rally in Q3 will make your patience pay off handsomely." },
+        "Hold steady": { nakshatra: "dhruv", strength: "Your emotional stability during market swings is your superpower. You are the calm in the storm.", blindSpot: "Holding is great, but sometimes inaction means missing a chance to accumulate more at a discount.", auspiciousTime: "Sunday evenings, during quiet reflection", cosmicMatch: "kala", prediction2026: "Your steady approach in 2026 will compound beautifully. By December, your portfolio crosses a milestone you have been quietly eyeing." },
+        "Set and forget SBP": { nakshatra: "samudra", strength: "Your systematic discipline puts you ahead of 90% of investors. Consistency is your moat.", blindSpot: "Sometimes the market gives you rare opportunities that a fixed SBP might miss. Keep some dry powder.", auspiciousTime: "Every Monday at 9 AM, when your SBP runs", cosmicMatch: "prithvi", prediction2026: "Your SBP will quietly accumulate a surprising amount in 2026. By year end, you will be amazed at what small consistent steps achieved." },
+        default: { nakshatra: "surya", strength: "Your conviction in Bitcoin's future shines bright. You see what others cannot yet imagine.", blindSpot: "Maximalism can sometimes blind you to valid short-term risks. Stay informed about regulatory changes.", auspiciousTime: "Thursday afternoons, when the market is quiet", cosmicMatch: "akasha", prediction2026: "2026 is your year. Your conviction gets vindicated as institutional adoption hits new highs. Keep spreading the word." },
+      };
+      result = demoMap[firstAnswer] || demoMap["default"];
+    }
 
     // Validate nakshatra ID
-    if (!NAKSHATRA_IDS.includes(result.nakshatra)) {
+    if (!NAKSHATRA_IDS.includes(result.nakshatra as typeof NAKSHATRA_IDS[number])) {
       result.nakshatra = NAKSHATRA_IDS[Math.floor(Math.random() * NAKSHATRA_IDS.length)];
     }
-    if (!NAKSHATRA_IDS.includes(result.cosmicMatch)) {
+    if (!NAKSHATRA_IDS.includes(result.cosmicMatch as typeof NAKSHATRA_IDS[number])) {
       result.cosmicMatch = NAKSHATRA_IDS[Math.floor(Math.random() * NAKSHATRA_IDS.length)];
     }
 

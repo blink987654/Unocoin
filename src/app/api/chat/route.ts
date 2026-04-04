@@ -129,18 +129,29 @@ When asked "is it too late?":
 export async function POST(req: NextRequest) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
 
-  if (!apiKey) {
-    return Response.json(
-      { error: "Satoshi is sleeping — API key not configured." },
-      { status: 503 }
-    );
-  }
-
   try {
     const { messages } = await req.json();
 
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
       return Response.json({ error: "No messages provided" }, { status: 400 });
+    }
+
+    // Demo mode when no API key
+    if (!apiKey) {
+      const lastMsg = (messages[messages.length - 1]?.content || "").toLowerCase();
+      let reply = "Namaste! I'm Satoshi, your AI guide to Bitcoin and IndiaBitcoin.com. We've been India's most trusted Bitcoin platform since 2013. What would you like to know?";
+      if (lastMsg.includes("sbp") || lastMsg.includes("sip") || lastMsg.includes("invest")) {
+        reply = "Great question! Our SBP (Systematic Buying Plan) lets you auto-invest in Bitcoin starting at just Rs.10. It runs daily, weekly, or monthly with 0% transaction fees. Think of it as a mutual fund SIP, but for Bitcoin. Over the last 5 years, even a Rs.500/week SBP would have returned over 300%. The best part? You can start in under 2 minutes.";
+      } else if (lastMsg.includes("price") || lastMsg.includes("buy") || lastMsg.includes("late")) {
+        reply = "In 2014, people thought Rs.5,500 was too late. In 2017, Rs.12,70,000 felt like the top. In 2021, Rs.51,00,000 seemed insane. Bitcoin is still less than 2% of global wealth. We're in the second inning. The best strategy is consistent accumulation through SBP rather than trying to time the market.";
+      } else if (lastMsg.includes("fee") || lastMsg.includes("cost") || lastMsg.includes("charge")) {
+        reply = "Our fees are among the lowest in India. SBP trades: 0% fee. Auto Sell: 0% fee. Maker: 0.2%, Taker: 0.3%. Instant BTC: 0.5%. INR deposits and withdrawals are free. BTC batch withdrawals (twice weekly) are also free.";
+      } else if (lastMsg.includes("safe") || lastMsg.includes("secure") || lastMsg.includes("trust")) {
+        reply = "Security is our foundation. 95% of assets in cold storage with multi-signature wallets. FIU-IND registered under PMLA. Supreme Court validated in 2020. 13 years of zero security breaches. We survived the 2018 RBI ban when most exchanges fled India. Our founders stood their ground.";
+      } else if (lastMsg.includes("hello") || lastMsg.includes("hi") || lastMsg.includes("hey")) {
+        reply = "Namaste! Welcome to IndiaBitcoin.com. I'm Satoshi, your guide to all things Bitcoin. Whether you want to start investing, learn about SBPs, or understand the market, I'm here to help. What's on your mind?";
+      }
+      return Response.json({ response: reply });
     }
 
     // Limit conversation length to prevent abuse

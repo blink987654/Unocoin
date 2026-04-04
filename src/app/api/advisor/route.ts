@@ -100,18 +100,29 @@ ${portfolio.sbpActive ? `SBP Streak: ${portfolio.streakDays} consecutive days` :
 export async function POST(req: NextRequest) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
 
-  if (!apiKey) {
-    return Response.json(
-      { error: "Advisor is unavailable — API key not configured." },
-      { status: 503 }
-    );
-  }
-
   try {
     const { messages, portfolio } = await req.json();
 
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
       return Response.json({ error: "No messages provided." }, { status: 400 });
+    }
+
+    // Demo mode when no API key
+    if (!apiKey) {
+      const lastMsg = (messages[messages.length - 1]?.content || "").toLowerCase();
+      let reply = "Good morning! Your portfolio is at Rs.3,40,138 with a strong 87.6% BTC allocation. Your SBP streak is 47 days strong, putting you in the top 6% of IndiaBitcoin investors. Your USDT (Rs.42,000) is sitting idle at 0% yield. Consider activating USDT Earnings for up to 7% APY, that's roughly Rs.245/month in passive income with zero lock-in.\n\nNOT_FINANCIAL_ADVICE: This is educational guidance based on your portfolio. Crypto markets are volatile. Past performance does not equal future results.";
+      if (lastMsg.includes("rebalance") || lastMsg.includes("allocation")) {
+        reply = "Your current split is 87.6% BTC / 12.4% USDT. For a long-term accumulator, this is a strong conviction allocation. If you want to derisk slightly, moving to 80/20 would give you a Rs.25,600 additional USDT buffer. But honestly, with your 47-day SBP streak, your discipline is doing the rebalancing for you through consistent accumulation.";
+      } else if (lastMsg.includes("sbp") || lastMsg.includes("increase")) {
+        reply = "Your current SBP is Rs.5,000/month. Based on your portfolio growth, bumping it to Rs.7,500/month could help you cross Rs.5L by the end of this year. Even a small increase compounds significantly over time. Rs.2,500 extra monthly is the price of eating out twice, but it could mean Rs.1L+ in additional BTC over 2 years.";
+      }
+      return Response.json({
+        response: reply,
+        suggestedActions: [
+          { label: "Earn 7% on idle USDT", type: "rebalance", detail: "Move Rs.42,000 USDT to Earnings" },
+          { label: "Boost SBP to Rs.7,500/mo", type: "increase_sbp", detail: "Increase monthly SBP from Rs.5,000 to Rs.7,500" },
+        ],
+      });
     }
 
     const trimmedMessages = messages.slice(-20);

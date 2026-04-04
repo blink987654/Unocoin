@@ -69,22 +69,32 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const message = await anthropic.messages.create({
-      model: "claude-haiku-4-5-20251001",
-      max_tokens: 256,
-      system: SYSTEM_PROMPT,
-      messages: [
-        {
-          role: "user",
-          content: `BTC 24h change: ${btcChange24h >= 0 ? "+" : ""}${btcChange24h.toFixed(2)}%. My portfolio value: ₹${portfolioValue.toLocaleString("en-IN")}. Give me today's morning briefing.`,
-        },
-      ],
-    });
+    let greeting: string;
+    const apiKey = process.env.ANTHROPIC_API_KEY;
 
-    const greeting =
-      message.content[0].type === "text"
-        ? message.content[0].text
-        : "Namaste! Aaj ka din achha hai. Keep stacking sats!";
+    if (apiKey) {
+      const message = await anthropic.messages.create({
+        model: "claude-haiku-4-5-20251001",
+        max_tokens: 256,
+        system: SYSTEM_PROMPT,
+        messages: [
+          {
+            role: "user",
+            content: `BTC 24h change: ${btcChange24h >= 0 ? "+" : ""}${btcChange24h.toFixed(2)}%. My portfolio value: ₹${portfolioValue.toLocaleString("en-IN")}. Give me today's morning briefing.`,
+          },
+        ],
+      });
+      greeting = message.content[0].type === "text" ? message.content[0].text : "";
+    } else {
+      const greetings = [
+        `Namaste! Aaj ka din achha hai. Bitcoin ${btcChange24h >= 0 ? "upar" : "thoda neeche"} hai, ${btcChange24h >= 0 ? "+" : ""}${btcChange24h.toFixed(1)}% change. Aapka portfolio Rs.${portfolioValue.toLocaleString("en-IN")} pe chal raha hai. SBP chalu rakho, consistency hi key hai. Aaj bhi sats stack karo!`,
+        `Good morning! Chai piyo, Bitcoin kharido. Market mein ${btcChange24h >= 0 ? "green candles" : "thodi correction"} dikh rahi hai. Aapka Rs.${portfolioValue.toLocaleString("en-IN")} ka portfolio steady hai. Remember, time in the market beats timing the market. Aaj ka goal: apna SBP chalu rakho.`,
+        `Suprabhat! Bitcoin ne aaj ${btcChange24h >= 0 ? "achha perform kiya" : "thoda dip liya"}, lekin long term mein yeh sab normal hai. Aapke Rs.${portfolioValue.toLocaleString("en-IN")} ke portfolio ko dekh ke khush ho jao. You're building generational wealth, one satoshi at a time.`,
+      ];
+      greeting = greetings[Math.floor(Math.random() * greetings.length)];
+    }
+
+    if (!greeting) greeting = "Namaste! Aaj ka din achha hai. Keep stacking sats!";
 
     // Pick a random community poll
     const pollIndex = Math.floor(Math.random() * COMMUNITY_POLL_QUESTIONS.length);

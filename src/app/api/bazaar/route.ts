@@ -40,6 +40,18 @@ export async function POST(req: Request) {
       portfolio: Record<string, unknown>;
     };
 
+    const apiKey = process.env.ANTHROPIC_API_KEY;
+
+    if (!apiKey) {
+      return NextResponse.json({
+        insights: [
+          { id: "d1", type: "trend", text: "Bitcoin ka momentum strong hai. Weekly close above key support levels. Achha signal hai.", confidence: 0.78, context: "ticker" },
+          { id: "d2", type: "milestone", text: "Aapka portfolio Rs.3L cross kar gaya! Consistent SBP ka kamaal.", confidence: 0.88, context: "portfolio" },
+          { id: "d3", type: "dip_recovery", text: "Last week ke dip se full recovery. Jo log panic mein nikle, unhe regret ho raha hoga.", confidence: 0.72, context: "holdings" },
+        ],
+      });
+    }
+
     const message = await client.messages.create({
       model: "claude-haiku-4-5-20251001",
       max_tokens: 400,
