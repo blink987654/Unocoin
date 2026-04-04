@@ -32,96 +32,28 @@ export function UnocoinLogo({
             <stop offset="0%" stopColor="#FFD54F" />
             <stop offset="100%" stopColor="#F7931A" />
           </linearGradient>
-          <radialGradient id={`${id}-glow`} cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#F7931A" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="#F7931A" stopOpacity="0" />
-          </radialGradient>
-          <filter id={`${id}-blur`} x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="2.5" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
         </defs>
 
         {/* Outer circle */}
         <circle cx="50" cy="50" r="46" fill="#0D0D0D" stroke={`url(#${id}-g)`} strokeWidth="2" />
-        {/* Inner ambient glow */}
-        <circle cx="50" cy="50" r="44" fill={`url(#${id}-glow)`} />
 
-        {/* Lotus petals — 5 petals radiating from center, stylized and geometric */}
-        {/* Center petal (top) */}
-        <path
-          d="M50 16 C46 28, 42 36, 50 44 C58 36, 54 28, 50 16Z"
-          fill={`url(#${id}-g2)`}
-          opacity="0.95"
-          filter={`url(#${id}-blur)`}
-        />
-        {/* Top-right petal */}
-        <path
-          d="M72 24 C64 32, 60 38, 54 44 C62 42, 70 40, 72 24Z"
-          fill={`url(#${id}-g)`}
-          opacity="0.8"
-        />
-        {/* Top-left petal */}
-        <path
-          d="M28 24 C36 32, 40 38, 46 44 C38 42, 30 40, 28 24Z"
-          fill={`url(#${id}-g)`}
-          opacity="0.8"
-        />
-        {/* Bottom-right petal */}
-        <path
-          d="M76 52 C66 48, 60 46, 54 48 C60 54, 68 58, 76 52Z"
-          fill={`url(#${id}-g)`}
-          opacity="0.65"
-        />
-        {/* Bottom-left petal */}
-        <path
-          d="M24 52 C34 48, 40 46, 46 48 C40 54, 32 58, 24 52Z"
-          fill={`url(#${id}-g)`}
-          opacity="0.65"
-        />
+        {/* Lotus petals — 5 petals, clean and crisp */}
+        <path d="M50 16 C46 28, 42 36, 50 44 C58 36, 54 28, 50 16Z" fill={`url(#${id}-g2)`} opacity="0.95" />
+        <path d="M72 24 C64 32, 60 38, 54 44 C62 42, 70 40, 72 24Z" fill={`url(#${id}-g)`} opacity="0.8" />
+        <path d="M28 24 C36 32, 40 38, 46 44 C38 42, 30 40, 28 24Z" fill={`url(#${id}-g)`} opacity="0.8" />
+        <path d="M76 52 C66 48, 60 46, 54 48 C60 54, 68 58, 76 52Z" fill={`url(#${id}-g)`} opacity="0.65" />
+        <path d="M24 52 C34 48, 40 46, 46 48 C40 54, 32 58, 24 52Z" fill={`url(#${id}-g)`} opacity="0.65" />
 
-        {/* Center Bitcoin node — glowing circle */}
+        {/* Center Bitcoin node */}
         <circle cx="50" cy="48" r="10" fill="#0D0D0D" stroke={`url(#${id}-g2)`} strokeWidth="2" />
-        <circle cx="50" cy="48" r="6" fill={`url(#${id}-g2)`} opacity="0.9">
-          {animated && (
-            <animate attributeName="r" values="5.5;6.5;5.5" dur="3s" repeatCount="indefinite" />
-          )}
-        </circle>
-        {/* Tiny ₿ inside the node */}
-        <text
-          x="50"
-          y="52"
-          textAnchor="middle"
-          fill="#0D0D0D"
-          fontSize="11"
-          fontWeight="bold"
-          fontFamily="system-ui, sans-serif"
-        >
-          ₿
-        </text>
+        <circle cx="50" cy="48" r="6" fill={`url(#${id}-g2)`} />
+        <text x="50" y="52" textAnchor="middle" fill="#0D0D0D" fontSize="11" fontWeight="bold" fontFamily="system-ui, sans-serif">₿</text>
 
-        {/* Base / stem — subtle curved line underneath */}
-        <path
-          d="M38 60 Q44 68, 50 70 Q56 68, 62 60"
-          fill="none"
-          stroke={`url(#${id}-g)`}
-          strokeWidth="2"
-          strokeLinecap="round"
-          opacity="0.5"
-        />
-        <path
-          d="M42 66 Q46 72, 50 74 Q54 72, 58 66"
-          fill="none"
-          stroke={`url(#${id}-g)`}
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          opacity="0.3"
-        />
+        {/* Stem */}
+        <path d="M38 60 Q44 68, 50 70 Q56 68, 62 60" fill="none" stroke={`url(#${id}-g)`} strokeWidth="2" strokeLinecap="round" opacity="0.5" />
+        <path d="M42 66 Q46 72, 50 74 Q54 72, 58 66" fill="none" stroke={`url(#${id}-g)`} strokeWidth="1.5" strokeLinecap="round" opacity="0.3" />
 
-        {/* Subtle India tricolor accent — three tiny dots at bottom */}
+        {/* India tricolor dots */}
         <circle cx="44" cy="80" r="1.5" fill="#FF9933" opacity="0.7" />
         <circle cx="50" cy="80" r="1.5" fill="#FFFFFF" opacity="0.5" />
         <circle cx="56" cy="80" r="1.5" fill="#138808" opacity="0.7" />
@@ -198,7 +130,6 @@ export function IndiaBitcoinBrand({
 }) {
   return (
     <a href="/" className={`flex items-center gap-2.5 group ${className}`}>
-      <UnocoinLogo size={logoSize} animated={animated} />
       <IndiaBitcoinWordmark size={wordmarkSize} />
     </a>
   );
