@@ -89,7 +89,6 @@ export function IndiaBitcoinWordmark({
       <span className={`${size} font-bold tracking-tight`}>
         <span className="text-text-primary">India</span>
         <span className="text-bitcoin">Bitcoin</span>
-        <span className="text-text-tertiary text-[0.6em]">.com</span>
       </span>
       <span className="text-[9px] text-text-tertiary tracking-wider uppercase">
         Powered by Unocoin
