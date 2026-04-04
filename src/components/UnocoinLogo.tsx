@@ -13,16 +13,9 @@ export function UnocoinLogo({
 
   return (
     <div
-      className={`relative group ${className}`}
+      className={`relative ${className}`}
       style={{ width: size, height: size }}
     >
-      {animated && (
-        <div
-          className="absolute inset-0 bg-bitcoin/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-          style={{ margin: -4 }}
-        />
-      )}
-
       <svg
         viewBox="0 0 100 100"
         fill="none"
