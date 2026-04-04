@@ -9,17 +9,16 @@ export function UnocoinLogo({
   className?: string;
   animated?: boolean;
 }) {
-  const id = `logo-${size}`;
+  const id = `logo-${size}-${Math.random().toString(36).slice(2, 6)}`;
 
   return (
     <div
       className={`relative group ${className}`}
       style={{ width: size, height: size }}
     >
-      {/* Outer glow on hover */}
       {animated && (
         <div
-          className="absolute inset-0 bg-bitcoin/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          className="absolute inset-0 bg-bitcoin/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"
           style={{ margin: -4 }}
         />
       )}
@@ -31,28 +30,21 @@ export function UnocoinLogo({
         className={`w-full h-full ${animated ? "group-hover:scale-105 transition-transform duration-500" : ""}`}
       >
         <defs>
-          {/* Main gradient — bitcoin orange to gold with shimmer */}
-          <linearGradient id={`${id}-grad`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#F7931A">
-              <animate attributeName="stopColor" values="#F7931A;#FFAB40;#FFD54F;#FFAB40;#F7931A" dur="5s" repeatCount="indefinite" />
-            </stop>
-            <stop offset="50%" stopColor="#FFAB40">
-              <animate attributeName="stopColor" values="#FFAB40;#FFD54F;#F7931A;#FFD54F;#FFAB40" dur="5s" repeatCount="indefinite" />
-            </stop>
-            <stop offset="100%" stopColor="#F7931A">
-              <animate attributeName="stopColor" values="#F7931A;#F7931A;#FFAB40;#FFD54F;#F7931A" dur="5s" repeatCount="indefinite" />
-            </stop>
+          <linearGradient id={`${id}-g`} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#F7931A" />
+            <stop offset="50%" stopColor="#FFAB40" />
+            <stop offset="100%" stopColor="#F7931A" />
           </linearGradient>
-
-          {/* Inner shadow gradient */}
-          <linearGradient id={`${id}-inner`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#F7931A" stopOpacity="0.2" />
-            <stop offset="100%" stopColor="#FF6F00" stopOpacity="0.05" />
+          <linearGradient id={`${id}-g2`} x1="50%" y1="0%" x2="50%" y2="100%">
+            <stop offset="0%" stopColor="#FFD54F" />
+            <stop offset="100%" stopColor="#F7931A" />
           </linearGradient>
-
-          {/* Glow filter */}
-          <filter id={`${id}-glow`} x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="2" result="blur" />
+          <radialGradient id={`${id}-glow`} cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#F7931A" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#F7931A" stopOpacity="0" />
+          </radialGradient>
+          <filter id={`${id}-blur`} x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="2.5" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
@@ -60,66 +52,86 @@ export function UnocoinLogo({
           </filter>
         </defs>
 
-        {/* Background — rounded square with subtle inner gradient */}
-        <rect
-          x="4"
-          y="4"
-          width="92"
-          height="92"
-          rx="22"
-          fill="#111111"
-          stroke={`url(#${id}-grad)`}
-          strokeWidth="2.5"
-        />
+        {/* Outer circle */}
+        <circle cx="50" cy="50" r="46" fill="#0D0D0D" stroke={`url(#${id}-g)`} strokeWidth="2" />
+        {/* Inner ambient glow */}
+        <circle cx="50" cy="50" r="44" fill={`url(#${id}-glow)`} />
 
-        {/* Inner fill for depth */}
-        <rect
-          x="6"
-          y="6"
-          width="88"
-          height="88"
-          rx="20"
-          fill={`url(#${id}-inner)`}
-        />
-
-        {/* Bitcoin ₿ symbol */}
-        {/* Vertical strokes extending above and below */}
-        <line x1="45" y1="18" x2="45" y2="82" stroke={`url(#${id}-grad)`} strokeWidth="5" strokeLinecap="round" filter={`url(#${id}-glow)`} />
-        <line x1="55" y1="18" x2="55" y2="82" stroke={`url(#${id}-grad)`} strokeWidth="5" strokeLinecap="round" filter={`url(#${id}-glow)`} />
-
-        {/* Top bumps of the ₿ */}
+        {/* Lotus petals — 5 petals radiating from center, stylized and geometric */}
+        {/* Center petal (top) */}
         <path
-          d="M36 28 H54 C64 28 66 36 58 40 H36"
-          fill="none"
-          stroke={`url(#${id}-grad)`}
-          strokeWidth="5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          filter={`url(#${id}-glow)`}
+          d="M50 16 C46 28, 42 36, 50 44 C58 36, 54 28, 50 16Z"
+          fill={`url(#${id}-g2)`}
+          opacity="0.95"
+          filter={`url(#${id}-blur)`}
         />
-
-        {/* Horizontal middle bar */}
-        <line x1="36" y1="50" x2="58" y2="50" stroke={`url(#${id}-grad)`} strokeWidth="5" strokeLinecap="round" />
-
-        {/* Bottom bumps of the ₿ */}
+        {/* Top-right petal */}
         <path
-          d="M36 50 H56 C68 50 68 62 58 66 H36"
-          fill="none"
-          stroke={`url(#${id}-grad)`}
-          strokeWidth="5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          filter={`url(#${id}-glow)`}
+          d="M72 24 C64 32, 60 38, 54 44 C62 42, 70 40, 72 24Z"
+          fill={`url(#${id}-g)`}
+          opacity="0.8"
+        />
+        {/* Top-left petal */}
+        <path
+          d="M28 24 C36 32, 40 38, 46 44 C38 42, 30 40, 28 24Z"
+          fill={`url(#${id}-g)`}
+          opacity="0.8"
+        />
+        {/* Bottom-right petal */}
+        <path
+          d="M76 52 C66 48, 60 46, 54 48 C60 54, 68 58, 76 52Z"
+          fill={`url(#${id}-g)`}
+          opacity="0.65"
+        />
+        {/* Bottom-left petal */}
+        <path
+          d="M24 52 C34 48, 40 46, 46 48 C40 54, 32 58, 24 52Z"
+          fill={`url(#${id}-g)`}
+          opacity="0.65"
         />
 
-        {/* Subtle corner accent */}
-        <circle
-          cx="80"
-          cy="20"
-          r="3"
-          fill="#F7931A"
+        {/* Center Bitcoin node — glowing circle */}
+        <circle cx="50" cy="48" r="10" fill="#0D0D0D" stroke={`url(#${id}-g2)`} strokeWidth="2" />
+        <circle cx="50" cy="48" r="6" fill={`url(#${id}-g2)`} opacity="0.9">
+          {animated && (
+            <animate attributeName="r" values="5.5;6.5;5.5" dur="3s" repeatCount="indefinite" />
+          )}
+        </circle>
+        {/* Tiny ₿ inside the node */}
+        <text
+          x="50"
+          y="52"
+          textAnchor="middle"
+          fill="#0D0D0D"
+          fontSize="11"
+          fontWeight="bold"
+          fontFamily="system-ui, sans-serif"
+        >
+          ₿
+        </text>
+
+        {/* Base / stem — subtle curved line underneath */}
+        <path
+          d="M38 60 Q44 68, 50 70 Q56 68, 62 60"
+          fill="none"
+          stroke={`url(#${id}-g)`}
+          strokeWidth="2"
+          strokeLinecap="round"
+          opacity="0.5"
+        />
+        <path
+          d="M42 66 Q46 72, 50 74 Q54 72, 58 66"
+          fill="none"
+          stroke={`url(#${id}-g)`}
+          strokeWidth="1.5"
+          strokeLinecap="round"
           opacity="0.3"
         />
+
+        {/* Subtle India tricolor accent — three tiny dots at bottom */}
+        <circle cx="44" cy="80" r="1.5" fill="#FF9933" opacity="0.7" />
+        <circle cx="50" cy="80" r="1.5" fill="#FFFFFF" opacity="0.5" />
+        <circle cx="56" cy="80" r="1.5" fill="#138808" opacity="0.7" />
       </svg>
     </div>
   );
