@@ -39,12 +39,12 @@ const appFeatures = [
     title: "Bitcoin SBP",
     subtitle: "Systematic Buying Plan",
     description:
-      "India's first Bitcoin SIP. Auto-invest in BTC, ETH, or any of 120+ assets daily, weekly, or monthly. Zero transaction fees. Start from just ₹10.",
+      "India's first Bitcoin SIP. Auto-invest in Bitcoin daily, weekly, or monthly. Zero transaction fees. Start from just ₹10.",
     stat: "₹0 fees",
     details: [
       "Set once, runs forever — no manual intervention",
       "Choose from daily, weekly, or monthly frequency",
-      "Supports BTC, ETH, USDT, and 120+ digital assets",
+      "Supports BTC and USDT",
       "Pause or cancel anytime with zero penalties",
     ],
   },
@@ -98,7 +98,7 @@ const appScreens = [
   {
     title: "Instant Trade",
     description:
-      "Buy or sell any of 120+ digital assets in under 3 taps. Live order book, limit orders, and instant market execution via UPI, IMPS, or NEFT.",
+      "Buy or sell Bitcoin and USDT in under 3 taps. Live order book, limit orders, and instant market execution via UPI, IMPS, or NEFT.",
   },
   {
     title: "SBP Manager",
@@ -115,7 +115,7 @@ const appScreens = [
 const stats = [
   { value: "2.26M+", label: "Users" },
   { value: "₹3,000 Cr+", label: "Volume Processed" },
-  { value: "120+", label: "Digital Assets" },
+  { value: "2", label: "Assets: BTC & USDT" },
   { value: "13 Years", label: "Track Record" },
   { value: "0", label: "Security Breaches" },
   { value: "99.99%", label: "Uptime" },
@@ -143,7 +143,7 @@ export default function AppPage() {
             transition={{ duration: 0.8, ease: easing }}
           >
             <p className="text-sm uppercase tracking-widest text-bitcoin mb-6">
-              The Unocoin App
+              The IndiaBitcoin App
             </p>
             <h1
               className="font-bold tracking-tight mb-6"
@@ -167,8 +167,8 @@ export default function AppPage() {
             transition={{ duration: 0.6, delay: 0.15, ease: easing }}
           >
             <p className="text-lg text-text-secondary max-w-2xl leading-relaxed mb-10">
-              India&apos;s most trusted Bitcoin platform. Trade 120+ digital
-              assets, auto-invest with SBP, earn yield on stablecoins, and send
+              India&apos;s most trusted Bitcoin platform. Trade Bitcoin and USDT,
+              auto-invest with SBP, earn yield on stablecoins, and send
               Bitcoin at lightning speed — all from one app.
             </p>
 
@@ -330,7 +330,7 @@ export default function AppPage() {
               {
                 step: "01",
                 title: "Choose your asset",
-                desc: "Pick from Bitcoin, Ethereum, USDT, or any of 120+ supported digital assets.",
+                desc: "Pick from Bitcoin or USDT.",
               },
               {
                 step: "02",
@@ -375,7 +375,7 @@ export default function AppPage() {
               13 years. Zero compromises.
             </h2>
             <p className="text-text-secondary max-w-2xl leading-relaxed mb-16">
-              Unocoin is India&apos;s oldest Bitcoin platform. FIU-IND
+              IndiaBitcoin is India&apos;s oldest Bitcoin platform. FIU-IND
               registered. PMLA compliant. Trusted by sovereign entities, family
               offices, and 2.26 million individuals. We fought the RBI in the
               Supreme Court — and won.

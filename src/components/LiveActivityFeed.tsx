@@ -28,11 +28,8 @@ interface Asset {
 }
 
 const ASSETS: Asset[] = [
-  { symbol: "BTC", weight: 60 },
-  { symbol: "ETH", weight: 20 },
-  { symbol: "SOL", weight: 10 },
-  { symbol: "XRP", weight: 5 },
-  { symbol: "USDT", weight: 5 },
+  { symbol: "BTC", weight: 90 },
+  { symbol: "USDT", weight: 10 },
 ];
 
 const AMOUNTS = [500, 1_000, 2_000, 5_000, 10_000, 25_000, 50_000] as const;

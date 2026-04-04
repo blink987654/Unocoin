@@ -2,31 +2,31 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Unocoin — Bringing Bitcoin to Billions",
+  title: "IndiaBitcoin.com — India's Bitcoin Platform",
   description:
-    "India's pioneer Bitcoin platform. 13 years of trust, innovation, and building the future of money. Buy, sell, and hold Bitcoin with India's most trusted exchange.",
+    "India's premier Bitcoin platform. 13 years of trust, innovation, and building the future of money. Buy, sell, and hold Bitcoin with India's most trusted exchange. Powered by Unocoin.",
   keywords: [
     "bitcoin",
     "india",
-    "cryptocurrency",
-    "unocoin",
+    "indiabitcoin",
     "buy bitcoin india",
-    "crypto exchange",
     "bitcoin exchange india",
+    "bitcoin india",
+    "unocoin",
   ],
   openGraph: {
-    title: "Unocoin — Bringing Bitcoin to Billions",
+    title: "IndiaBitcoin.com — India's Bitcoin Platform",
     description:
-      "India's pioneer Bitcoin platform. 13 years of trust, innovation, and building the future of money.",
+      "India's premier Bitcoin platform. 13 years of trust. Powered by Unocoin.",
     type: "website",
     locale: "en_IN",
-    siteName: "Unocoin",
+    siteName: "IndiaBitcoin.com",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Unocoin — Bringing Bitcoin to Billions",
+    title: "IndiaBitcoin.com — India's Bitcoin Platform",
     description:
-      "India's pioneer Bitcoin platform. 13 years of trust, innovation, and building the future of money.",
+      "India's premier Bitcoin platform. 13 years of trust. Powered by Unocoin.",
   },
 };
 

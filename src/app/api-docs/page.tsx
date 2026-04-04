@@ -106,7 +106,7 @@ const categories: Category[] = [
     icon: "📊",
     endpoints: [
       { method: "GET", path: "/api/v2/ticker", desc: "Get live prices for all trading pairs", response: '[\n  {\n    "pair": "btcinr",\n    "last_price": 7015000,\n    "bid": 7014500,\n    "ask": 7015500,\n    "volume_24h": 142.5,\n    "change_24h": 2.4,\n    "high_24h": 7050000,\n    "low_24h": 6920000\n  }\n]' },
-      { method: "GET", path: "/api/v2/ticker/{pair}", desc: "Get price for a specific trading pair", params: ["pair — Trading pair (e.g., btcinr, ethinr, usdtinr)"], response: '{\n  "pair": "btcinr",\n  "last_price": 7015000,\n  "bid": 7014500,\n  "ask": 7015500,\n  "volume_24h": 142.5\n}' },
+      { method: "GET", path: "/api/v2/ticker/{pair}", desc: "Get price for a specific trading pair", params: ["pair — Trading pair (e.g., btcinr, usdtinr)"], response: '{\n  "pair": "btcinr",\n  "last_price": 7015000,\n  "bid": 7014500,\n  "ask": 7015500,\n  "volume_24h": 142.5\n}' },
       { method: "GET", path: "/api/v2/orderbook/{pair}", desc: "Get order book with bids and asks", params: ["pair — Trading pair", "limit — Number of levels (default 20)"], response: '{\n  "bids": [[7014500, 0.5], [7014000, 1.2]],\n  "asks": [[7015500, 0.3], [7016000, 0.8]]\n}' },
     ],
   },
@@ -123,7 +123,7 @@ const categories: Category[] = [
     name: "Account",
     icon: "👤",
     endpoints: [
-      { method: "GET", path: "/api/v2/balance", desc: "Get wallet balances for all assets", response: '[\n  { "asset": "BTC", "available": 0.0425, "locked": 0.001 },\n  { "asset": "ETH", "available": 0.85, "locked": 0 },\n  { "asset": "INR", "available": 25000, "locked": 7015 }\n]' },
+      { method: "GET", path: "/api/v2/balance", desc: "Get wallet balances for all assets", response: '[\n  { "asset": "BTC", "available": 0.0425, "locked": 0.001 },\n  { "asset": "USDT", "available": 500.00, "locked": 0 },\n  { "asset": "INR", "available": 25000, "locked": 7015 }\n]' },
       { method: "GET", path: "/api/v2/profile", desc: "Get account profile and KYC status", response: '{\n  "id": "usr_x1y2z3",\n  "email": "user@example.com",\n  "kyc_status": "verified",\n  "tier": "standard"\n}' },
       { method: "GET", path: "/api/v2/transactions", desc: "Transaction history with filters", params: ["type — trade, deposit, withdrawal", "from — Start date (ISO 8601)", "to — End date", "limit — Results per page"], response: '[\n  {\n    "id": "txn_abc",\n    "type": "trade",\n    "asset": "BTC",\n    "amount": 0.001,\n    "timestamp": "2026-03-30T10:15:00Z"\n  }\n]' },
     ],
@@ -132,7 +132,7 @@ const categories: Category[] = [
     name: "SBP (Systematic Buying Plan)",
     icon: "📈",
     endpoints: [
-      { method: "POST", path: "/api/v2/sbp", desc: "Create a new Systematic Buying Plan", params: ["asset — BTC or ETH", "amount — Amount in INR per interval", "frequency — daily, weekly, or monthly", "day — Day of week (for weekly) or date (for monthly)"], response: '{\n  "id": "sbp_m1n2o3",\n  "asset": "BTC",\n  "amount": 2000,\n  "frequency": "weekly",\n  "day": "monday",\n  "status": "active",\n  "fee": "0%"\n}' },
+      { method: "POST", path: "/api/v2/sbp", desc: "Create a new Systematic Buying Plan", params: ["asset — BTC", "amount — Amount in INR per interval", "frequency — daily, weekly, or monthly", "day — Day of week (for weekly) or date (for monthly)"], response: '{\n  "id": "sbp_m1n2o3",\n  "asset": "BTC",\n  "amount": 2000,\n  "frequency": "weekly",\n  "day": "monday",\n  "status": "active",\n  "fee": "0%"\n}' },
       { method: "GET", path: "/api/v2/sbp", desc: "List all active SBPs", response: '[\n  {\n    "id": "sbp_m1n2o3",\n    "asset": "BTC",\n    "amount": 2000,\n    "frequency": "weekly",\n    "total_invested": 208000,\n    "total_bought": 0.035\n  }\n]' },
       { method: "PUT", path: "/api/v2/sbp/{id}", desc: "Update an existing SBP", params: ["id — SBP ID", "amount — New amount (optional)", "frequency — New frequency (optional)", "status — active or paused"], response: '{\n  "id": "sbp_m1n2o3",\n  "amount": 3000,\n  "status": "active"\n}' },
       { method: "DELETE", path: "/api/v2/sbp/{id}", desc: "Cancel an SBP", params: ["id — SBP ID"], response: '{\n  "id": "sbp_m1n2o3",\n  "status": "cancelled"\n}' },
@@ -151,7 +151,7 @@ const categories: Category[] = [
     name: "Withdrawals & Deposits",
     icon: "🏦",
     endpoints: [
-      { method: "POST", path: "/api/v2/withdraw/asset", desc: "Withdraw digital assets to an external wallet", params: ["asset — Asset symbol (BTC, ETH, USDT, etc.)", "amount — Amount to withdraw", "address — Destination wallet address", "network — Network (optional, e.g., lightning, erc20)"], response: '{\n  "id": "wd_p1q2r3",\n  "asset": "BTC",\n  "amount": 0.01,\n  "status": "processing",\n  "fee": 0.0005\n}' },
+      { method: "POST", path: "/api/v2/withdraw/asset", desc: "Withdraw digital assets to an external wallet", params: ["asset — Asset symbol (BTC, USDT)", "amount — Amount to withdraw", "address — Destination wallet address", "network — Network (optional, e.g., lightning)"], response: '{\n  "id": "wd_p1q2r3",\n  "asset": "BTC",\n  "amount": 0.01,\n  "status": "processing",\n  "fee": 0.0005\n}' },
       { method: "POST", path: "/api/v2/withdraw/inr", desc: "Withdraw INR to your bank account", params: ["amount — Amount in INR", "method — neft, imps, or upi"], response: '{\n  "id": "wd_s1t2u3",\n  "amount": 25000,\n  "method": "imps",\n  "status": "processing",\n  "fee": 0\n}' },
       { method: "GET", path: "/api/v2/deposits", desc: "List all deposits", params: ["asset — Filter by asset (optional)", "from — Start date"], response: '[\n  {\n    "id": "dep_v1w2x3",\n    "asset": "INR",\n    "amount": 50000,\n    "method": "upi",\n    "status": "completed"\n  }\n]' },
     ],

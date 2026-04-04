@@ -11,15 +11,7 @@ interface CoinPrice {
 
 const fallbackData: CoinPrice[] = [
   { symbol: "BTC", name: "Bitcoin", price: 84231, change24h: 2.4 },
-  { symbol: "ETH", name: "Ethereum", price: 3245, change24h: 1.8 },
   { symbol: "USDT", name: "Tether", price: 1.0, change24h: 0.01 },
-  { symbol: "SOL", name: "Solana", price: 178, change24h: -1.2 },
-  { symbol: "XRP", name: "Ripple", price: 2.15, change24h: 3.1 },
-  { symbol: "BNB", name: "BNB", price: 625, change24h: 0.8 },
-  { symbol: "ADA", name: "Cardano", price: 0.72, change24h: -0.5 },
-  { symbol: "DOGE", name: "Dogecoin", price: 0.165, change24h: 4.2 },
-  { symbol: "MATIC", name: "Polygon", price: 0.89, change24h: 1.1 },
-  { symbol: "DOT", name: "Polkadot", price: 7.85, change24h: -0.3 },
 ];
 
 /** Height of the marquee bar in pixels, export so pages can add matching padding. */

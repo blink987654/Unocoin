@@ -32,7 +32,7 @@ const timeline = [
   {
     year: "2024",
     title: "Draper Doubles Down",
-    desc: "Tim Draper reinvests in Unocoin. Total funding reaches $6.75M. Platform crosses 2 million users and 120+ listed digital assets.",
+    desc: "Tim Draper reinvests in Unocoin. Total funding reaches $6.75M. Platform crosses 2 million users with a Bitcoin-first focus.",
   },
   {
     year: "2025",
@@ -50,7 +50,7 @@ const stats = [
   { value: "2013", label: "India\u2019s First Bitcoin Exchange", icon: "\uD83D\uDD50" },
   { value: "2.26M+", label: "Verified Users", icon: "\uD83D\uDC65" },
   { value: "\u20B93K Cr+", label: "Transactions Processed", icon: "\uD83D\uDCCA" },
-  { value: "120+", label: "Digital Assets Listed", icon: "\uD83E\uDE99" },
+  { value: "Since 2013", label: "Years of Trust", icon: "\uD83E\uDE99" },
   { value: "95%", label: "Assets in Cold Storage", icon: "\uD83D\uDD12" },
   { value: "$6.75M", label: "Backed by Draper & Silbert", icon: "\uD83D\uDCB0" },
   { value: "99.9%", label: "Platform Uptime", icon: "\u2705" },
@@ -142,7 +142,7 @@ export default function TrustSection() {
             When banks shut us down, we took it to the Supreme Court — and won.
             When others pivoted to meme coins, we stayed true to Bitcoin.
             Today, from sovereign institutions to family offices to everyday investors,
-            India&apos;s most discerning choose Unocoin. This isn&apos;t just a company. It&apos;s a movement.
+            India&apos;s most discerning choose IndiaBitcoin. This isn&apos;t just a company. It&apos;s a movement.
           </motion.p>
         </div>
 

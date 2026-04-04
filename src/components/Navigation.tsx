@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { UnocoinBrand } from "./UnocoinLogo";
+import { IndiaBitcoinBrand } from "./UnocoinLogo";
 import AchievementPanel from "./AchievementPanel";
 import { useAchievements } from "@/lib/hooks";
 
@@ -42,7 +42,7 @@ export default function Navigation() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
-            <UnocoinBrand logoSize={36} />
+            <IndiaBitcoinBrand logoSize={36} />
 
             {/* Desktop Links */}
             <div className="hidden md:flex items-center gap-8">

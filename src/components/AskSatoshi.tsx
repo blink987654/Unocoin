@@ -13,7 +13,7 @@ interface Message {
 const SUGGESTIONS = [
   "What is Bitcoin?",
   "Is it too late to buy?",
-  "What makes Unocoin special?",
+  "What makes IndiaBitcoin special?",
   "How does the SBP work?",
   "Tell me about the Supreme Court case",
   "What would ₹500/month in BTC be worth?",
@@ -26,13 +26,13 @@ const DAILY_INSIGHTS = [
   { icon: "🇮🇳", text: "India has 100M+ crypto holders — more than any other country except the US." },
   { icon: "⚡", text: "Lightning Network transactions settle in under 1 second with near-zero fees." },
   { icon: "🏦", text: "Your weekly ₹2,000 SBP could be worth ₹28L+ in 10 years at historical growth rates." },
-  { icon: "🔒", text: "Unocoin keeps 95% of all crypto in cold storage, protected by multi-signature security." },
+  { icon: "🔒", text: "IndiaBitcoin keeps 95% of all crypto in cold storage, protected by multi-signature security." },
   { icon: "📈", text: "Bitcoin's average annual return over the past decade exceeds 100%." },
   { icon: "🌍", text: "El Salvador made Bitcoin legal tender in 2021. Several countries are now exploring the same." },
   { icon: "💎", text: "60% of all Bitcoin hasn't moved in over a year — true diamond hands." },
   { icon: "🔥", text: "Bitcoin survived 400+ 'obituaries' from media declaring it dead. It keeps coming back." },
   { icon: "🏆", text: "Bitcoin is the best-performing asset of the last decade, outpacing stocks, gold, and real estate." },
-  { icon: "🤖", text: "Unocoin's AI Autopilot can build a personalized crypto strategy for you in under 60 seconds." },
+  { icon: "🤖", text: "IndiaBitcoin's AI Autopilot can build a personalized Bitcoin strategy for you in under 60 seconds." },
   { icon: "📅", text: "SBP investors who stayed consistent for 3+ years have historically never lost money." },
   { icon: "🌙", text: "Bitcoin's halving events reduce new supply by 50% roughly every 4 years, increasing scarcity." },
 ];
@@ -303,7 +303,7 @@ export default function AskSatoshi() {
                     Hey, I&apos;m Satoshi 👋
                   </h4>
                   <p className="text-sm text-text-secondary mb-6 px-4 leading-relaxed">
-                    Your AI guide to Bitcoin and Unocoin. Ask me anything — from
+                    Your AI guide to Bitcoin and IndiaBitcoin. Ask me anything — from
                     &ldquo;what is Bitcoin?&rdquo; to &ldquo;what would my SBP be
                     worth in 10 years?&rdquo;
                   </p>
@@ -379,7 +379,7 @@ export default function AskSatoshi() {
                   className="flex flex-wrap gap-1.5 pt-1"
                 >
                   {(messages.length <= 2
-                    ? ["How do I get started?", "Tell me more about Unocoin"]
+                    ? ["How do I get started?", "Tell me more about IndiaBitcoin"]
                     : ["What about the SBP?", "Is my money safe?"]
                   ).map((s) => (
                     <button

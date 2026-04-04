@@ -687,7 +687,7 @@ function ActivationScreen({ strategy }: { strategy: Strategy }) {
                 href="/"
                 className="btn-primary !py-3 !px-8 rounded-xl text-sm"
               >
-                Back to Unocoin
+                Back to IndiaBitcoin
               </Link>
               <button className="btn-secondary !py-3 !px-8 rounded-xl text-sm">
                 View My Portfolio
@@ -695,8 +695,8 @@ function ActivationScreen({ strategy }: { strategy: Strategy }) {
             </div>
 
             <p className="text-[11px] text-text-tertiary mt-8">
-              This is a demo. In production, Autopilot connects to your Unocoin account
-              to set up real SBPs. Your engineering team will connect the Unocoin API endpoints.
+              This is a demo. In production, Autopilot connects to your IndiaBitcoin account
+              to set up real SBPs. Your engineering team will connect the IndiaBitcoin API endpoints.
             </p>
           </motion.div>
         )}
@@ -739,8 +739,7 @@ export default function AutopilotPage() {
         risk_profile: "moderate",
         summary: "A balanced approach designed for consistent, long-term Bitcoin wealth building.",
         allocations: [
-          { product: "BTC SBP", amount_inr: 3000, frequency: "weekly", percentage: 60, rationale: "Core Bitcoin accumulation through disciplined weekly buying" },
-          { product: "ETH SBP", amount_inr: 1000, frequency: "weekly", percentage: 20, rationale: "Diversified exposure to Ethereum's ecosystem growth" },
+          { product: "BTC SBP", amount_inr: 4000, frequency: "weekly", percentage: 80, rationale: "Core Bitcoin accumulation through disciplined weekly buying" },
           { product: "USDT Earnings", amount_inr: 1000, frequency: "monthly", percentage: 20, rationale: "Stable 7% APY as your portfolio's safety net" },
         ],
         monthly_total_inr: 5000,
@@ -749,7 +748,7 @@ export default function AutopilotPage() {
           moderate: { "1y": 68000, "3y": 310000, "5y": 780000, "10y": 4200000 },
           aggressive: { "1y": 78000, "3y": 520000, "5y": 1800000, "10y": 15600000 },
         },
-        insight: "Based on your profile, a balanced weekly SBP is your strongest move. With ₹5,000/month and a long time horizon, the moderate scenario projects your portfolio growing to ₹42 Lakhs in 10 years. The key is consistency — Bitcoin rewards those who show up every week, not those who time the market.",
+        insight: "Based on your profile, a disciplined weekly BTC SBP is your strongest move. With ₹5,000/month and a long time horizon, the moderate scenario projects your portfolio growing to ₹42 Lakhs in 10 years. The key is consistency — Bitcoin rewards those who show up every week, not those who time the market.",
       });
       setPhase("strategy");
     }

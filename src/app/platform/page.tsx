@@ -56,9 +56,9 @@ const capabilities = [
     description:
       "Answer six questions about your goals, income, and risk tolerance. Our AI analyzes your profile and designs a personalized Bitcoin investment strategy — then executes it automatically via SBP.",
     details: [
-      "Personalized asset allocation across BTC, ETH, and stablecoins",
+      "Personalized asset allocation across Bitcoin and stablecoins",
       "Projection models across conservative, moderate, and aggressive scenarios",
-      "Auto-executing via Unocoin's SBP infrastructure",
+      "Auto-executing via IndiaBitcoin's SBP infrastructure",
       "Adjust or cancel anytime with zero lock-in",
     ],
   },
@@ -66,7 +66,7 @@ const capabilities = [
     title: "Ask Satoshi",
     subtitle: "Conversational AI assistant",
     description:
-      "Get instant answers about Bitcoin, market conditions, Unocoin products, and investment strategies. Powered by Claude, built specifically for the Indian market context.",
+      "Get instant answers about Bitcoin, market conditions, IndiaBitcoin products, and investment strategies. Powered by Claude, built specifically for the Indian market context.",
     details: [
       "Real-time market data and price analysis",
       "Product explanations tailored to your portfolio",
@@ -168,7 +168,7 @@ export default function PlatformPage() {
         </AnimatedBlock>
         <AnimatedBlock delay={0.15}>
           <p className="text-lg text-text-secondary max-w-2xl leading-relaxed mb-10">
-            Unocoin combines 13 years of Bitcoin infrastructure with AI to make
+            IndiaBitcoin combines 13 years of Bitcoin infrastructure with AI to make
             investing effortless. No dashboards to decipher. No charts to study.
             Tell us your goals — we handle the rest.
           </p>
@@ -344,7 +344,7 @@ export default function PlatformPage() {
             <span className="gradient-text-bitcoin">manage your wealth?</span>
           </h2>
           <p className="text-text-secondary max-w-lg mx-auto mb-10">
-            Join 2.26 million Indians who trust Unocoin. Start with as little as
+            Join 2.26 million Indians who trust IndiaBitcoin. Start with as little as
             ₹10. No lock-in. Cancel anytime.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

@@ -161,6 +161,27 @@ export function UnocoinWordmark({
   );
 }
 
+export function IndiaBitcoinWordmark({
+  size = "text-xl",
+  className = "",
+}: {
+  size?: string;
+  className?: string;
+}) {
+  return (
+    <div className={`flex flex-col leading-tight ${className}`}>
+      <span className={`${size} font-bold tracking-tight`}>
+        <span className="text-text-primary">India</span>
+        <span className="text-bitcoin">Bitcoin</span>
+        <span className="text-text-tertiary text-[0.6em]">.com</span>
+      </span>
+      <span className="text-[9px] text-text-tertiary tracking-wider uppercase">
+        Powered by Unocoin
+      </span>
+    </div>
+  );
+}
+
 export function UnocoinBrand({
   logoSize = 36,
   wordmarkSize = "text-xl",
@@ -176,6 +197,25 @@ export function UnocoinBrand({
     <a href="/" className={`flex items-center gap-2.5 group ${className}`}>
       <UnocoinLogo size={logoSize} animated={animated} />
       <UnocoinWordmark size={wordmarkSize} />
+    </a>
+  );
+}
+
+export function IndiaBitcoinBrand({
+  logoSize = 36,
+  wordmarkSize = "text-xl",
+  className = "",
+  animated = true,
+}: {
+  logoSize?: number;
+  wordmarkSize?: string;
+  className?: string;
+  animated?: boolean;
+}) {
+  return (
+    <a href="/" className={`flex items-center gap-2.5 group ${className}`}>
+      <UnocoinLogo size={logoSize} animated={animated} />
+      <IndiaBitcoinWordmark size={wordmarkSize} />
     </a>
   );
 }

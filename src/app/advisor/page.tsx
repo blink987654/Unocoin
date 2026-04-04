@@ -22,12 +22,10 @@ interface Message {
 
 // ─── Demo Portfolio Data ──────────────────────────────────────
 const holdings = [
-  { asset: "BTC", qty: "0.0425", value: 298138, allocation: 61.8 },
-  { asset: "ETH", qty: "0.85", value: 112500, allocation: 23.3 },
-  { asset: "USDT", qty: "500", value: 42000, allocation: 8.7 },
-  { asset: "SOL", qty: "2.5", value: 29712, allocation: 6.2 },
+  { asset: "BTC", qty: "0.0425", value: 298138, allocation: 87.6 },
+  { asset: "USDT", qty: "500", value: 42000, allocation: 12.4 },
 ];
-const totalValue = 482350;
+const totalValue = 340138;
 const sbpActive = true;
 const sbpMonthly = 5000;
 const streakDays = 47;
@@ -37,9 +35,7 @@ const portfolio = { holdings, totalValue, sbpActive, sbpMonthly, streakDays };
 // ─── Donut chart colors ───────────────────────────────────────
 const ASSET_COLORS: Record<string, string> = {
   BTC: "#F7931A",
-  ETH: "#627EEA",
   USDT: "#26A17B",
-  SOL: "#9945FF",
 };
 
 // ─── Easing ───────────────────────────────────────────────────
@@ -467,7 +463,7 @@ export default function AdvisorPage() {
       const fallbackMessage: Message = {
         id: crypto.randomUUID(),
         role: "assistant",
-        content: `${getGreeting()}! I've reviewed your portfolio. You're sitting at ₹4.82L with a solid 62% Bitcoin allocation. Your 47-day SBP streak is impressive — keep it going! I notice your USDT is just sitting idle. Want me to help you move it to earn 7% APY?`,
+        content: `${getGreeting()}! I've reviewed your portfolio. You're sitting at ₹3.40L with a solid 88% Bitcoin allocation. Your 47-day SBP streak is impressive — keep it going! I notice your USDT is just sitting idle. Want me to help you move it to earn 7% APY?`,
         suggestedActions: [
           {
             label: "Earn 7% on USDT",

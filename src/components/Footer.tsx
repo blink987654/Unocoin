@@ -1,6 +1,6 @@
 "use client";
 
-import { UnocoinBrand } from "./UnocoinLogo";
+import { IndiaBitcoinBrand } from "./UnocoinLogo";
 
 const footerLinks = {
   Products: [
@@ -49,11 +49,10 @@ export default function Footer() {
           {/* Brand column */}
           <div className="col-span-2 md:col-span-4 lg:col-span-1 mb-4 lg:mb-0">
             <div className="mb-4">
-              <UnocoinBrand logoSize={32} wordmarkSize="text-lg" animated={false} />
+              <IndiaBitcoinBrand logoSize={32} wordmarkSize="text-lg" animated={false} />
             </div>
             <p className="text-sm text-text-tertiary leading-relaxed max-w-xs mb-4">
-              India&apos;s pioneer Bitcoin platform. Bringing Bitcoin to billions
-              since 2013.
+              India&apos;s premier Bitcoin platform. Powered by Unocoin since 2013.
             </p>
 
             {/* App download buttons */}

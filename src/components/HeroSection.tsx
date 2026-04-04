@@ -29,16 +29,16 @@ function usePersonalization() {
   const [context, setContext] = useState({
     greeting: "The future of money",
     subtext: "starts here",
-    description: "India\u2019s first Bitcoin platform fought the RBI in the Supreme Court \u2014 and won. Since 2013, we\u2019ve been the guide for 2.26 million Indians building wealth with Bitcoin, stablecoins, and 120+ digital assets.",
+    description: "India\u2019s first Bitcoin platform fought the RBI in the Supreme Court \u2014 and won. Since 2013, we\u2019ve been the guide for 2.26 million Indians building wealth with Bitcoin and stablecoins.",
     timeOfDay: "day" as "morning" | "day" | "evening" | "night",
     isReturning: false,
   });
 
   useEffect(() => {
     const hour = new Date().getHours();
-    const visited = localStorage.getItem("unocoin_visited");
+    const visited = localStorage.getItem("indiabitcoin_visited");
     const isReturning = !!visited;
-    localStorage.setItem("unocoin_visited", "true");
+    localStorage.setItem("indiabitcoin_visited", "true");
 
     let timeOfDay: "morning" | "day" | "evening" | "night" = "day";
     if (hour >= 5 && hour < 12) timeOfDay = "morning";
@@ -62,7 +62,7 @@ function usePersonalization() {
         { greeting: "Rise and stack", subtext: "Bitcoin before chai", description: "Markets never sleep, and neither does your Bitcoin SBP. Your automated buys have been running while you rested." },
       ],
       day: [
-        { greeting: "Welcome back", subtext: "Bitcoin is moving", description: "2.26 million Indians are building wealth with Bitcoin on Unocoin. Check the markets, review your portfolio, or increase your SBP." },
+        { greeting: "Welcome back", subtext: "Bitcoin is moving", description: "2.26 million Indians are building wealth with Bitcoin on IndiaBitcoin. Check the markets, review your portfolio, or increase your SBP." },
         { greeting: "Digital gold", subtext: "is always open", description: "Live Bitcoin prices, instant trades, and your SBP running on autopilot. The decade\u2019s best-performing asset, available 24/7." },
       ],
       evening: [
@@ -99,9 +99,7 @@ function usePersonalization() {
 function useLivePrices() {
   const [prices, setPrices] = useState<PriceData[]>([
     { symbol: "BTC", name: "Bitcoin", price: 84231, change1h: 0.12, change24h: 2.4, marketCap: 1670000000000 },
-    { symbol: "ETH", name: "Ethereum", price: 3245, change1h: -0.05, change24h: 1.8, marketCap: 390000000000 },
     { symbol: "USDT", name: "Tether", price: 1.0, change1h: 0.0, change24h: 0.01, marketCap: 140000000000 },
-    { symbol: "USDC", name: "USD Coin", price: 1.0, change1h: 0.0, change24h: 0.0, marketCap: 52000000000 },
   ]);
 
   useEffect(() => {
@@ -127,16 +125,12 @@ function useLivePrices() {
 function PriceTicker({ prices }: { prices: PriceData[] }) {
   const symbolIcons: Record<string, string> = {
     BTC: "₿",
-    ETH: "Ξ",
     USDT: "₮",
-    USDC: "$",
   };
 
   const symbolColors: Record<string, string> = {
     BTC: "text-bitcoin",
-    ETH: "text-accent-purple",
     USDT: "text-accent-green",
-    USDC: "text-accent-blue",
   };
 
   return (

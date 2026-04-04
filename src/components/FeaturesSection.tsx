@@ -8,7 +8,7 @@ const heroFeatures = [
     stat: "₹0 SBP Fees",
     headline: "India's first Bitcoin SIP",
     description:
-      "Auto-invest in BTC or ETH daily, weekly, or monthly from just ₹10. Zero transaction fees on every trade.",
+      "Auto-invest in Bitcoin daily, weekly, or monthly from just ₹10. Zero transaction fees on every trade.",
   },
   {
     stat: "<1s",
@@ -33,7 +33,7 @@ const heroFeatures = [
 const moreProducts = [
   {
     title: "Instant Buy & Sell",
-    description: "Buy and sell 120+ assets instantly via UPI, IMPS, or NEFT.",
+    description: "Buy and sell Bitcoin and USDT instantly via UPI, IMPS, or NEFT.",
   },
   {
     title: "BTC Lending",

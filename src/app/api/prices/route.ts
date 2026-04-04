@@ -46,15 +46,13 @@ export async function GET() {
     // Fallback data when no API key
     return NextResponse.json([
       { symbol: "BTC", name: "Bitcoin", price: 84231, change1h: 0.12, change24h: 2.4, marketCap: 1670000000000 },
-      { symbol: "ETH", name: "Ethereum", price: 3245, change1h: -0.05, change24h: 1.8, marketCap: 390000000000 },
       { symbol: "USDT", name: "Tether", price: 1.0, change1h: 0.0, change24h: 0.01, marketCap: 140000000000 },
-      { symbol: "USDC", name: "USD Coin", price: 1.0, change1h: 0.0, change24h: 0.0, marketCap: 52000000000 },
     ]);
   }
 
   try {
     const res = await fetch(
-      "https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=BTC,ETH,USDT,USDC",
+      "https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=BTC,USDT",
       {
         headers: {
           "X-CMC_PRO_API_KEY": CMC_API_KEY,
@@ -70,7 +68,7 @@ export async function GET() {
     const json = await res.json();
     const data = json.data;
     const formatted = formatPrices(
-      ["BTC", "ETH", "USDT", "USDC"].map((s) => data[s])
+      ["BTC", "USDT"].map((s) => data[s])
     );
 
     cache = { data: formatted, timestamp: now };
@@ -85,9 +83,7 @@ export async function GET() {
     }
     return NextResponse.json([
       { symbol: "BTC", name: "Bitcoin", price: 84231, change1h: 0.12, change24h: 2.4, marketCap: 1670000000000 },
-      { symbol: "ETH", name: "Ethereum", price: 3245, change1h: -0.05, change24h: 1.8, marketCap: 390000000000 },
       { symbol: "USDT", name: "Tether", price: 1.0, change1h: 0.0, change24h: 0.01, marketCap: 140000000000 },
-      { symbol: "USDC", name: "USD Coin", price: 1.0, change1h: 0.0, change24h: 0.0, marketCap: 52000000000 },
     ]);
   }
 }

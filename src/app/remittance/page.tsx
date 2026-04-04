@@ -49,9 +49,9 @@ const flowSteps = [
   },
   {
     step: "03",
-    title: "Unocoin Converts",
+    title: "IndiaBitcoin Converts",
     desc: "Bitcoin is converted to INR at real-time market rates with zero slippage. FIU-IND compliant transaction logging.",
-    icon: "🔄",
+    icon: "\uD83D\uDD04",
   },
   {
     step: "04",
@@ -192,7 +192,7 @@ export default function RemittancePage() {
               markups. Your customers deserve better.
             </p>
             <p className="text-text-tertiary max-w-2xl mx-auto mb-10 leading-relaxed">
-              Unocoin&apos;s Lightning Network infrastructure settles
+              IndiaBitcoin&apos;s Lightning Network infrastructure settles
               cross-border payments in milliseconds, not days. API-first.
               FIU-IND registered. PMLA compliant. Trusted by sovereign entities.
               Thirteen years of operation. ₹3,000 Cr+ processed.
@@ -214,7 +214,7 @@ export default function RemittancePage() {
             </div>
 
             <p className="text-xs text-text-tertiary text-center mb-10 max-w-xl mx-auto">
-              Primary settlement via Bitcoin Lightning Network. Also supports USDT, USDC, and XRP corridors for partners requiring stablecoin or multi-asset settlement.
+              Primary settlement via Bitcoin Lightning Network. Also supports USDT settlement for partners requiring stablecoin corridors.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
@@ -285,7 +285,7 @@ export default function RemittancePage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-text-primary">
-                      Unocoin + Lightning
+                      IndiaBitcoin + Lightning
                     </h3>
                     <p className="text-xs text-text-tertiary">
                       Powered by Voltage infrastructure
@@ -357,11 +357,11 @@ export default function RemittancePage() {
                   End-to-end settlement:
                 </span>{" "}
                 Partner sends USD/GBP/EUR &rarr; Lightning Network (milliseconds)
-                &rarr; Unocoin converts to INR &rarr; Recipient receives INR via
+                &rarr; IndiaBitcoin converts to INR &rarr; Recipient receives INR via
                 IMPS/UPI
               </p>
               <p className="text-xs text-text-tertiary mt-3">
-                Stablecoin (USDT/USDC) and XRP settlement rails also available for partners requiring alternative corridors.
+                USDT settlement rails also available for partners requiring stablecoin corridors.
               </p>
             </div>
           </AnimatedSection>
@@ -426,7 +426,7 @@ export default function RemittancePage() {
                 <p className="text-text-secondary mb-6 leading-relaxed">
                   USDT on Lightning Network eliminates Bitcoin volatility risk
                   entirely. Your partners send USDT, it arrives as USDT, and
-                  Unocoin converts to INR at the exact moment of delivery.
+                  IndiaBitcoin converts to INR at the exact moment of delivery.
                   Zero currency risk. Zero slippage. The perfect rail for
                   remittance.
                 </p>
@@ -619,10 +619,10 @@ X-Signature: hmac_sha256_signature
                 <span className="text-text-primary font-medium">
                   Trusted by sovereign entities.
                 </span>{" "}
-                Unocoin has been operating since 2013 — through every regulatory
+                IndiaBitcoin has been operating since 2013 — through every regulatory
                 shift, every market cycle, and every compliance evolution. When
                 institutions need a partner in India they can trust with
-                cross-border settlement, they choose Unocoin.
+                cross-border settlement, they choose IndiaBitcoin.
               </p>
             </div>
           </AnimatedSection>
