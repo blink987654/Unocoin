@@ -24,7 +24,7 @@ export default function Navigation() {
     { label: "Products", href: "#products" },
     { label: "Platform", href: "/platform", badge: "AI" },
     { label: "Advisor", href: "/advisor", badge: "AI" },
-    { label: "Partners", href: "/remittance" },
+    { label: "Blog", href: "/blog" },
     { label: "Security", href: "/security" },
   ];
 

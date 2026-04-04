@@ -21,8 +21,8 @@ const footerLinks = {
   ],
   Company: [
     { label: "About Us", href: "#about" },
+    { label: "Blog", href: "/blog" },
     { label: "Security", href: "/security" },
-    { label: "Partners", href: "/partners" },
     { label: "API Docs", href: "/api-docs" },
     { label: "Bitshala (Learn Bitcoin)", href: "https://www.bitshala.org" },
   ],
