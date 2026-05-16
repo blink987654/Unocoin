@@ -48,7 +48,7 @@ const timeline = [
 
 const stats = [
   { value: "2013", label: "India\u2019s First Bitcoin Exchange", icon: "\uD83D\uDD50" },
-  { value: "2.26M+", label: "Verified Users", icon: "\uD83D\uDC65" },
+  { value: "2.65M+", label: "Verified Users", icon: "\uD83D\uDC65" },
   { value: "\u20B93K Cr+", label: "Transactions Processed", icon: "\uD83D\uDCCA" },
   { value: "Since 2013", label: "Years of Trust", icon: "\uD83E\uDE99" },
   { value: "95%", label: "Assets in Cold Storage", icon: "\uD83D\uDD12" },

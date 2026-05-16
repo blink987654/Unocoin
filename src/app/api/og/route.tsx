@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
   const title = searchParams.get("title") || "India's Bitcoin Platform";
   const subtitle =
     searchParams.get("subtitle") ||
-    "Since 2013. 2.26M+ users. Powered by Unocoin.";
+    "Since 2013. 2.65M+ users. Powered by Unocoin.";
   const type = searchParams.get("type") || "default"; // default | waitlist | blog
 
   return new ImageResponse(
@@ -226,7 +226,7 @@ export async function GET(req: NextRequest) {
             }}
           >
             <span style={{ display: "flex" }}>Est. 2013</span>
-            <span style={{ display: "flex" }}>2.26M+ Users</span>
+            <span style={{ display: "flex" }}>2.65M+ Users</span>
             <span style={{ display: "flex" }}>Rs.3,000 Cr+ Volume</span>
             <span style={{ display: "flex" }}>0% SBP Fees</span>
           </div>

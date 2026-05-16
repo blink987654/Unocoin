@@ -5,7 +5,7 @@ import { useRef, useEffect } from "react";
 
 const stats = [
   { value: 3000, prefix: "₹", suffix: " Cr+", label: "Transactions processed" },
-  { value: 2.26, suffix: "M+", label: "Verified users" },
+  { value: 2.65, suffix: "M+", label: "Verified users" },
   { value: 13, label: "Years of operation" },
   { value: 2, suffix: "", label: "Assets: BTC & USDT" },
   { value: 99.9, suffix: "%", label: "Platform uptime" },

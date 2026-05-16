@@ -161,7 +161,7 @@ export default function SecurityPage() {
             </h1>
             <p className="text-xl text-text-secondary max-w-3xl mx-auto mb-4">
               Institutional-grade security infrastructure trusted by sovereign
-              entities, family offices, and 2.26 million Indians. 13 years.
+              entities, family offices, and 2.65 million Indians. 13 years.
               Zero breaches.
             </p>
           </motion.div>

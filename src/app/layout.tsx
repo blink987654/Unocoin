@@ -17,13 +17,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "IndiaBitcoin — India's Bitcoin Platform",
     description:
-      "India's premier Bitcoin platform. 13 years of trust. 2.26M+ users. Powered by Unocoin.",
+      "India's premier Bitcoin platform. 13 years of trust. 2.65M+ users. Powered by Unocoin.",
     type: "website",
     locale: "en_IN",
     siteName: "IndiaBitcoin",
     images: [
       {
-        url: "/api/og?title=The%20Future%20of%20Money%20Starts%20Here&subtitle=India%27s%20first%20Bitcoin%20platform.%2013%20years%20of%20trust.%202.26M%2B%20users.%20Powered%20by%20Unocoin.",
+        url: "/api/og?title=The%20Future%20of%20Money%20Starts%20Here&subtitle=India%27s%20first%20Bitcoin%20platform.%2013%20years%20of%20trust.%202.65M%2B%20users.%20Powered%20by%20Unocoin.",
         width: 1200,
         height: 630,
         alt: "IndiaBitcoin — India's Bitcoin Platform",
@@ -34,9 +34,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "IndiaBitcoin — India's Bitcoin Platform",
     description:
-      "India's premier Bitcoin platform. 13 years of trust. 2.26M+ users. Powered by Unocoin.",
+      "India's premier Bitcoin platform. 13 years of trust. 2.65M+ users. Powered by Unocoin.",
     images: [
-      "/api/og?title=The%20Future%20of%20Money%20Starts%20Here&subtitle=India%27s%20first%20Bitcoin%20platform.%2013%20years%20of%20trust.%202.26M%2B%20users.%20Powered%20by%20Unocoin.",
+      "/api/og?title=The%20Future%20of%20Money%20Starts%20Here&subtitle=India%27s%20first%20Bitcoin%20platform.%2013%20years%20of%20trust.%202.65M%2B%20users.%20Powered%20by%20Unocoin.",
     ],
   },
 };

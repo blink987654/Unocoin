@@ -29,7 +29,7 @@ function usePersonalization() {
   const [context, setContext] = useState({
     greeting: "The future of money",
     subtext: "starts here",
-    description: "India\u2019s first Bitcoin platform fought the RBI in the Supreme Court \u2014 and won. Since 2013, we\u2019ve been the guide for 2.26 million Indians building wealth with Bitcoin and stablecoins.",
+    description: "India\u2019s first Bitcoin platform fought the RBI in the Supreme Court \u2014 and won. Since 2013, we\u2019ve been the guide for 2.65 million Indians building wealth with Bitcoin and stablecoins.",
     timeOfDay: "day" as "morning" | "day" | "evening" | "night",
     isReturning: false,
   });
@@ -50,7 +50,7 @@ function usePersonalization() {
     const firstTimeHeadlines = [
       { greeting: "Own digital gold", subtext: "the decade\u2019s best asset", description: "Bitcoin has outperformed every asset class of the last decade. Auto-invest with zero fees from just \u20B910. India\u2019s most trusted platform since 2013." },
       { greeting: "Bitcoin SBP", subtext: "at 0% fees", description: "Systematic Buying Plan for Bitcoin \u2014 India\u2019s first. Auto-invest daily, weekly, or monthly. Zero transaction fees. Start from just \u20B910. No lock-in." },
-      { greeting: "India\u2019s most trusted", subtext: "Bitcoin platform", description: "We fought the RBI in the Supreme Court \u2014 and won. 2.26 million Indians trust us with their Bitcoin. \u20B93,000 Cr+ processed. 13 years. Zero breaches." },
+      { greeting: "India\u2019s most trusted", subtext: "Bitcoin platform", description: "We fought the RBI in the Supreme Court \u2014 and won. 2.65 million Indians trust us with their Bitcoin. \u20B93,000 Cr+ processed. 13 years. Zero breaches." },
       { greeting: "Bitcoin is digital gold", subtext: "start from \u20B910", description: "The best-performing asset of the last decade. Buy Bitcoin instantly via UPI, earn 7% on stablecoins, and send via Lightning \u2014 all on one platform." },
       { greeting: "Bitcoin at lightning speed", subtext: "for a fraction of a rupee", description: "Send and receive Bitcoin in milliseconds via Lightning Network. Cross-border remittances that settle in seconds, not days. Powered by Voltage." },
     ];
@@ -62,7 +62,7 @@ function usePersonalization() {
         { greeting: "Rise and stack", subtext: "Bitcoin before chai", description: "Markets never sleep, and neither does your Bitcoin SBP. Your automated buys have been running while you rested." },
       ],
       day: [
-        { greeting: "Welcome back", subtext: "Bitcoin is moving", description: "2.26 million Indians are building wealth with Bitcoin on IndiaBitcoin. Check the markets, review your portfolio, or increase your SBP." },
+        { greeting: "Welcome back", subtext: "Bitcoin is moving", description: "2.65 million Indians are building wealth with Bitcoin on IndiaBitcoin. Check the markets, review your portfolio, or increase your SBP." },
         { greeting: "Digital gold", subtext: "is always open", description: "Live Bitcoin prices, instant trades, and your SBP running on autopilot. The decade\u2019s best-performing asset, available 24/7." },
       ],
       evening: [

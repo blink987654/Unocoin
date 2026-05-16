@@ -344,7 +344,7 @@ export default function PlatformPage() {
             <span className="gradient-text-bitcoin">manage your wealth?</span>
           </h2>
           <p className="text-text-secondary max-w-lg mx-auto mb-10">
-            Join 2.26 million Indians who trust IndiaBitcoin. Start with as little as
+            Join 2.65 million Indians who trust IndiaBitcoin. Start with as little as
             ₹10. No lock-in. Cancel anytime.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

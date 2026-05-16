@@ -113,7 +113,7 @@ const appScreens = [
 ];
 
 const stats = [
-  { value: "2.26M+", label: "Users" },
+  { value: "2.65M+", label: "Users" },
   { value: "₹3,000 Cr+", label: "Volume Processed" },
   { value: "2", label: "Assets: BTC & USDT" },
   { value: "13 Years", label: "Track Record" },
@@ -377,7 +377,7 @@ export default function AppPage() {
             <p className="text-text-secondary max-w-2xl leading-relaxed mb-16">
               IndiaBitcoin is India&apos;s oldest Bitcoin platform. FIU-IND
               registered. PMLA compliant. Trusted by sovereign entities, family
-              offices, and 2.26 million individuals. We fought the RBI in the
+              offices, and 2.65 million individuals. We fought the RBI in the
               Supreme Court — and won.
             </p>
           </AnimatedBlock>
@@ -439,7 +439,7 @@ export default function AppPage() {
               <span className="gradient-text-bitcoin">with ₹10</span>
             </h2>
             <p className="text-text-secondary max-w-lg mx-auto mb-10">
-              Join 2.26 million Indians on India&apos;s most trusted Bitcoin
+              Join 2.65 million Indians on India&apos;s most trusted Bitcoin
               platform. Free account. Zero SBP fees. No lock-in.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
